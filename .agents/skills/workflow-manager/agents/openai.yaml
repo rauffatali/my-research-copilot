@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workflow Manager"
+  short_description: "Manage the agentic workflow skeleton"
+  default_prompt: "Use $workflow-manager to route the workflow, check state coherence, and validate workflow templates."

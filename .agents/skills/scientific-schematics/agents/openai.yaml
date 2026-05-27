@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific Schematics"
+  short_description: "Draw technical diagrams"
+  default_prompt: "Use $scientific-schematics to create an evidence-aware technical diagram or workflow."

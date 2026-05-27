@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zotero"
+  short_description: "Compatibility wrapper for local Zotero operations"
+  default_prompt: "Use $zotero only when the explicit Zotero helper commands are needed; prefer $research-lookup for local library discovery and citation-source routing."

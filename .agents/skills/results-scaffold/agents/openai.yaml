@@ -1,0 +1,4 @@
+interface:
+  display_name: "Results Scaffold"
+  short_description: "Create result tables and placeholders"
+  default_prompt: "Use $results-scaffold to draft result tables, ablations, and evidence placeholders."

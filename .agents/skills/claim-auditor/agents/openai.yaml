@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claim Auditor"
+  short_description: "Check claims against evidence"
+  default_prompt: "Use $claim-auditor to audit a claim against repository evidence and supported citations."

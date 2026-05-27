@@ -1,0 +1,181 @@
+\documentclass[11pt]{article}
+
+% Generic scientific report template for internal research reports.
+%
+% This is NOT a venue-specific submission template.
+% Use the venue-templates skill for conference, journal, poster, grant,
+% camera-ready, or publisher-specific formatting.
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
+\newcommand{\needcitation}{\todo{needs citation}}
+\newcommand{\needresult}{\todo{needs verified result}}
+\newcommand{\needclaimaudit}{\todo{needs claim audit}}
+\newcommand{\needfigure}{\todo{needs figure artifact}}
+
+\title{Scientific Report Title}
+\author{Author / Agent Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Report Metadata}
+
+\begin{tabular}{ll}
+\textbf{Project:} & TODO: project name \\
+\textbf{Status:} & Draft / Preliminary / Evidence incomplete / Ready for claim audit \\
+\textbf{Evidence sources:} & TODO: list source artifacts, runs, outputs, or documents \\
+\textbf{Intended use:} & Internal report / manuscript draft / experiment summary / review artifact \\
+\end{tabular}
+
+\section*{Executive Summary}
+
+Write a short evidence-first summary.
+
+Do not overclaim. If evidence is missing, mark it clearly.
+
+\todo{Summarize the purpose, main evidence, main finding, and limitation.}
+
+\section{Purpose}
+
+State why this report exists and what decision it supports.
+
+Example:
+
+\begin{quote}
+This report summarizes the current evidence for TODO and identifies what remains needed before manuscript claims can be finalized.
+\end{quote}
+
+\section{Background and Context}
+
+Provide concise context.
+
+Use verified citations only. If no verified citation key exists, use a TODO rather than inventing one.
+
+\needcitation
+
+\section{Method or Approach}
+
+Describe the method, workflow, or analysis.
+
+This section should be based on project artifacts such as code, configs, experiment notes, or documented project context.
+
+\todo{Describe inputs, outputs, model/pipeline, preprocessing, training, and evaluation assumptions.}
+
+\section{Evidence Sources}
+
+List evidence used in this report.
+
+\begin{longtable}{p{0.25\linewidth} p{0.25\linewidth} p{0.4\linewidth}}
+\toprule
+\textbf{Artifact} & \textbf{Type} & \textbf{Notes} \\
+\midrule
+TODO & TODO & TODO \\
+\bottomrule
+\end{longtable}
+
+\section{Experiments or Analysis}
+
+Describe experiments, analyses, literature synthesis, or claim audit inputs.
+
+Do not invent metrics or results.
+
+\subsection{Experimental Setup}
+
+\begin{itemize}[leftmargin=*]
+    \item Dataset: TODO
+    \item Split: TODO
+    \item Baselines: TODO
+    \item Metrics: TODO
+    \item Run artifacts: TODO
+\end{itemize}
+
+\subsection{Results}
+
+Use verified result artifacts only.
+
+\begin{table}[h]
+\centering
+\caption{Result summary. Replace TODO values only after verified run artifacts are available.}
+\begin{tabular}{llll}
+\toprule
+Method & Dataset/Split & Metric & Result \\
+\midrule
+Baseline & TODO & TODO & \needresult \\
+Proposed & TODO & TODO & \needresult \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Interpretation}
+
+Interpret what the evidence supports.
+
+Avoid broad claims unless they passed claim audit.
+
+Example cautious phrasing:
+
+\begin{quote}
+Under the evaluated protocol, the available results suggest TODO. Broader generalization remains untested.
+\end{quote}
+
+\needclaimaudit
+
+\section{Limitations}
+
+State specific limitations.
+
+\begin{itemize}[leftmargin=*]
+    \item TODO: dataset/split limitation.
+    \item TODO: baseline limitation.
+    \item TODO: metric or evaluation limitation.
+    \item TODO: reproducibility limitation.
+\end{itemize}
+
+\section{Recommended Next Steps}
+
+\begin{enumerate}[leftmargin=*]
+    \item TODO: use \texttt{claim-auditor} for final claim support.
+    \item TODO: use \texttt{citation-management} for reference verification.
+    \item TODO: use \texttt{results-scaffold} if result tables are not final.
+    \item TODO: use \texttt{scientific-schematics} if a technical figure is needed.
+    \item TODO: use \texttt{venue-templates} before submission formatting.
+\end{enumerate}
+
+\section{References}
+
+% Do not invent BibTeX entries or citation keys.
+% Use citation-management before finalizing references.
+%
+% Example:
+% \bibliographystyle{plain}
+% \bibliography{references}
+
+\todo{Add bibliography only after citation keys and references are verified.}
+
+\appendix
+
+\section{Appendix}
+
+Use the appendix for supplementary details, additional tables, extra qualitative examples, or audit logs.
+
+\end{document}

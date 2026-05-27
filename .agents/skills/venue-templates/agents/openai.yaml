@@ -1,0 +1,4 @@
+interface:
+  display_name: "Venue Templates"
+  short_description: "Check venue formatting and rules"
+  default_prompt: "Use $venue-templates to check venue formatting, structure, and submission constraints."

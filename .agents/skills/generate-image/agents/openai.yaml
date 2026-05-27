@@ -1,0 +1,4 @@
+interface:
+  display_name: "Generate Image"
+  short_description: "Create general-purpose non-technical images"
+  default_prompt: "Use $generate-image to create a general-purpose non-technical image from a prompt."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Peer Review"
+  short_description: "Run reviewer-style critique"
+  default_prompt: "Use $peer-review to critique a manuscript or research plan with distinct reviewer roles."

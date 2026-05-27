@@ -1,0 +1,19 @@
+# Project-scoped Codex configuration.
+# Approved project MCP servers for docs, repo context, and browser QA.
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+enabled = true
+
+[mcp_servers.github]
+url = "https://api.githubcopilot.com/mcp/"
+bearer_token_env_var = "GITHUB_PERSONAL_ACCESS_TOKEN"
+
+[mcp_servers.huggingface]
+url = "https://hf.co/mcp"
+bearer_token_env_var = "HF_TOKEN"
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]

@@ -1,0 +1,4 @@
+interface:
+  display_name: "MCP Configurer"
+  short_description: "Configure approved MCP servers across clients"
+  default_prompt: "Use $mcp-configurer to set up or audit the approved MCP server set for Codex, Cursor, Claude Code, Gemini CLI, or Antigravity, including config location, transport, and auth wiring."

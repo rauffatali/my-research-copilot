@@ -1,0 +1,63 @@
+# Workflow and manuscript layout reference
+# These paths are documented here as a local-artifact manifest only.
+# Uncomment entries later if you want them to become active ignore rules.
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Repo-level workflow roots
+# AGENTS.md
+# .agents/
+# .codex/
+# sources/
+
+# Core workflow state
+# docs/current_status.md
+# docs/research_gates.md
+# docs/workflow_state_machine.md
+
+# Phase 1 to Phase 3 agent artifacts
+# docs/agent/
+# docs/agent/README.md
+# docs/agent/research_direction.md
+# docs/agent/brainstorming_brief.md
+# docs/agent/hypotheses.md
+# docs/agent/novelty_risk_matrix.md
+# docs/agent/project_plan.md
+# docs/agent/implementation_notes.md
+# docs/agent/result_interpretation.md
+# docs/agent/claim_ledger.md
+
+# Phase 4 to Phase 5 manuscript roots
+# paper/AGENTS.md
+# paper/agent/
+# paper/agent/README.md
+# paper/agent/claim_support.md
+# paper/agent/section_notes.md
+# paper/agent/style_notes.md
+# paper/agent/review_method.md
+# paper/agent/review_domain.md
+# paper/agent/review_hybrid.md
+# paper/agent/review_meta.md
+# paper/agent/revision_plan.md
+# paper/agent/response_to_reviewers_draft.md
+# paper/agent/claim_audit.md
+# paper/agent/review_notes.md
+
+# Style bootstrap materials
+# paper/style/
+# paper/style/README.md
+# paper/style/prior_paper_reference.pdf
+# paper/style/prior_paper_style.md
+
+# Local OS noise
+# Thumbs.db
+# Desktop.ini
+
+# Python cache and bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

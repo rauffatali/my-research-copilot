@@ -1,0 +1,4 @@
+interface:
+  display_name: "Literature Review"
+  short_description: "Synthesize prior work into context"
+  default_prompt: "Use $literature-review to synthesize prior work, gaps, baselines, and citations."

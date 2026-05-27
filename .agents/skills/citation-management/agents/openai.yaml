@@ -1,0 +1,4 @@
+interface:
+  display_name: "Citation Management"
+  short_description: "Verify references and BibTeX metadata"
+  default_prompt: "Use $citation-management to verify citation metadata, clean BibTeX, and repair reference records."

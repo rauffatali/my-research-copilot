@@ -1,0 +1,4 @@
+interface:
+  display_name: "Critical Thinking"
+  short_description: "Pressure-test methods and claims"
+  default_prompt: "Use $scientific-critical-thinking to pressure-test a research plan, method, or claim."

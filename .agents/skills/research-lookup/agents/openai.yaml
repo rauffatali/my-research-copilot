@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Lookup"
+  short_description: "Find papers, baselines, sources, and local Zotero records"
+  default_prompt: "Use $research-lookup to find prior work, baselines, datasets, technical references, or local Zotero library sources."
