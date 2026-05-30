@@ -207,7 +207,7 @@ Phase 2 turns an approved research direction into controlled implementation and 
 ### Actions
 
 1. Read the frozen Phase 1 package before changing implementation.
-2. Write or update a detailed project plan in `docs/agent/project_plan.md`.
+2. Write or update a detailed project plan in `docs/agent/project_plan.md` with explicit objective, scope, workstreams, task breakdown, dependencies, validation per task, risks/blockers, and exit criteria.
 3. Use `scientific-critical-thinking` to keep the implementation aligned with the approved contribution, baseline, metric, and failure mode.
 4. Use `ai-ml-research-dev`, `cv-dev`, `cv-researcher`, and `python-dev` as the execution guidance layer, selecting the smallest relevant subset for the task.
 5. Implement only the approved plan in small, reviewable steps.
@@ -244,6 +244,7 @@ Expected artifacts may include:
 Phase 2 is complete only when:
 
 - the approved plan has been implemented;
+- the project plan captures workstreams, tasks, subtasks, dependencies, validation, risks, and exit criteria rather than a flat to-do list;
 - validation has been run or explicitly deferred with a reason;
 - run/config/output artifacts are saved;
 - the implementation has not silently changed the contribution target;

@@ -137,7 +137,7 @@ Turn the request into a reviewable direction.
 ## Phase 2: Implementation / Experimentation
 
 ### Goal
-Implement the approved plan and validate it narrowly.
+Implement the approved plan through an explicit task breakdown and validate it narrowly.
 
 ### Example artifacts
 
@@ -151,10 +151,15 @@ Implement the approved plan and validate it narrowly.
 
 ### Example content
 
-- Planned steps: implement the smallest change, run a smoke test, and save outputs.
-- Experiment journal: record preliminary investigation, tuning, execution, ablation, and blockers.
-- Validation: unit test or smoke test plus any narrow experiment check required by the plan.
-- Decision: `frozen` once the approved change is implemented and validated or explicitly deferred.
+- Objective: one sentence stating the implementation goal.
+- Scope and assumptions: what is included, excluded, and what must already be true.
+- Workstreams: the major execution blocks for the project.
+- Task breakdown: numbered tasks with subtasks, validation, and artifact paths for each task.
+- Dependencies and order: upstream artifacts, file dependencies, and sequencing constraints.
+- Validation plan: unit tests, smoke tests, or experiment checks mapped to the relevant task.
+- Risks / blockers: implementation risks, missing inputs, and known uncertainties.
+- Exit criteria: what must be true before Phase 2 can freeze.
+- Decision: `frozen` once the approved change is implemented, validated, and documented at the task level or explicitly deferred.
 
 ## Phase 3: Result Consolidation
 

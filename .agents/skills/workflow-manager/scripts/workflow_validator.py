@@ -74,7 +74,18 @@ DEFAULT_SPECS: tuple[TemplateSpec, ...] = (
     ),
     TemplateSpec(
         "docs/agent/project_plan.md",
-        ("Status", "Objective", "Planned Steps", "Validation", "Risks", "Exit Criteria", "Next Step"),
+        (
+            "Status",
+            "Objective",
+            "Scope and Assumptions",
+            "Workstreams",
+            "Task Breakdown",
+            "Dependencies and Order",
+            "Validation Plan",
+            "Risks / Blockers",
+            "Exit Criteria",
+            "Next Step",
+        ),
     ),
     TemplateSpec(
         "docs/agent/implementation_notes.md",
