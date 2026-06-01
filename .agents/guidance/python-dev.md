@@ -59,6 +59,14 @@ If MCP output changes a code path, record the relevant library, version, or API 
 - Avoid magic numbers; use named constants or configuration.
 - Do not introduce abstractions before there is repeated structure or a clear testing benefit.
 
+When a task has distinct execution modes, split them by responsibility instead of hiding them behind one overloaded script:
+
+- keep the main `train.py` focused on orchestration;
+- put model definitions in dedicated modules such as `models.py` or `backbones.py` when they are reusable;
+- create separate entry points such as `smoke_train.py` when a smoke run has different behavior, scale, or safety guarantees than the full run;
+- prefer a dedicated fold runner or cross-validation entry point when cross-validation is materially different from ordinary training;
+- use a flag only when the behavior is the same and only the configuration changes.
+
 For non-trivial changes, state:
 
 1. what behavior changes,

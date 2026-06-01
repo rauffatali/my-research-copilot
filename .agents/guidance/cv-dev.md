@@ -105,6 +105,14 @@ Postprocessing is part of the model behavior and should be versioned or tested w
   3. selective fine-tuning;
   4. full fine-tuning only when justified.
 
+Keep execution modes separate when they behave differently:
+
+- keep the main training script focused on orchestration and shared setup;
+- define reusable architecture pieces in dedicated files such as `models.py` or `backbones.py`;
+- make a separate smoke-training entry point when the smoke path is intentionally tiny or has different safety/validation behavior;
+- make a dedicated cross-validation runner when fold handling is a distinct workflow rather than a parameter switch;
+- use a mode flag only when the control flow stays the same and the difference is just configuration.
+
 ---
 
 ## 6. Library preferences

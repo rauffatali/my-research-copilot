@@ -612,6 +612,7 @@ Avoid polished academic prose that hides uncertainty.
 
 - Preserve or improve typing, error handling, and logging.
 - Keep code modular and testable.
+- Separate distinct execution modes into dedicated modules or entry points when the control flow, scale, or validation behavior differs materially.
 - Avoid magic numbers; prefer config-driven behavior.
 - Do not silently swallow exceptions.
 - Prefer explicit data contracts over implicit assumptions.

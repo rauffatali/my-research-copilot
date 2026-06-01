@@ -113,6 +113,14 @@ For lightweight exploration, use the smallest reproducibility structure that sti
 - **Use structured sweeps:** when tuning is needed, use bounded search spaces and log comparisons.
 - **Avoid hidden coupling:** keep data, model, loss, optimizer, scheduler, evaluation, and postprocessing configuration explicit.
 
+Separate execution modes when they are materially different:
+
+- keep the main training entrypoint focused on orchestration;
+- place reusable architecture pieces in dedicated modules such as `models.py`, `backbones.py`, or similarly named components;
+- create a separate smoke-training entry point when the smoke path is intentionally tiny, faster, or safer than the full path;
+- create a dedicated cross-validation runner when fold handling is more than a simple parameter tweak;
+- use a mode flag only when the control flow is the same and only the scale or configuration changes.
+
 For foundation-model work:
 
 - Prefer adapting pretrained models over training from scratch unless justified.
