@@ -18,6 +18,8 @@ Use this document when deciding:
 | State | Meaning | Exit condition |
 |---|---|---|
 | `intake` | New request has been classified but not yet routed | A phase is selected |
+| `bootstrap_existing_project` | The repo already contains research/code/results/paper artifacts, but the live phase is not yet known | Existing artifacts have been inspected and the correct active phase is selected |
+| `backfill_required` | The requested phase is clear, but one or more required upstream artifacts are missing and must be reconstructed from existing project context | Missing prerequisite artifacts are created or explicitly marked unavailable |
 | `phase_1_active` | Research direction is being debated and formed | Frozen Phase 1 artifact package exists after evidence review, user questioning, and approval |
 | `phase_2_active` | Implementation or experiment work is being executed | Approved plan implemented and validated or explicitly deferred |
 | `phase_3_active` | Results are being consolidated into evidence | Stable evidence package and claim labels exist |
@@ -41,7 +43,27 @@ Frozen means the phase output is reviewable and should not be silently redefined
 
 | From | To | When |
 |---|---|---|
-| `intake` | `phase_1_active` | A research direction, implementation task, result task, writing task, or review task has been classified |
+| `intake` | `bootstrap_existing_project` | The workspace already contains project artifacts, but the current research phase is unknown or `docs/current_status.md` is missing, stale, or inconsistent |
+| `intake` | `phase_1_active` | The user is asking for idea formation, problem framing, novelty exploration, research direction selection, or the project has no usable frozen direction |
+| `intake` | `phase_2_active` | The user is asking for implementation, experiment setup, code changes, or benchmark execution, and a usable research direction exists or can be backfilled |
+| `intake` | `phase_3_active` | The user is asking for result analysis, metric interpretation, table building, error analysis, or claim-status updates, and run/output artifacts exist |
+| `intake` | `phase_4_active` | The user is asking for manuscript drafting, section rewriting, citation-supported writing, or paper polishing, and a stable evidence or claim package exists |
+| `intake` | `phase_5_active` | The user is asking for review, red-team critique, rebuttal planning, revision planning, or reviewer simulation, and a manuscript or reviewable draft exists |
+| `intake` | `backfill_required` | The requested phase is clear, but required upstream artifacts are missing and can likely be reconstructed from existing code, outputs, sources, or manuscript files |
+| `intake` | `blocked` | The requested phase is clear, but required upstream artifacts are missing and cannot be reconstructed without user input |
+| `bootstrap_existing_project` | `phase_1_active` | No usable research direction, hypothesis, baseline, metric, or evaluation target can be found |
+| `bootstrap_existing_project` | `phase_2_active` | A usable research direction exists, but implementation or experiment work is the next active task |
+| `bootstrap_existing_project` | `phase_3_active` | Run artifacts, metrics, logs, outputs, or evaluation tables exist and need consolidation |
+| `bootstrap_existing_project` | `phase_4_active` | A stable evidence package exists and manuscript drafting or revision is the next active task |
+| `bootstrap_existing_project` | `phase_5_active` | A manuscript draft or review package exists and critique, revision, or rebuttal planning is the next active task |
+| `bootstrap_existing_project` | `backfill_required` | The likely target phase is identifiable, but required handoff artifacts are missing |
+| `bootstrap_existing_project` | `blocked` | The project state cannot be determined from available files |
+| `backfill_required` | `phase_1_active` | The missing artifact is a research direction or novelty/evaluation framing that cannot be reconstructed safely |
+| `backfill_required` | `phase_2_active` | Minimal Phase 1 handoff has been reconstructed and implementation or experiment work can proceed |
+| `backfill_required` | `phase_3_active` | Minimal Phase 1/2 handoff has been reconstructed and existing results can be interpreted |
+| `backfill_required` | `phase_4_active` | Minimal evidence and claim handoff has been reconstructed and writing can proceed |
+| `backfill_required` | `phase_5_active` | Minimal manuscript/review context has been reconstructed and review can proceed |
+| `backfill_required` | `blocked` | Backfill requires unavailable files, missing user decisions, or unavailable experiment outputs |
 | `phase_1_active` | `phase_1_frozen` | Direction is concrete enough to support baseline, metric, risk, and validation criteria, and the user has approved proceeding after an evidence-backed debate round |
 | `phase_1_frozen` | `phase_2_active` | Implementation is authorized |
 | `phase_2_active` | `phase_2_frozen` | Plan is implemented and validation is complete or deferred with reason |
@@ -59,12 +81,17 @@ Frozen means the phase output is reviewable and should not be silently redefined
 
 ## Transition Rules
 
-1. Do not skip phases unless the missing upstream work is truly irrelevant.
-2. Do not silently move from one phase to another without updating `docs/current_status.md`.
-3. Do not overwrite a frozen artifact when downstream work depends on it; create a revision note instead.
-4. If a review changes the research direction, move back to Phase 1 rather than patching Phase 4 text.
-5. If a review only exposes missing evidence, move back to Phase 3 rather than rewriting claims first.
-6. If work stalls because of missing information or files, mark the state as `blocked`.
+1. Do not skip required prerequisites. However, an existing project may enter directly into Phase 2, 3, 4, or 5 if the required upstream context already exists or can be backfilled.
+2. When a user request targets an existing project, route by the requested work and available artifacts, not by the new-project canonical sequence.
+3. If the target phase is clear but required upstream artifacts are missing, use `backfill_required` instead of forcing a restart from Phase 1.
+4. Use `blocked` only when the missing information cannot be reconstructed from repository files, saved sources, outputs, runs, or manuscript artifacts.
+5. Backfilled artifacts must be marked as reconstructed, not frozen, unless the user explicitly approves them.
+6. Do not silently invent missing upstream decisions during backfill. Record uncertainty and ask only for the smallest missing decision if progress is impossible without it.
+7. Do not silently move from one phase to another without updating `docs/current_status.md`.
+8. Do not overwrite a frozen artifact when downstream work depends on it; create a revision note instead.
+9. If a review changes the research direction, move back to Phase 1 rather than patching Phase 4 text.
+10. If a review only exposes missing evidence, move back to Phase 3 rather than rewriting claims first.
+11. If work stalls because of missing information or files, mark the state as `blocked`.
 
 ## Blocked, Archived, and Rollback Rules
 
@@ -80,6 +107,68 @@ Frozen means the phase output is reviewable and should not be silently redefined
    - `phase_5_active` -> `blocked` when external work is required before any revision can continue.
 7. Do not rewrite claims in Phase 4 if the evidence package itself is the problem; fix the upstream phase first.
 
+## Existing Project Detection
+
+During `bootstrap_existing_project`, inspect the repository for these signals:
+
+| Signal | Likely phase |
+|---|---|
+| No clear research question, no direction file, no hypothesis, no baseline, no metric | Phase 1 |
+| Frozen or usable research direction exists, but implementation is incomplete | Phase 2 |
+| Code, configs, runs, metrics, logs, or outputs exist | Phase 3 |
+| Stable evidence package, claim ledger, result interpretation, or paper outline exists | Phase 4 |
+| Manuscript draft, review notes, reviewer feedback, rebuttal notes, or revision plan exists | Phase 5 |
+
+Artifact signals are not absolute. Prefer the user’s requested task when artifacts support it.
+
+If multiple signals exist, choose the latest phase whose prerequisites are satisfied.
+
+If the latest phase has weak or missing prerequisites, enter `backfill_required`.
+
+## Backfill Discipline
+
+Backfill is allowed when the project clearly contains enough evidence to reconstruct missing handoff artifacts.
+
+Examples:
+
+- Existing code and experiment configs can backfill part of Phase 2 planning.
+- Existing metrics and logs can backfill a result summary.
+- Existing paper claims can backfill a draft claim ledger, but unsupported claims must be marked.
+- Existing related-work notes can backfill source context, but missing citations must be marked.
+
+Backfill must not pretend that reconstructed context was originally approved.
+
+Use these labels in backfilled artifacts:
+
+- `reconstructed`
+- `assumed`
+- `needs_user_confirmation`
+- `needs_evidence`
+- `safe_to_use`
+
+A backfilled artifact may support progress, but it should not become frozen until reviewed or approved.
+
+## Current Status Freshness
+
+`docs/current_status.md` is the live state pointer, but it may be stale when the scaffold is first cloned into an existing project or when project artifacts have changed without a status update.
+
+A status file should be treated as stale when:
+
+- `Status type` is `template_default` but project-specific artifacts exist;
+- listed active artifacts do not exist;
+- listed blockers have already been resolved;
+- the status phase is earlier than the latest valid project evidence;
+- the status conflicts with frozen artifacts, run outputs, claim ledgers, or manuscript artifacts.
+
+When status is stale:
+
+1. Do not use stale status as project truth.
+2. Inspect durable artifacts.
+3. Route through `intake`, `bootstrap_existing_project`, or `backfill_required`.
+4. Rewrite `docs/current_status.md` before continuing downstream work.
+
+Use `blocked` only when the conflict cannot be resolved from available artifacts.
+
 ## Artifact Discipline
 
 - `docs/agent/` stores Phase 1 to Phase 3 working artifacts.
@@ -87,12 +176,61 @@ Frozen means the phase output is reviewable and should not be silently redefined
 - `sources/` stores external evidence artifacts.
 - `docs/current_status.md` stores the live state pointer.
 
-## Minimal Canonical Flow
+### Experiment Queue Discipline
+
+`docs/agent/experiment_queue.md` is a Phase 2 triage artifact.
+
+Use it when:
+
+- multiple candidate experiments exist;
+- compute, time, or cost is limited;
+- the next experiment is unclear;
+- a proposed change needs prioritization before implementation;
+- a reviewer or result analysis suggests several possible follow-up experiments.
+
+A queue item is not an approved experiment.
+A queue item becomes runnable only after it is promoted to `docs/agent/experiment_plan.md`.
+
+Queued experiments may be:
+
+- proposed;
+- approved_for_planning;
+- deferred;
+- cancelled;
+- superseded;
+- promoted.
+
+Do not move from a vague queue item directly to execution.
+Do not treat a queue item as evidence for a claim.
+
+## Canonical Flows
+
+### New project flow
+
+Use this when the repo starts from a broad idea or empty research scaffold:
 
 `intake` -> `phase_1_active` -> `phase_1_frozen` -> `phase_2_active` -> `phase_2_frozen` -> `phase_3_active` -> `phase_3_frozen` -> `phase_4_active` -> `phase_4_frozen` -> `phase_5_active` -> `archived`
 
+### Existing project bootstrap flow
+
+Use this when the scaffold is cloned into a project that already has code, runs, outputs, sources, or paper files:
+
+`intake` -> `bootstrap_existing_project` -> selected active phase
+
+The selected active phase may be Phase 1, 2, 3, 4, or 5 depending on available artifacts.
+
+### Existing project with missing handoff artifacts
+
+Use this when the user is clearly asking for a downstream task, but the required handoff artifacts are incomplete:
+
+`intake` -> `backfill_required` -> selected active phase
+
+Backfill should reconstruct only the minimum context needed to proceed.
+
 ## Notes
 
-- The workflow is linear by default, but review can send it backward.
-- Only material scope changes should reset the work to an earlier phase.
-- The current state should always be recoverable from the live status file plus the frozen artifacts.
+- The workflow is linear only for new projects.
+- Existing projects should resume from the latest valid research state.
+- Do not reset to Phase 1 unless the research direction is missing, invalid, or materially changed.
+- Review can still send work backward to Phase 4, Phase 3, or Phase 1.
+- The current state should always be recoverable from `docs/current_status.md` plus available frozen, draft, or reconstructed artifacts.

@@ -1,86 +1,41 @@
 # Current Status
 
-## Purpose
-
-This is the shared live status file across all workflow phases.
-
-The agent must update this file whenever the working state changes in a way that affects the next action, the active phase, the active artifacts, or the current blockers.
-
-## Update rules
-
-- Update this file after each user prompt that changes the active task or phase.
-- Update this file after each meaningful action, decision, or artifact write.
-- Update this file after each phase handoff.
-- Update this file after any blocker is discovered or resolved.
-- Update this file after any change to the active artifact paths.
-- Keep this file concise and current; do not treat it as a long narrative log.
-- Link to durable artifacts instead of repeating their full contents here.
-- If the task moves backward to an earlier phase, record the reason explicitly.
-- If the task is ambiguous, record the ambiguity and the smallest next question or decision needed.
-
-## Required fields
-
-Every status update should include:
-
-- Current phase
-- Current substep
-- Latest action
-- Active artifact paths
-- Blockers or open questions
-- Next recommended step
-
-## Optional fields
-
-Use these when they help the next step:
-
-- Current reviewer role
-- Current round number
-- Latest evidence source
-- Relevant skill in use
-- Whether the current artifact is draft, frozen, or superseded
-
-## Content rules
-
-- Keep the status short enough to scan quickly.
-- Prefer bullets over long paragraphs.
-- Do not store full research notes, long summaries, or manuscript text here.
-- Do not use this file as a substitute for `docs/agent/`, `paper/agent/`, or `sources/`.
-- The file should always point to the latest durable artifact for the current phase.
-
-## Suggested structure
-
-```md
-# Current Status
+## Metadata
+- Status type: template_default
+- Project initialized: no
+- Last updated: YYYY-MM-DD
+- State source: `docs/workflow_state_machine.md`
+- Status protocol: `docs/current_status_protocol.md`
 
 ## Phase
-- Current phase:
-- Current substep:
+- Current phase: `intake`
+- Current substep: scaffold ready; waiting for project bootstrap or first user request
 
 ## Latest Action
-- Latest action:
+- Repository workflow scaffold is available.
+- No project-specific research state has been initialized in this workspace yet.
 
 ## Active Artifacts
-- [path]
-- [path]
+- `docs/current_status.md`
+- `docs/workflow_state_machine.md`
+- `docs/research_gates.md`
+- `docs/agent/`
+- `paper/agent/`
+- `sources/`
 
 ## Blockers
-- [blocker or none]
+- None for the scaffold.
+- Project-specific phase is unknown until bootstrap or first task routing.
+
+## Open Questions
+- Has this scaffold been cloned into an existing research project?
+- Should the next task initialize a new project or bootstrap from existing project artifacts?
 
 ## Next Step
-- [next step]
-```
+- If this is a new project, route the next user request through `intake`.
+- If this is an existing project, run existing-project bootstrap before choosing Phase 1, 2, 3, 4, or 5.
 
-## Status
-
-- Current phase: not started
-- Current substep: repository scaffold setup
-- Latest action: created workflow memory scaffold files
-- Active artifact paths:
-  - `docs/current_status.md`
-  - `docs/agent/README.md`
-  - `paper/agent/README.md`
-  - `sources/README.md`
-- Blockers:
-  - phase-to-file contract not yet defined
-- Next recommended step:
-  - define per-phase artifact ownership and transition rules
+## Notes
+- This file is a live state pointer, not a narrative log.
+- Do not infer project progress from template-default status.
+- Replace `Status type: template_default` with `project_live` after project bootstrap or first real phase routing.

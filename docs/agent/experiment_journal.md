@@ -1,40 +1,52 @@
 # Experiment Journal
 
-This file tracks Phase 2 experimentation in a compact, reviewable form.
+## Purpose
 
-Use one entry per experiment stage so the execution path and outcomes remain visible.
+This file is the chronological index of experiment activity.
 
-## Suggested fields
+It should not replace:
 
-- `stage`
-- `experiment_id`
-- `plan_summary`
-- `code_or_config_path`
-- `dataset_or_split`
-- `seed`
-- `metric_or_signal`
-- `result_summary`
-- `issue_or_blocker`
-- `next_action`
+- `docs/agent/experiment_plan.md`
+- `docs/agent/run_registry.md`
+- `docs/agent/baseline_ledger.md`
+- `docs/agent/ablation_matrix.md`
+- `docs/agent/dataset_card.md`
+- `docs/agent/leakage_audit.md`
 
-## Suggested stages
+Use this file to preserve the execution path, failed attempts, pivots, blockers, and next actions.
+
+## Status
+
+- draft
+- Allowed values: draft, frozen, superseded
+
+## Journal
+
+| Date | Stage | Queue item | Experiment ID | Linked plan | Linked runs | Summary | Issue / blocker | Decision / next action |
+|---|---|---|---|---|---|---|---|---|
+| YYYY-MM-DD | main_experiment | `docs/agent/experiment_queue.md#...` | EXP-001 | `docs/agent/experiment_plan.md#exp-001` | `docs/agent/run_registry.md#run-001` | | | |
+
+## Suggested Stages
 
 - `preliminary_investigation`
-- `hyperparameter_tuning`
-- `research_execution`
+- `sanity_check`
+- `baseline_replication`
+- `main_experiment`
 - `ablation_study`
-- `replication`
+- `hyperparameter_tuning`
+- `failure_analysis`
+- `rerun`
 - `aggregation`
+- `cancelled`
 
-## Suggested table
+## Usage Rules
 
-| Stage | Experiment ID | Metric | Result summary | Issue / blocker | Next action |
-|---|---|---|---|---|---|
-| preliminary_investigation |  |  |  |  |  |
+- Record the smallest meaningful experiment step.
+- Keep failed, buggy, cancelled, or inconclusive runs visible.
+- Link to configs, logs, plots, checkpoints, and outputs instead of embedding them here.
+- Do not use this file as the only evidence for a manuscript claim.
+- If a run changes the research direction, mark the decision and route back to Phase 1 or `backfill_required`.
 
-## Usage notes
+## Next Step
 
-- Record the smallest meaningful step, not only the final run.
-- Keep failed or buggy runs visible so later agents can avoid repeating them.
-- Link to configs, logs, plots, and outputs instead of embedding them here.
-- Use the journal to explain why the next step changed.
+- [State the next experiment action.]

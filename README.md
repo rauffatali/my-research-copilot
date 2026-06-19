@@ -37,11 +37,12 @@ The workflow is intentionally phased and file-backed:
 
 ## Persistent Memory
 
-- `docs/current_status.md`
-- `docs/workflow_state_machine.md`
-- `docs/agent/`
-- `paper/agent/`
-- `sources/`
+- `docs/current_status.md` — short live state pointer
+- `docs/current_status_protocol.md` — rules for updating and refreshing live status
+- `docs/workflow_state_machine.md` — canonical phase and transition model
+- `docs/agent/` — research workflow artifacts
+- `paper/agent/` — manuscript-support and review artifacts
+- `sources/` — external evidence artifacts
 
 ## Skills and Guidance
 
@@ -120,7 +121,7 @@ outputs/
 
 ## Operating Rule
 
-Do not let the agent treat chat as memory. Important outputs belong in files, and `docs/current_status.md` should reflect the current phase, active artifact paths, and next action.
+Do not let the agent treat chat as memory. Important outputs belong in files, and `docs/current_status.md` should reflect the current phase, active artifact paths, blockers or open questions, and next action. If the status is still `template_default`, the agent should bootstrap or route through intake before treating it as project truth.
 
 ## References
 

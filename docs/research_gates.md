@@ -96,13 +96,20 @@ For detailed expectations, use the smallest relevant guidance file:
 
 ### Output artifact
 
-Prefer one of:
+For proposed research changes that are not yet approved to run, prefer:
+
+- `docs/agent/experiment_queue.md`
+- `docs/agent/implementation_notes.md`
+
+For approved implementation work, prefer:
 
 - `docs/PROJECT_PLAN.md`
-- `docs/agent/implementation_notes.md`
-- `runs/<run_id>/config.*`
-- `runs/<run_id>/README.md`
-- `outputs/<experiment_name>/summary.md`
+- `docs/agent/experiment_plan.md`
+- `runs/<experiment_or_run_id>/config.*`
+- `runs/<experiment_or_run_id>/README.md`
+- `outputs/<experiment_or_run_id>/summary.md`
+
+A proposed method, loss, augmentation, training strategy, or evaluation protocol should enter `experiment_queue.md` when it is one candidate among several or when its priority is not yet clear.
 
 ---
 
@@ -152,14 +159,21 @@ The agent must check or explicitly document:
 
 Do not claim “no leakage” unless supported by an audit artifact or explicit reasoning.
 
-### Output artifact
+### Required output artifacts
 
-Prefer one of:
+When dataset, split, preprocessing, label, or evaluation-data assumptions matter, create or update:
 
+- `docs/agent/dataset_card.md`
 - `docs/agent/leakage_audit.md`
+
+When automated checks are run, save outputs under:
+
 - `outputs/leakage/split_overlap_summary.json`
 - `outputs/leakage/duplicate_report.csv`
-- a dataset section in `docs/current_status.md`
+- `outputs/leakage/hash_report.*`
+- `outputs/leakage/metadata_leakage_report.*`
+
+A short dataset note in `docs/current_status.md` is allowed only as a pointer to durable artifacts. It must not be the only dataset or leakage record for a serious experiment.
 
 ---
 
@@ -167,7 +181,15 @@ Prefer one of:
 
 Use this before running expensive, long, or high-importance experiments.
 
-The experiment plan must state:
+If there are multiple possible experiments, limited compute, unclear priority, or an exploratory “what should we run next?” question, first update:
+
+- `docs/agent/experiment_queue.md`
+
+The queue should record candidate experiments, priority, decision enabled, expected information gain, cost, risk, and status.
+
+Promote a queue item to an experiment plan only when it is specific enough to run.
+
+A promoted experiment plan must state:
 
 1. Research question.
 2. Decision this experiment will enable.
@@ -184,14 +206,53 @@ The experiment plan must state:
 
 Do not run the experiment if it will not change a decision.
 
-### Output artifact
+### Required output artifacts
 
-Prefer one of:
+For experiment selection or prioritization, create or update:
+
+- `docs/agent/experiment_queue.md`
+
+For approved serious experiments, create or update:
 
 - `docs/agent/experiment_plan.md`
-- `runs/<run_id>/config.*`
-- `runs/<run_id>/README.md`
-- `outputs/experiments/<experiment_name>/summary.md`
+
+Before execution, the experiment plan must define:
+
+- linked hypothesis or research direction;
+- decision enabled;
+- baseline/control;
+- experimental change;
+- dataset/split/evaluation setting;
+- metric or failure mode;
+- minimal viable experiment;
+- expected true/false outcomes;
+- stop condition;
+- compute/time/cost budget;
+- required output artifacts.
+
+During or after execution, create or update:
+
+- `docs/agent/run_registry.md`
+- `docs/agent/experiment_journal.md`
+- `runs/<experiment_or_run_id>/`
+- `outputs/experiments/<experiment_or_run_id>/`
+
+When the experiment depends on a dataset, split, benchmark, or evaluation protocol, also create or update:
+
+- `docs/agent/dataset_card.md`
+- `docs/agent/leakage_audit.md`
+
+When the experiment supports a comparison claim, also create or update:
+
+- `docs/agent/baseline_ledger.md`
+
+When the experiment supports a mechanism or component claim, also create or update:
+
+- `docs/agent/ablation_matrix.md`
+
+Do not treat a queued experiment as approved.
+Do not treat chat-only experiment selection as a durable decision.
+Do not run the experiment if it will not change a decision.
 
 ---
 
@@ -227,7 +288,58 @@ Prefer one of:
 
 ---
 
-## Gate 7: Claim Support Gate
+## Gate 7: Result-to-Claim Gate
+
+Use this before turning results into claims, manuscript text, figures, tables, abstracts, or conclusions.
+
+### Required checks
+
+The result must answer:
+
+- Which experiment plan produced this result?
+- Which run registry entries support it?
+- Which outputs, logs, metrics, predictions, or figures support it?
+- What baseline/control is used?
+- Is the comparison valid, conditionally valid, invalid, or unknown?
+- What dataset/split/evaluation setting was used?
+- Is leakage status passed, partial, failed, unknown, or not applicable?
+- Is the result stable across seeds or only preliminary?
+- What failure modes or slices were checked?
+- What alternative explanations could explain the result?
+- What claim does this result support, weaken, or refute?
+- What wording is allowed?
+- What wording is not allowed?
+
+### Required output artifacts
+
+Before a result can support a strong claim, create or update:
+
+- `docs/agent/result_cards/`
+- `docs/agent/result_to_claim_map.md`
+- `docs/agent/claim_ledger.md`
+
+When relevant, also create or update:
+
+- `docs/agent/error_analysis.md`
+- `docs/agent/negative_results.md`
+- `docs/agent/figure_review.md`
+
+### Stop rule
+
+Do not turn raw metrics directly into manuscript claims.
+
+If a result lacks a result card, claim mapping, or baseline/evaluation support, mark the claim as:
+
+- `preliminary`
+- `partially_supported`
+- `needs_manual_check`
+- `unsupported`
+
+rather than supported.
+
+---
+
+## Gate 8: Claim Support Gate
 
 Use this before writing, editing, or strengthening manuscript/report claims.
 
@@ -289,7 +401,7 @@ Prefer one of:
 
 ---
 
-## Gate 8: Red-Team Review Gate
+## Gate 9: Red-Team Review Gate
 
 Use this before accepting major plans, conclusions, experiments, or paper claims.
 
@@ -331,7 +443,7 @@ Prefer one of:
 
 ---
 
-## Gate 9: Paper Writing Gate
+## Gate 10: Paper Writing Gate
 
 Use this before drafting or revising manuscript text.
 
@@ -371,7 +483,7 @@ Prefer one of:
 
 ---
 
-## Gate 10: Final Handoff Gate
+## Gate 11: Final Handoff Gate
 
 Use this at the end of substantial research, code, experiment, or writing tasks.
 

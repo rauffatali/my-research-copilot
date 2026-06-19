@@ -41,7 +41,8 @@ This repository is not for unfocused exploration. Prefer well-motivated, scoped,
 
 This repository uses file-backed workflow memory. Chat is for interaction, but durable research context must be written to repository artifacts.
 
-- `docs/current_status.md` is the shared live status file across all phases. It should record the current phase, latest action, current artifact paths, blockers, and next recommended step.
+- `docs/current_status.md` is the short shared live state pointer across all phases. It should record the current phase, current substep, latest action, active artifact paths, blockers, open questions, and next recommended step.
+- `docs/current_status_protocol.md` defines how `docs/current_status.md` should be updated, when it is stale, and how to handle template-default or backfilled state.
 - `docs/agent/` stores agent-generated research workflow artifacts such as brainstorming briefs, research direction notes, hypotheses, novelty-risk notes, planning notes, and result-interpretation notes.
 - `paper/agent/` stores agent-generated manuscript-support artifacts such as claim audits, review rounds, revision plans, and response-to-reviewers drafts.
 - `sources/` stores external evidence artifacts gathered from search, APIs, papers, dataset pages, benchmark pages, and technical documentation. These are source-trace artifacts, not manuscript prose.
@@ -81,9 +82,10 @@ Before entering any phase, classify the user request and route it to the correct
 
 1. Read the user prompt and determine the most likely phase.
 2. Load the latest relevant artifacts before acting.
-3. Update `docs/current_status.md` with the routed phase and next step.
-4. If the prompt is ambiguous, ask the smallest clarifying question needed to choose the phase.
-5. If the prompt crosses phases, choose the earliest required phase and note the later phases as downstream.
+3. Inspect `docs/current_status.md`. If it is `template_default`, stale, or inconsistent with project artifacts, first refresh it through `intake`, `bootstrap_existing_project`, or `backfill_required` before downstream work.
+4. Update `docs/current_status.md` with the routed phase, active artifacts, blockers or open questions, and next step.
+5. If the prompt is ambiguous, ask the smallest clarifying question needed to choose the phase.
+6. If the prompt crosses phases, choose the earliest missing prerequisite phase. If all required prerequisites already exist or can be backfilled from repository artifacts, route to the user's requested downstream phase.
 
 ### Rule
 
@@ -98,7 +100,9 @@ Use `docs/workflow_state_machine.md` as the single source of truth for:
 - backward moves triggered by review or missing evidence;
 - blocked and archived states.
 
-If the live task state and frozen artifacts disagree, treat the task as blocked until `docs/current_status.md` is updated.
+If `docs/current_status.md` is `template_default`, stale, or inconsistent with durable project artifacts, do not treat the stale status as project truth. First refresh it by inspecting the available artifacts and routing through `intake`, `bootstrap_existing_project`, or `backfill_required`.
+
+If a refreshed live status still disagrees with frozen artifacts, treat the task as `blocked` until the conflict is resolved.
 
 ### Workflow skeleton validation
 
@@ -231,13 +235,33 @@ Phase 2 turns an approved research direction into controlled implementation and 
 ### Actions
 
 1. Read the frozen Phase 1 package before changing implementation.
-2. Read and update `docs/PROJECT_PLAN.md` as the canonical project plan with explicit objective, scope, workstreams, task breakdown, dependencies, validation per task, risks/blockers, and exit criteria. If it is missing or still a template, initialize it from the project-plan template before Phase 2 work. Use `docs/agent/implementation_notes.md`, `docs/agent/experiment_journal.md`, or `docs/agent/phase2_decisions.md` for agent-generated supporting notes.
-3. Use `scientific-critical-thinking` to keep the implementation aligned with the approved contribution, baseline, metric, and failure mode.
-4. Use `ai-ml-research-dev`, `cv-dev`, `cv-researcher`, and `python-dev` as the execution guidance layer, selecting the smallest relevant subset for the task.
-5. Implement only the approved plan in small, reviewable steps.
-6. Run narrow validation after meaningful changes.
-7. Save experiment configs, logs, metrics, outputs, and run notes in the project structure.
-8. Update `docs/current_status.md` after each significant implementation step and after each experiment decision.
+2. Read and update `docs/PROJECT_PLAN.md` as the canonical project plan with explicit objective, scope, workstreams, task breakdown, dependencies, validation per task, risks/blockers, and exit criteria. If it is missing or still a template, initialize it from the project-plan template before Phase 2 work.
+3. Use `docs/agent/implementation_notes.md` for implementation reasoning and engineering notes.
+4. Use `docs/agent/experiment_queue.md` when the task involves choosing among candidate experiments, prioritizing next runs, deciding what to test first, managing limited compute, or comparing experiment ideas before execution.
+5. Promote a queue item to `docs/agent/experiment_plan.md` only when it has:
+   - a linked hypothesis or research direction;
+   - a decision it will enable;
+   - a baseline or control;
+   - an experimental change;
+   - a target metric or failure mode;
+   - a minimal viable version;
+   - a stop condition;
+   - expected true/false outcomes.
+6. Use `scientific-critical-thinking` to keep the implementation aligned with the approved contribution, baseline, metric, and failure mode.
+7. Use `ai-ml-research-dev`, `cv-dev`, `cv-researcher`, and `python-dev` as the execution guidance layer, selecting the smallest relevant subset for the task.
+8. Implement only the approved plan in small, reviewable steps.
+9. Run narrow validation after meaningful changes.
+10. Before running a serious experiment, create or update `docs/agent/experiment_plan.md`.
+11. During execution, record actual runs in `docs/agent/run_registry.md`.
+12. Before running a serious experiment, check `docs/agent/experiment_queue.md` to see whether the experiment is already proposed, deferred, cancelled, or superseded.
+13. If the experiment is not yet approved, add or update it in `docs/agent/experiment_queue.md` rather than running it immediately.
+14. Once an experiment is selected, create or update `docs/agent/experiment_plan.md`.
+15. During execution, record actual runs in `docs/agent/run_registry.md`.
+16. Save experiment configs, logs, metrics, checkpoints, predictions, plots, and summaries under durable `runs/` and `outputs/` paths.
+17. Update `docs/agent/experiment_journal.md` as the chronological index of what happened and what decision was made.
+18. Update `docs/agent/experiment_journal.md` as the chronological index of experiment activity.
+19. When comparisons, ablations, datasets, or leakage risks matter, update the corresponding baseline, ablation, dataset, or leakage artifact.
+20. Update `docs/current_status.md` after each significant implementation step and after each experiment decision.
 
 #### Project plan template
 
@@ -255,19 +279,41 @@ For a real project, agents must use `docs/PROJECT_PLAN.md` as the active project
 
 ### Outputs
 
-Phase 2 artifacts are project-dependent and not limited to a fixed skeleton. The implementation should use the actual repository structure that best fits the project.
+Phase 2 artifacts are project-dependent, but serious implementation and experimentation work should leave a durable artifact chain.
 
-Expected artifacts may include:
+For implementation-only tasks, expected artifacts may include:
 
-- `docs/agent/experiment_journal.md`
 - `docs/agent/implementation_notes.md`
 - `docs/PROJECT_PLAN.md`
 - `src/`
 - `scripts/`
 - `tests/`
 - `configs/`
-- `runs/<run_id>/`
-- `outputs/<experiment_name>/`
+
+For experiment selection and prioritization, use:
+
+- `docs/agent/experiment_queue.md`
+
+Use `docs/agent/experiment_queue.md` before `docs/agent/experiment_plan.md` when experiment priority is unclear, multiple candidate experiments exist, compute is limited, or the next experiment should be selected by expected decision value.
+
+For approved experiment execution, use:
+
+- `docs/agent/experiment_plan.md`
+- `docs/agent/run_registry.md`
+- `docs/agent/experiment_journal.md`
+- `runs/<experiment_or_run_id>/`
+- `outputs/experiments/<experiment_or_run_id>/`
+
+When relevant, also update:
+
+- `docs/agent/baseline_ledger.md`
+- `docs/agent/ablation_matrix.md`
+- `docs/agent/dataset_card.md`
+- `docs/agent/leakage_audit.md`
+
+Do not treat a queued experiment as approved.
+Do not treat an approved experiment as completed.
+Do not treat a completed run as interpreted evidence until Phase 3 consolidates it.
 
 ### Exit condition
 
@@ -276,7 +322,12 @@ Phase 2 is complete only when:
 - the approved plan has been implemented;
 - the project plan captures workstreams, tasks, subtasks, dependencies, validation, risks, and exit criteria rather than a flat to-do list;
 - validation has been run or explicitly deferred with a reason;
-- run/config/output artifacts are saved;
+- candidate experiments are recorded, prioritized, deferred, cancelled, or promoted in `docs/agent/experiment_queue.md` when experiment choice matters;
+- every serious executed experiment has a linked queue item or an explicit reason for bypassing the queue;
+- every approved experiment has a linked experiment plan, run registry entry, saved config, saved output path, and recorded next decision;
+- comparisons are backed by `docs/agent/baseline_ledger.md` when baseline claims are likely;
+- ablations are backed by `docs/agent/ablation_matrix.md` when mechanism or component claims are likely;
+- dataset and leakage assumptions are backed by `docs/agent/dataset_card.md` and `docs/agent/leakage_audit.md` when evaluation validity depends on them;
 - the implementation has not silently changed the contribution target;
 - `docs/current_status.md` reflects the current implementation state and next step.
 
@@ -284,25 +335,42 @@ Do not redefine the research direction during implementation. If the idea change
 
 ---
 
-## Phase 3 Contract: Result Consolidation
+## Phase 3 Contract: Result Consolidation and Claim Support
 
-Phase 3 turns experiment outputs into structured research evidence.
+### Purpose
 
-### Input
+Convert experiment outputs into interpreted evidence and claim support decisions.
 
-- Saved runs, logs, metrics, configs, checkpoints, and outputs from Phase 2.
+Phase 3 should not merely summarize metrics. It should determine what the results actually support, what they do not support, and what claims must be strengthened, weakened, or removed.
+
+### Inputs
+
+Expected inputs may include:
+
+- `docs/agent/experiment_plan.md`
+- `docs/agent/run_registry.md`
+- `docs/agent/experiment_journal.md`
+- `docs/agent/baseline_ledger.md`
+- `docs/agent/ablation_matrix.md`
+- `docs/agent/dataset_card.md`
+- `docs/agent/leakage_audit.md`
+- Saved runs, logs, metrics, configs, checkpoints, and outputs from Phase 2 in `runs/` and `outputs/`.
 - Relevant source artifacts in `sources/`.
 - Frozen Phase 1 artifacts for comparison against the original research intent.
 
 ### Actions
 
-1. Read the latest experiment outputs before writing interpretation.
-2. Use `results-scaffold` to organize tables, ablations, result summaries, and evidence placeholders without inventing metrics.
-3. Use `claim-auditor` to label claims as supported, preliminary, hypothesis, needs citation, unsupported, or contradicted.
-4. Use `scientific-critical-thinking` to pressure-test whether the results are actually decisive, leakage-safe, and aligned with the intended claim.
-5. Use `literature-review` when prior-work comparison or baseline context is needed for interpretation.
-6. Save consolidated result artifacts and interpretation notes in `docs/agent/` and `outputs/`.
-7. Update `docs/current_status.md` with the current result state, supported claims, unresolved uncertainty, and next step.
+1. Inspect the relevant experiment plans, run registry entries, logs, metrics, and outputs.
+2. Create or update a result card in `docs/agent/result_cards/` for each major result or decision-relevant finding.
+3. Check baseline/control validity before interpreting comparison claims.
+4. Check dataset and leakage status before interpreting evaluation claims.
+5. Record instability, failed runs, inconclusive results, or non-improvements in `docs/agent/negative_results.md`.
+6. Perform error or slice analysis in `docs/agent/error_analysis.md` when aggregate metrics are insufficient.
+7. Synthesize result cards in `docs/agent/result_interpretation.md`.
+8. Map interpreted results to claims in `docs/agent/result_to_claim_map.md`.
+9. Update `docs/agent/claim_ledger.md` with supported, partially supported, preliminary, unsupported, contradicted, or citation-needed status.
+10. Review figures and tables through `docs/agent/figure_review.md` before using them in manuscript writing.
+11. Update `docs/current_status.md` when the active evidence state, claim status, or next phase changes.
 
 ### Required skills
 
@@ -313,27 +381,29 @@ Phase 3 turns experiment outputs into structured research evidence.
 
 ### Outputs
 
-Expected artifacts may include:
+Expected Phase 3 artifacts include:
 
+- `docs/agent/result_cards/`
 - `docs/agent/result_interpretation.md`
+- `docs/agent/error_analysis.md`
+- `docs/agent/negative_results.md`
+- `docs/agent/result_to_claim_map.md`
 - `docs/agent/figure_review.md`
 - `docs/agent/claim_ledger.md`
-- `outputs/results_*`
-- `outputs/ablation_*`
-- `outputs/failure_analysis.md`
-- `outputs/qualitative_examples/`
 
-### Exit condition
+### Exit Conditions
 
-Phase 3 is complete only when:
+Phase 3 can be frozen only when:
 
-- raw outputs have been converted into a stable evidence package;
-- important claims have explicit support labels;
-- weak or unsupported claims are rewritten or marked;
-- the next writing phase can proceed without re-deriving the results from chat;
-- `docs/current_status.md` reflects the evidence state.
-
-Do not begin manuscript drafting until the result package is stable enough to support claims.
+- major results have result cards;
+- result cards link to runs, outputs, and relevant experiment plans;
+- comparison claims have baseline/control support;
+- evaluation claims have dataset/leakage support when relevant;
+- important failures or inconclusive results are recorded;
+- claim support is mapped in `result_to_claim_map.md`;
+- `claim_ledger.md` reflects the current evidence;
+- figures/tables are reviewed for traceability and claim safety;
+- unsupported or overbroad claims are marked as preliminary, unsupported, contradicted, or removed.
 
 ---
 

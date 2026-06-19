@@ -147,6 +147,9 @@ Implement the approved plan through an explicit task breakdown and validate it n
 
 ### Example artifacts
 
+- `docs/agent/experiment_queue.md`
+- `docs/agent/experiment_plan.md`
+- `docs/agent/run_registry.md`
 - `docs/agent/experiment_journal.md`
 - `docs/agent/implementation_notes.md`
 - `docs/PROJECT_PLAN.md`
@@ -166,6 +169,9 @@ Implement the approved plan through an explicit task breakdown and validate it n
 - Risks / blockers: implementation risks, missing inputs, and known uncertainties.
 - Exit criteria: what must be true before Phase 2 can freeze.
 - Decision: `frozen` once the approved change is implemented, validated, and documented at the task level or explicitly deferred.
+- Experiment queue: candidate experiments are prioritized by decision enabled, expected information gain, cost, risk, and status.
+- Experiment promotion: only the selected queue item becomes an approved experiment plan.
+- Experiment journal: records what actually happened after planning and execution.
 
 ## Phase 3: Result Consolidation
 
