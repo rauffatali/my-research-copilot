@@ -104,6 +104,8 @@ AGENTS.md
 .codex/
 docs/
   current_status.md
+  current_status_protocol.md
+  workflow_state_machine.md
   research_gates.md
   agent/
 paper/

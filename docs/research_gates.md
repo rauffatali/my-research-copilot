@@ -8,15 +8,23 @@ The goal is not to slow down progress. The goal is to prevent shallow ideas, unn
 
 Use the smallest relevant gate. Do not apply every gate by default.
 
-Gates 1-5 correspond to the five workflow phases:
+Gates are grouped by research decision type, not one-to-one with workflow phases.
 
-- Gate 1 -> Phase 1: Brainstorming / Research Formalization
-- Gate 2 -> Phase 2: Implementation / Experimentation
-- Gate 3 -> Phase 3: Result Consolidation
-- Gate 4 -> Phase 4: Writing / Manuscript Drafting
-- Gate 5 -> Phase 5: Multi-Agent Review / Red-Team
+Core gates:
 
-Gates 6-10 are cross-cutting downstream checks that can apply across multiple phases.
+- Gate 1: Research Direction Gate
+- Gate 2: Research Change Gate
+- Gate 3: Implementation Gate
+- Gate 4: Dataset and Leakage Gate
+- Gate 5: Experiment Decision Gate
+- Gate 6: Evaluation and Result Interpretation Gate
+- Gate 7: Result-to-Claim Gate
+- Gate 8: Claim Support Gate
+- Gate 9: Red-Team Review Gate
+- Gate 10: Paper Writing Gate
+- Gate 11: Final Handoff Gate
+
+The canonical transition rules for moving between phases live in `docs/workflow_state_machine.md`.
 
 The canonical transition rules for moving between these phases live in `docs/workflow_state_machine.md`.
 
@@ -277,10 +285,20 @@ Do not present exploratory or notebook-only results as final evidence unless the
 
 ### Output artifact
 
-Prefer one of:
+For decision-relevant results, prefer:
 
+- `docs/agent/result_cards/`
 - `docs/agent/result_interpretation.md`
+- `docs/agent/error_analysis.md`
+- `docs/agent/negative_results.md`
+
+For claim-facing results, also update:
+
+- `docs/agent/result_to_claim_map.md`
 - `docs/agent/claim_ledger.md`
+
+Raw output artifacts may live under:
+
 - `outputs/results_*`
 - `outputs/ablation_*`
 - `outputs/failure_analysis.md`

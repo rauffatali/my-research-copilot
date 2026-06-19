@@ -125,7 +125,7 @@ Use the `workflow-manager` skill when `docs/current_status.md` changes or when y
 
 This checker is scaffold-aware:
 
-- it tolerates the current `not started` state;
+- it tolerates the default `template_default` / `intake` scaffold state;
 - it checks that listed active artifact paths exist;
 - it checks phase-specific required artifacts when the current phase is set to a phase label;
 - it does not replace claim, experiment, or manuscript validation.
@@ -234,34 +234,41 @@ Phase 2 turns an approved research direction into controlled implementation and 
 
 ### Actions
 
-1. Read the frozen Phase 1 package before changing implementation.
+1. Read `docs/agent/research_direction.md` before starting implementation or experimentation. If the research direction is missing, still a template, or not frozen enough to guide implementation, route back to Phase 1 or enter `backfill_required`.
 2. Read and update `docs/PROJECT_PLAN.md` as the canonical project plan with explicit objective, scope, workstreams, task breakdown, dependencies, validation per task, risks/blockers, and exit criteria. If it is missing or still a template, initialize it from the project-plan template before Phase 2 work.
-3. Use `docs/agent/implementation_notes.md` for implementation reasoning and engineering notes.
-4. Use `docs/agent/experiment_queue.md` when the task involves choosing among candidate experiments, prioritizing next runs, deciding what to test first, managing limited compute, or comparing experiment ideas before execution.
+3. Use `docs/agent/implementation_notes.md` for implementation reasoning, engineering decisions, design tradeoffs, debugging notes, and non-experiment implementation context.
+4. Use `docs/agent/experiment_queue.md` before `docs/agent/experiment_plan.md` when experiment priority is unclear, multiple candidate experiments exist, compute is limited, or the next experiment should be selected by expected decision value.
 5. Promote a queue item to `docs/agent/experiment_plan.md` only when it has:
-   - a linked hypothesis or research direction;
-   - a decision it will enable;
-   - a baseline or control;
-   - an experimental change;
-   - a target metric or failure mode;
-   - a minimal viable version;
-   - a stop condition;
-   - expected true/false outcomes.
-6. Use `scientific-critical-thinking` to keep the implementation aligned with the approved contribution, baseline, metric, and failure mode.
-7. Use `ai-ml-research-dev`, `cv-dev`, `cv-researcher`, and `python-dev` as the execution guidance layer, selecting the smallest relevant subset for the task.
-8. Implement only the approved plan in small, reviewable steps.
-9. Run narrow validation after meaningful changes.
-10. Before running a serious experiment, create or update `docs/agent/experiment_plan.md`.
+   * a linked hypothesis or research direction;
+   * a decision it will enable;
+   * a baseline or control;
+   * an experimental change;
+   * a target metric or failure mode;
+   * a minimal viable version;
+   * a stop condition;
+   * expected outcomes if the hypothesis is true or false.
+6. Before implementing a research change, check `docs/research_gates.md`, especially:
+   * Gate 2: Research Change Gate;
+   * Gate 3: Implementation Gate;
+   * Gate 4: Dataset and Leakage Gate;
+   * Gate 5: Experiment Decision Gate.
+7. Keep implementation aligned with the frozen research direction, target failure mode, baseline/control, metric, and validation plan.
+8. Before running a serious experiment, check `docs/agent/experiment_queue.md` to see whether the experiment is already proposed, deferred, cancelled, or superseded.
+9. If the experiment is not yet approved, add or update it in `docs/agent/experiment_queue.md` rather than running it immediately.
+10. Once an experiment is selected, create or update `docs/agent/experiment_plan.md`.
 11. During execution, record actual runs in `docs/agent/run_registry.md`.
-12. Before running a serious experiment, check `docs/agent/experiment_queue.md` to see whether the experiment is already proposed, deferred, cancelled, or superseded.
-13. If the experiment is not yet approved, add or update it in `docs/agent/experiment_queue.md` rather than running it immediately.
-14. Once an experiment is selected, create or update `docs/agent/experiment_plan.md`.
-15. During execution, record actual runs in `docs/agent/run_registry.md`.
-16. Save experiment configs, logs, metrics, checkpoints, predictions, plots, and summaries under durable `runs/` and `outputs/` paths.
-17. Update `docs/agent/experiment_journal.md` as the chronological index of what happened and what decision was made.
-18. Update `docs/agent/experiment_journal.md` as the chronological index of experiment activity.
-19. When comparisons, ablations, datasets, or leakage risks matter, update the corresponding baseline, ablation, dataset, or leakage artifact.
-20. Update `docs/current_status.md` after each significant implementation step and after each experiment decision.
+12. Save experiment configs, logs, metrics, checkpoints, predictions, plots, and summaries under durable `runs/` and `outputs/` paths.
+13. Update `docs/agent/experiment_journal.md` as the chronological index of what happened, what failed, what changed, and what decision was made.
+14. When comparisons, ablations, datasets, or leakage risks matter, update the corresponding supporting artifact:
+* `docs/agent/baseline_ledger.md` for baseline/control validity;
+* `docs/agent/ablation_matrix.md` for component or mechanism isolation;
+* `docs/agent/dataset_card.md` for dataset, split, preprocessing, and evaluation assumptions;
+* `docs/agent/leakage_audit.md` for leakage and evaluation trustworthiness.
+15. Run tests, sanity checks, smoke tests, small-subset runs, or minimal viable experiments before expensive or full-scale execution.
+16. Record failed, cancelled, unstable, or inconclusive implementation/experiment attempts instead of hiding them.
+17. If implementation reveals that the research direction, hypothesis, baseline, metric, or evaluation plan is flawed, pause Phase 2 and route back to Phase 1 or `backfill_required`.
+18. If experiment outputs are ready for interpretation, route to Phase 3 rather than turning raw metrics directly into claims.
+19. Update `docs/current_status.md` when the active implementation task, experiment state, artifact set, blocker, or next step changes.
 
 #### Project plan template
 
