@@ -7,7 +7,7 @@ Use it to decide which phase may create or modify a file, and when a task should
 
 | Phase | Owns | May touch | Must not touch | Stop / block condition |
 |---|---|---|---|---|
-| Phase 1 | Research direction, novelty framing, hypothesis shaping | `docs/agent/` phase-1 artifacts, `sources/` evidence notes | `src/`, `tests/`, `runs/`, `outputs/`, `paper/` draft text | Stop if the idea lacks a baseline, metric, failure mode, or validation path |
+| Phase 1 | Research debate, evidence-backed brainstorming, novelty framing, hypothesis shaping | `docs/agent/` phase-1 artifacts, `sources/` evidence notes | `src/`, `tests/`, `runs/`, `outputs/`, `paper/` draft text | Stop if the idea lacks evidence review, user clarification, baseline, metric, failure mode, or validation path |
 | Phase 2 | Implementation, experiment setup, controlled execution | `src/`, `tests/`, `scripts/`, `runs/`, `outputs/` | `paper/` prose, `paper/agent/` review artifacts, Phase 1 direction unless a revision is explicitly requested | Block if the approved plan, frozen direction, or required inputs are missing |
 | Phase 3 | Result consolidation, evidence labeling, claim support status | `docs/agent/` result artifacts, `outputs/`, read-only access to `runs/` | `src/` implementation logic, `paper/` prose, Phase 1 frozen direction except to cite it | Block if the evidence package is incomplete, unstable, or not traceable to the run artifacts |
 | Phase 4 | Manuscript drafting, section writing, citation shaping | `paper/`, `paper/agent/`, cited evidence artifacts, read-only access to `docs/agent/` and `outputs/` | `src/` implementation logic, `runs/` experiment state, unsupported claim expansion | Block if the supporting evidence, citations, or claim ledger is missing |
@@ -23,7 +23,7 @@ Use it to decide which phase may create or modify a file, and when a task should
 
 ## Practical examples
 
-- Phase 1 can describe a proposed change, but should not edit implementation files.
+- Phase 1 can describe a proposed change, but should not edit implementation files or freeze the direction before the user approves the evidence-backed proposal.
 - Phase 2 can implement the approved plan, but should not draft the paper.
 - Phase 3 can label claims, but should not invent new experiment evidence.
 - Phase 4 can write claims, but only from supported evidence.

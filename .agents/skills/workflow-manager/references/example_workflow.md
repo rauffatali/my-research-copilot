@@ -115,7 +115,7 @@ Use `blocked` when the request depends on a missing upstream artifact, decision,
 ## Phase 1: Research Formalization
 
 ### Goal
-Turn the request into a reviewable direction.
+Turn the request into a debated, evidence-backed, user-approved direction.
 
 ### Example artifacts
 
@@ -127,12 +127,18 @@ Turn the request into a reviewable direction.
 
 ### Example content
 
+- Evidence briefing: the agent shows relevant papers, baselines, datasets, benchmarks, or saved source artifacts before finalizing the direction.
+- Debate rounds: the agent challenges the idea, asks clarifying questions, records user responses, and updates the interpretation.
 - Research question: does the proposed change improve the target failure mode relative to the baseline?
 - Idea archive: candidate directions are scored and kept so rejected or deferred ideas are not lost.
 - Baseline: the simplest accepted reference method.
 - Failure mode: the weakness the proposal is meant to address.
+- Expected mechanism: why the proposed idea should address the failure mode.
 - Metric: the decision signal that will determine whether the idea is worth implementing.
-- Decision: `frozen` once the question, baseline, failure mode, and validation path are explicit.
+- Ablation or isolation plan: the minimum comparison needed to isolate the contribution.
+- Publication worthiness: why the direction is worth pursuing, revising, deferring, or stopping.
+- User approval: the explicit proceed, revise, defer, or stop decision.
+- Decision: `frozen` only after evidence has been shown, main questions have been answered or deferred, and the user approves the final direction.
 
 ## Phase 2: Implementation / Experimentation
 

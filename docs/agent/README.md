@@ -5,6 +5,8 @@ This directory stores agent-generated research workflow artifacts.
 Examples include:
 
 - brainstorming briefs
+- evidence-backed debate rounds
+- user clarification and decision records
 - idea archive entries
 - research direction notes
 - hypotheses
@@ -18,6 +20,8 @@ Examples include:
 - canonical end-to-end workflow example
 
 These are workflow and reasoning artifacts, not manuscript files.
+
+Phase 1 brainstorming artifacts should preserve the discussion path, not only the final idea. Keep evidence found, questions asked, user responses, unresolved assumptions, and the final proceed/revise/defer/stop decision traceable.
 
 ## Common templates
 

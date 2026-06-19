@@ -53,14 +53,20 @@ A research direction must state:
 6. Minimal evidence needed before implementation.
 7. Success metric or evaluation signal.
 8. Risk, tradeoff, or reason the idea may fail.
+9. Evidence briefing shown to the user.
+10. Clarifying questions asked and user responses incorporated.
+11. Publication-worthiness decision: proceed, revise, defer, or stop.
 
 Do not proceed if the proposal cannot identify a concrete failure mode, baseline, and validation path.
+
+Do not freeze Phase 1 from the first user idea alone. Phase 1 must include at least one evidence-backed debate round unless the user explicitly requests a narrow no-research sketch.
 
 ### Output artifact
 
 Prefer one of:
 
 - `docs/agent/research_direction.md`
+- `docs/agent/brainstorming_brief.md`
 - `docs/agent/hypotheses.md`
 - a short section in `docs/current_status.md`
 - a task-specific planning note

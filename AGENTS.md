@@ -134,7 +134,9 @@ Use it as the canonical example of how artifacts move across phases and how froz
 
 ## Phase 1 Contract: Brainstorming / Research Formalization
 
-Phase 1 turns a broad research idea into a written, reviewable research package.
+Phase 1 turns a broad research idea into a debated, evidence-backed, user-approved research package.
+
+Phase 1 is intentionally interactive. Do not treat brainstorming as a one-pass artifact-writing task.
 
 ### Input
 
@@ -144,14 +146,31 @@ Phase 1 turns a broad research idea into a written, reviewable research package.
 
 ### Actions
 
-1. Clarify the task, scope, and intended contribution.
+1. Clarify the starting intent only enough to begin evidence lookup.
 2. Read relevant saved source artifacts from `sources/` before doing new lookup work.
 3. Use `research-lookup` to gather candidate prior work, baselines, datasets, benchmarks, and technical references.
-4. Use `literature-review` to synthesize the source base into closest prior work, gaps, baseline expectations, and context.
-5. Use `claim-auditor` to check whether the proposed research direction, novelty framing, and any early wording are claimable from the available references and project context.
-6. Use `scientific-critical-thinking` to pressure-test novelty, leakage risk, evaluation decisiveness, failure modes, and contribution strength.
-7. Use `citation-management` only when reference metadata or BibTeX hygiene needs verification for candidate sources.
-8. If the idea is weak, refine it before freezing the direction; if it is promising, formalize it as a stable research package.
+4. Present a compact evidence briefing to the user: what was found, why it matters, what seems promising, what seems risky, and what is still unclear.
+5. Ask targeted clarifying questions before formalizing the direction. Ask enough questions to resolve the research contribution, scope, baseline, metric, dataset/evaluation assumptions, risk, and implementation feasibility; group questions so the user can answer them efficiently.
+6. Record each debate round in `docs/agent/brainstorming_brief.md`, including evidence found, questions asked, user responses, current interpretation, and unresolved uncertainty.
+7. Repeat lookup, synthesis, critique, and user questioning until the idea is either rejected, deferred, or strong enough to formalize.
+8. Use `literature-review` to synthesize the source base into closest prior work, gaps, baseline expectations, and context.
+9. Use `claim-auditor` to check whether the proposed research direction, novelty framing, and any early wording are claimable from the available references and project context.
+10. Use `scientific-critical-thinking` to pressure-test novelty, leakage risk, evaluation decisiveness, failure modes, and contribution strength.
+11. Use `citation-management` only when reference metadata or BibTeX hygiene needs verification for candidate sources.
+12. If the idea is weak, refine it or recommend stopping; if it is promising, propose a final research package and ask the user to approve, revise, or reject it.
+
+### Interaction rule
+
+Do not directly patch a final `research_direction.md` from the user's initial idea alone.
+
+Phase 1 may write draft brainstorming notes while the discussion is active, but it must not freeze the research direction or move to Phase 2 until:
+
+- relevant evidence has been gathered or existing evidence has been reviewed;
+- the evidence briefing has been shown to the user;
+- the user has answered the main clarifying questions or explicitly deferred them;
+- unresolved assumptions are recorded;
+- the final direction has been presented for user approval;
+- the user has approved proceeding, or the decision is recorded as revise, defer, or stop.
 
 ### Required skills
 
@@ -183,11 +202,14 @@ The phase should also ensure `docs/current_status.md` records:
 
 Phase 1 is complete only when the idea has:
 
+- at least one evidence-backed debate round;
+- user responses incorporated into the final direction;
 - a concrete failure mode;
 - a baseline or reference point;
 - a metric or evaluation signal;
 - an ablation or isolation plan;
 - an identified risk or tradeoff;
+- a publication-worthiness assessment or explicit reason to stop/defer;
 - a clear decision to proceed, revise, or stop.
 
 Do not move to implementation without a frozen Phase 1 artifact package.

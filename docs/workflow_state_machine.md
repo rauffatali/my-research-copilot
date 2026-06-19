@@ -18,7 +18,7 @@ Use this document when deciding:
 | State | Meaning | Exit condition |
 |---|---|---|
 | `intake` | New request has been classified but not yet routed | A phase is selected |
-| `phase_1_active` | Research direction is being formed | Frozen Phase 1 artifact package exists |
+| `phase_1_active` | Research direction is being debated and formed | Frozen Phase 1 artifact package exists after evidence review, user questioning, and approval |
 | `phase_2_active` | Implementation or experiment work is being executed | Approved plan implemented and validated or explicitly deferred |
 | `phase_3_active` | Results are being consolidated into evidence | Stable evidence package and claim labels exist |
 | `phase_4_active` | Manuscript drafting or revision is in progress | Claims are traceable to evidence and citations |
@@ -42,7 +42,7 @@ Frozen means the phase output is reviewable and should not be silently redefined
 | From | To | When |
 |---|---|---|
 | `intake` | `phase_1_active` | A research direction, implementation task, result task, writing task, or review task has been classified |
-| `phase_1_active` | `phase_1_frozen` | Direction is concrete enough to support baseline, metric, risk, and validation criteria |
+| `phase_1_active` | `phase_1_frozen` | Direction is concrete enough to support baseline, metric, risk, and validation criteria, and the user has approved proceeding after an evidence-backed debate round |
 | `phase_1_frozen` | `phase_2_active` | Implementation is authorized |
 | `phase_2_active` | `phase_2_frozen` | Plan is implemented and validation is complete or deferred with reason |
 | `phase_2_frozen` | `phase_3_active` | Results exist and need consolidation |
