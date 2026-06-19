@@ -11,7 +11,6 @@ Examples include:
 - research direction notes
 - hypotheses
 - novelty-risk notes
-- project plans
 - experiment journals
 - implementation notes
 - result interpretation notes
@@ -30,7 +29,6 @@ Phase 1 brainstorming artifacts should preserve the discussion path, not only th
 - `idea_archive.md`
 - `hypotheses.md`
 - `novelty_risk_matrix.md`
-- `project_plan.md`
 - `experiment_journal.md`
 - `implementation_notes.md`
 - `result_interpretation.md`

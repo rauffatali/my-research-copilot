@@ -25,7 +25,7 @@ This repository is not for unfocused exploration. Prefer well-motivated, scoped,
 - `.agents/skills/` contains repo-owned skills and bundled workflow tooling.
 - `baselines/` contains baseline implementations or baseline references.
 - `data/` contains dataset-related files, metadata, or local dataset references.
-- `docs/` contains project planning, research context, guidance, and status documents.
+- `docs/` contains project planning, research context, workflow gates, and status documents.
 - `notebooks/` contains interactive research workflows: exploration, prototyping, baseline training, visual debugging, qualitative analysis, and guided experiments.
 - `runs/` contains experiment runs, logs, checkpoints, or tracked outputs.
 - `outputs/` contains generated artifacts, metrics, figures, tables, and summaries.
@@ -104,12 +104,14 @@ If the live task state and frozen artifacts disagree, treat the task as blocked 
 
 Use the `workflow-manager` skill after changing workflow skeleton templates, phase artifact templates, review templates, or their required headings/status conventions.
 
+Run this validator after project initialization or after required active artifacts have been created from templates. On a raw skeleton, validation may fail if `docs/PROJECT_PLAN.md` or other active project files have not yet been generated.
+
 This validator checks structure only:
 
-- required template files exist;
+- required artifact files exist;
 - required headings are present;
 - `Status` values use `draft`, `frozen`, or `superseded`;
-- templates end with `Next Step` or `Recommendation`.
+- validated files end with `Next Step` or `Recommendation`.
 
 Do not treat this validator as evidence that a real research project, experiment, manuscript, or claim package is complete.
 
@@ -229,13 +231,19 @@ Phase 2 turns an approved research direction into controlled implementation and 
 ### Actions
 
 1. Read the frozen Phase 1 package before changing implementation.
-2. Write or update a detailed project plan in `docs/agent/project_plan.md` with explicit objective, scope, workstreams, task breakdown, dependencies, validation per task, risks/blockers, and exit criteria.
+2. Read and update `docs/PROJECT_PLAN.md` as the canonical project plan with explicit objective, scope, workstreams, task breakdown, dependencies, validation per task, risks/blockers, and exit criteria. If it is missing or still a template, initialize it from the project-plan template before Phase 2 work. Use `docs/agent/implementation_notes.md`, `docs/agent/experiment_journal.md`, or `docs/agent/phase2_decisions.md` for agent-generated supporting notes.
 3. Use `scientific-critical-thinking` to keep the implementation aligned with the approved contribution, baseline, metric, and failure mode.
 4. Use `ai-ml-research-dev`, `cv-dev`, `cv-researcher`, and `python-dev` as the execution guidance layer, selecting the smallest relevant subset for the task.
 5. Implement only the approved plan in small, reviewable steps.
 6. Run narrow validation after meaningful changes.
 7. Save experiment configs, logs, metrics, outputs, and run notes in the project structure.
 8. Update `docs/current_status.md` after each significant implementation step and after each experiment decision.
+
+#### Project plan template
+
+The canonical project-plan template is `.agents/templates/PROJECT_PLAN.template.md`.
+
+For a real project, agents must use `docs/PROJECT_PLAN.md` as the active project plan. If `docs/PROJECT_PLAN.md` is missing or still contains template placeholders, the agent should initialize or complete it from `.agents/templates/PROJECT_PLAN.template.md` before Phase 2 work.
 
 ### Required skills and guidances
 
@@ -251,9 +259,9 @@ Phase 2 artifacts are project-dependent and not limited to a fixed skeleton. The
 
 Expected artifacts may include:
 
-- `docs/agent/project_plan.md`
 - `docs/agent/experiment_journal.md`
 - `docs/agent/implementation_notes.md`
+- `docs/PROJECT_PLAN.md`
 - `src/`
 - `scripts/`
 - `tests/`
@@ -472,7 +480,6 @@ Do not treat review as a purely stylistic pass. It is a scientific and evidentia
 Before proposing major research, architecture, training, evaluation, or paper-writing changes, consult the smallest relevant subset of:
 
 - `docs/PROJECT_PLAN.md`
-- `docs/guidance.md`
 - `docs/research_context.md`
 - `docs/current_status.md`
 
@@ -481,22 +488,6 @@ Before major research direction, implementation, experiment, evaluation, or pape
 Do not infer the current research direction from memory alone.
 
 If these files conflict, prefer the most project-specific and most recent status document. If the conflict matters, state it explicitly before proceeding.
-
----
-
-## Operating principles
-
-- Prefer small, reviewable changes.
-- Do not modify unrelated files.
-- Do not expand project scope implicitly.
-- State assumptions before making major changes.
-- Prefer clarity over cleverness.
-- Prefer measurable improvements over speculative complexity.
-- Establish a baseline, reference point, prior work comparison, or starting assumption before adding complexity.
-- Preserve reproducibility.
-- Keep implementation, experiment design, and paper claims synchronized.
-
----
 
 ## Research task lifecycle
 
@@ -642,7 +633,7 @@ Avoid polished academic prose that hides uncertainty.
 - When changing behavior, update or add the narrowest relevant tests.
 - Keep train, validation, evaluation, and inference behavior clearly separated.
 
-## Notebook policy
+### Notebook policy
 
 - Notebooks are allowed for interactive research workflows: exploration, prototyping, baseline training, visual debugging, qualitative analysis, and guided experiments.
 - Keep notebook purpose clear at the top.
@@ -831,6 +822,20 @@ Do not invoke writing, venue, or image skills during code-only tasks unless expl
 - Do not overwrite experiment artifacts.
 - Do not remove baselines unless explicitly requested.
 - Do not present generated hypotheses as established findings.
+
+---
+
+## Operating principles
+
+- Prefer small, reviewable changes.
+- Do not modify unrelated files.
+- Do not expand project scope implicitly.
+- State assumptions before making major changes.
+- Prefer clarity over cleverness.
+- Prefer measurable improvements over speculative complexity.
+- Establish a baseline, reference point, prior work comparison, or starting assumption before adding complexity.
+- Preserve reproducibility.
+- Keep implementation, experiment design, and paper claims synchronized.
 
 ---
 

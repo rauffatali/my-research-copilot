@@ -171,7 +171,6 @@ For repository-grounded schematics, inspect relevant context:
 - `docs/research_gates.md` for approved workflow constraints;
 - `docs/research_context.md` for problem framing;
 - `docs/current_status.md` for what is complete;
-- `docs/guidance.md` for current direction;
 - `src/` for implementation structure;
 - `scripts/` for pipelines;
 - `configs/` for model/training/evaluation settings;

@@ -129,7 +129,6 @@ Use these as sources of truth:
 - `outputs/` for generated summaries, tables, plots, predictions, or artifacts;
 - `docs/PROJECT_PLAN.md` for locked scope and planned comparisons;
 - `docs/research_gates.md` for result and claim gates;
-- `docs/guidance.md` for current project direction;
 - `docs/research_context.md` for framing and evaluation goals;
 - `docs/current_status.md` for what is done, pending, or blocked;
 - `paper/` for manuscript structure and section context;

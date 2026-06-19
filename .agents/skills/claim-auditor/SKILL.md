@@ -139,7 +139,6 @@ Use these as sources of truth.
 - `docs/research_gates.md`
 - `docs/research_context.md`
 - `docs/current_status.md`
-- `docs/guidance.md`
 - `AGENTS.md`
 - relevant `.agents/guidance/` files
 - locked scope, approved assumptions, and known limitations

@@ -30,7 +30,6 @@ Use canonical phase templates for the main workflow artifacts:
 - `brainstorming_brief.md`
 - `hypotheses.md`
 - `novelty_risk_matrix.md`
-- `project_plan.md`
 - `implementation_notes.md`
 - `result_interpretation.md`
 - `claim_ledger.md`

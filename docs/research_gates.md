@@ -98,7 +98,7 @@ For detailed expectations, use the smallest relevant guidance file:
 
 Prefer one of:
 
-- `docs/agent/project_plan.md`
+- `docs/PROJECT_PLAN.md`
 - `docs/agent/implementation_notes.md`
 - `runs/<run_id>/config.*`
 - `runs/<run_id>/README.md`

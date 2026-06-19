@@ -13,7 +13,6 @@ When editing the manuscript, use the following as the main sources of truth:
 - `../runs/` for experiment outputs and logs
 - `../outputs/` for generated artifacts and result summaries
 - `../docs/PROJECT_PLAN.md` for project intent and study boundaries
-- `../docs/guidance.md` for current project guidance
 - `../docs/research_context.md` for research framing
 - `../docs/current_status.md` for current repository state
 

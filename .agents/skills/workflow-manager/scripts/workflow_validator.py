@@ -1,7 +1,8 @@
-"""Validate workflow skeleton templates.
+"""Validate required workflow artifact files after project initialization.
 
-This script checks structural template rules only. It does not validate a
-real project state, experiment output, or manuscript claim content.
+This script expects active workflow artifacts such as docs/PROJECT_PLAN.md
+to already exist. A raw skeleton may fail until those files are generated
+from .agents/templates/.
 """
 
 from __future__ import annotations
@@ -81,7 +82,7 @@ DEFAULT_SPECS: tuple[TemplateSpec, ...] = (
         ("Status", "Notes", "Next Step"),
     ),
     TemplateSpec(
-        "docs/agent/project_plan.md",
+        "docs/PROJECT_PLAN.md",
         (
             "Status",
             "Objective",
@@ -232,7 +233,7 @@ def validate_template(root: Path, spec: TemplateSpec) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
 
     if not file_path.exists():
-        return [ValidationIssue(spec.path, "missing required template file")]
+        return [ValidationIssue(spec.path, "missing required artifact file")]
 
     text = file_path.read_text(encoding="utf-8")
     headings = extract_headings(text)
@@ -274,7 +275,7 @@ def validate_specs(root: Path, specs: tuple[TemplateSpec, ...] = DEFAULT_SPECS) 
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Validate workflow skeleton templates.")
+    parser = argparse.ArgumentParser(description="Validate required workflow artifact files after project initialization.")
     parser.add_argument(
         "--root",
         type=Path,
@@ -291,12 +292,12 @@ def main(argv: list[str] | None = None) -> int:
     issues = validate_specs(root)
 
     if issues:
-        print("Workflow template validation failed:")
+        print("Workflow artifact validation failed:")
         for issue in issues:
             print(f"- {issue.path}: {issue.message}")
         return 1
 
-    print(f"Workflow template validation passed for {len(DEFAULT_SPECS)} files.")
+    print(f"Workflow artifact validation passed for {len(DEFAULT_SPECS)} files.")
     return 0
 
 

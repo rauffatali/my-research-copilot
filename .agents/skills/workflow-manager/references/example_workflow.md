@@ -147,9 +147,9 @@ Implement the approved plan through an explicit task breakdown and validate it n
 
 ### Example artifacts
 
-- `docs/agent/project_plan.md`
 - `docs/agent/experiment_journal.md`
 - `docs/agent/implementation_notes.md`
+- `docs/PROJECT_PLAN.md`
 - `scripts/`
 - `tests/`
 - `runs/`

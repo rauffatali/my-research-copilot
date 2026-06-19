@@ -33,8 +33,8 @@ PHASE_REQUIRED_ARTIFACTS: dict[str, tuple[str, ...]] = {
         "docs/agent/novelty_risk_matrix.md",
     ),
     "phase_2": (
-        "docs/agent/project_plan.md",
         "docs/agent/implementation_notes.md",
+        "docs/PROJECT_PLAN.md",
     ),
     "phase_3": (
         "docs/agent/result_interpretation.md",

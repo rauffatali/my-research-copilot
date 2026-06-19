@@ -31,7 +31,7 @@ Use this skill to manage the repository's workflow skeleton, not to fabricate pr
 6. Read `docs/workflow_state_machine.md` before deciding any phase transition.
 7. Use `docs/current_status.md` as the live pointer only when the task is actually advancing or checking workflow state.
 8. Keep `docs/current_status.md` at the scaffold state unless the user is genuinely moving a real project forward.
-9. Use the bundled validator when phase templates or required headings change.
+9. Use the bundled validator after project initialization, or after creating required active artifacts from templates.
 10. Use the bundled state checker when `docs/current_status.md` changes or when workflow coherence needs to be checked.
 
 ## Bundled resources
