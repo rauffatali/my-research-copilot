@@ -90,7 +90,7 @@ The workflow is intentionally phased and file-backed:
 - `AGENTS.md`: repo-wide operating rules and phase contracts.
 - `paper/AGENTS.md`: manuscript-specific rules before writing in `paper/`.
 - `docs/workflow_state_machine.md`: canonical phase-transition source of truth.
-- `docs/research_gates.md`: gates before moving between phases or changing research direction.
+- `docs/research_gates.md`: decision gates before major research direction, implementation, experiment, evaluation, claim, writing, or review changes.
 - `docs/current_status.md`: shared live state, not chat memory.
 
 ## Repository Map

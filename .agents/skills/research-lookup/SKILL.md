@@ -591,6 +591,16 @@ Saved files must preserve:
 - backend used;
 - lookup timestamp.
 
+### Reading Queue Handoff
+
+When lookup finds sources that may affect novelty, baselines, datasets, experiment design, claims, or manuscript citations, add them to:
+
+- `sources/reading_queue.md`
+
+Do not mark lookup results as deeply read.
+
+A lookup result may become a paper card only after the source is actually read or inspected enough to fill the paper-card fields.
+
 ---
 
 ## Output Format

@@ -13,20 +13,19 @@ Gates are grouped by research decision type, not one-to-one with workflow phases
 Core gates:
 
 - Gate 1: Research Direction Gate
-- Gate 2: Research Change Gate
-- Gate 3: Implementation Gate
-- Gate 4: Dataset and Leakage Gate
-- Gate 5: Experiment Decision Gate
-- Gate 6: Evaluation and Result Interpretation Gate
-- Gate 7: Result-to-Claim Gate
-- Gate 8: Claim Support Gate
-- Gate 9: Red-Team Review Gate
-- Gate 10: Paper Writing Gate
-- Gate 11: Final Handoff Gate
+- Gate 2: Paper Reading Gate
+- Gate 3: Research Change Gate
+- Gate 4: Implementation Gate
+- Gate 5: Dataset and Leakage Gate
+- Gate 6: Experiment Decision Gate
+- Gate 7: Evaluation and Result Interpretation Gate
+- Gate 8: Result-to-Claim Gate
+- Gate 9: Claim Support Gate
+- Gate 10: Red-Team Review Gate
+- Gate 11: Paper Writing Gate
+- Gate 12: Final Handoff Gate
 
 The canonical transition rules for moving between phases live in `docs/workflow_state_machine.md`.
-
-The canonical transition rules for moving between these phases live in `docs/workflow_state_machine.md`.
 
 ---
 
@@ -81,7 +80,60 @@ Prefer one of:
 
 ---
 
-## Gate 2: Research Change Gate
+## Gate 2: Paper Reading Gate
+
+Use this before treating a discovered source as evidence for novelty, baseline selection, dataset choice, evaluation protocol, claim support, or manuscript citation.
+
+### Required checks
+
+The source must answer:
+
+- Why was this source selected?
+- Was it discovered, skimmed, partially read, or deeply read?
+- What task, method, dataset, benchmark, metric, or claim does it relate to?
+- Is it closest prior work, a baseline source, a dataset/benchmark source, a method reference, a limitation source, or only background?
+- What are the paper’s own claims?
+- What evidence supports those claims?
+- What are the paper’s limitations?
+- How does it overlap with or differ from the current project?
+- Does it support, weaken, or complicate the current research direction?
+- Does it suggest a required baseline, dataset, metric, ablation, or caveat?
+- What citation role, if any, should it have?
+
+### Required output artifacts
+
+For source triage:
+
+- `sources/reading_queue.md`
+
+For deeply used papers:
+
+- `sources/paper_cards/`
+
+For cross-paper comparison:
+
+- `sources/literature_matrix.md`
+
+When relevant, also update:
+
+- `sources/baseline_candidates.md`
+- `sources/citation_intent_map.md`
+- `docs/agent/research_direction.md`
+- `docs/agent/experiment_queue.md`
+- `docs/agent/baseline_ledger.md`
+- `docs/agent/claim_ledger.md`
+
+### Stop rule
+
+Do not treat lookup results as deeply read papers.
+
+Do not use a source as strong novelty, baseline, or claim evidence unless it has a paper card or equivalent durable source artifact.
+
+Do not cite a paper for a claim unless its citation intent is recorded or the citation role is otherwise explicit.
+
+---
+
+## Gate 3: Research Change Gate
 
 Use this before model, loss, augmentation, training, or evaluation changes.
 
@@ -121,7 +173,7 @@ A proposed method, loss, augmentation, training strategy, or evaluation protocol
 
 ---
 
-## Gate 3: Implementation Gate
+## Gate 4: Implementation Gate
 
 Use this before implementing research-related code.
 
@@ -149,7 +201,7 @@ Do not edit `paper/` during code-only tasks unless explicitly requested.
 
 ---
 
-## Gate 4: Dataset and Leakage Gate
+## Gate 5: Dataset and Leakage Gate
 
 Use this before changing dataset loading, preprocessing, labels, splits, metadata, augmentation, or evaluation data.
 
@@ -185,7 +237,7 @@ A short dataset note in `docs/current_status.md` is allowed only as a pointer to
 
 ---
 
-## Gate 5: Experiment Decision Gate
+## Gate 6: Experiment Decision Gate
 
 Use this before running expensive, long, or high-importance experiments.
 
@@ -264,7 +316,7 @@ Do not run the experiment if it will not change a decision.
 
 ---
 
-## Gate 6: Evaluation and Result Interpretation Gate
+## Gate 7: Evaluation and Result Interpretation Gate
 
 Use this before interpreting results, comparing methods, or summarizing findings.
 
@@ -306,7 +358,7 @@ Raw output artifacts may live under:
 
 ---
 
-## Gate 7: Result-to-Claim Gate
+## Gate 8: Result-to-Claim Gate
 
 Use this before turning results into claims, manuscript text, figures, tables, abstracts, or conclusions.
 
@@ -357,7 +409,7 @@ rather than supported.
 
 ---
 
-## Gate 8: Claim Support Gate
+## Gate 9: Claim Support Gate
 
 Use this before writing, editing, or strengthening manuscript/report claims.
 
@@ -419,7 +471,7 @@ Prefer one of:
 
 ---
 
-## Gate 9: Red-Team Review Gate
+## Gate 10: Red-Team Review Gate
 
 Use this before accepting major plans, conclusions, experiments, or paper claims.
 
@@ -461,7 +513,7 @@ Prefer one of:
 
 ---
 
-## Gate 10: Paper Writing Gate
+## Gate 11: Paper Writing Gate
 
 Use this before drafting or revising manuscript text.
 
@@ -501,7 +553,7 @@ Prefer one of:
 
 ---
 
-## Gate 11: Final Handoff Gate
+## Gate 12: Final Handoff Gate
 
 Use this at the end of substantial research, code, experiment, or writing tasks.
 

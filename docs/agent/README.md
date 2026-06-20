@@ -57,6 +57,26 @@ Phase 1 brainstorming artifacts should preserve the discussion path, not only th
 
 Use these as the durable handoff files for Phases 1 to 3.
 
+## Source and Literature Artifacts
+
+External literature artifacts live under `sources/`.
+
+Use:
+
+- `sources/reading_queue.md` for source triage;
+- `sources/paper_cards/` for individual paper reading;
+- `sources/literature_matrix.md` for cross-paper comparison;
+- `sources/baseline_candidates.md` for literature-suggested baselines;
+- `sources/citation_intent_map.md` for citation role tracking.
+
+Relationship to workflow artifacts:
+
+- Phase 1 uses paper cards and literature matrix entries for research direction and novelty.
+- Phase 2 uses baseline candidates and paper cards for experiment design.
+- Phase 3 uses paper cards and citation intent when external evidence affects claim support.
+- Phase 4 uses citation intent and paper cards for literature-dependent writing.
+- Phase 5 uses literature matrix and closest-prior-work notes for reviewer-risk analysis.
+
 ## Phase 3 evidence chain
 
 Use this chain after experiments:

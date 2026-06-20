@@ -46,6 +46,11 @@ This repository uses file-backed workflow memory. Chat is for interaction, but d
 - `docs/agent/` stores agent-generated research workflow artifacts such as brainstorming briefs, research direction notes, hypotheses, novelty-risk notes, planning notes, and result-interpretation notes.
 - `paper/agent/` stores agent-generated manuscript-support artifacts such as claim audits, review rounds, revision plans, and response-to-reviewers drafts.
 - `sources/` stores external evidence artifacts gathered from search, APIs, papers, dataset pages, benchmark pages, and technical documentation. These are source-trace artifacts, not manuscript prose.
+- `sources/reading_queue.md` tracks papers and external sources selected for triage or reading.
+- `sources/paper_cards/` stores structured reading notes for individual papers and source artifacts.
+- `sources/literature_matrix.md` compares selected papers across task, method, dataset, metric, baseline, limitation, and project relevance.
+- `sources/baseline_candidates.md` tracks literature-suggested baselines before promotion into `docs/agent/baseline_ledger.md`.
+- `sources/citation_intent_map.md` maps citation candidates to the claims or manuscript sections they may support.
 
 Use these directories with clear separation:
 
@@ -63,6 +68,22 @@ Before performing a new external lookup, check whether a relevant saved artifact
 When a new `sources/` artifact is created or an existing one becomes the current source base for a task, record its path in `docs/current_status.md`.
 
 Do not treat chat-only search output as durable project evidence.
+
+### Source Reading Discipline
+
+Lookup results are not the same as read papers.
+
+Use `research-lookup` for discovery.
+Use `sources/reading_queue.md` to triage what should be read.
+Use `sources/paper_cards/` for deep reading.
+Use `sources/literature_matrix.md` for cross-paper comparison.
+Use `literature-review` for synthesis after relevant papers have been selected or read.
+
+Do not treat a paper as deeply understood only because it appears in a lookup result.
+
+Do not use a paper as closest prior work, baseline evidence, dataset evidence, evaluation-protocol evidence, claim support, or manuscript citation support unless it has a paper card or equivalent durable source artifact.
+
+Do not treat lookup results as deeply read evidence. For novelty, baseline, dataset, evaluation, claim, or citation decisions, promote important sources through `sources/reading_queue.md`, `sources/paper_cards/`, and `sources/literature_matrix.md` before relying on them.
 
 ---
 
@@ -154,16 +175,20 @@ Phase 1 is intentionally interactive. Do not treat brainstorming as a one-pass a
 
 1. Clarify the starting intent only enough to begin evidence lookup.
 2. Read relevant saved source artifacts from `sources/` before doing new lookup work.
-3. Use `research-lookup` to gather candidate prior work, baselines, datasets, benchmarks, and technical references.
-4. Present a compact evidence briefing to the user: what was found, why it matters, what seems promising, what seems risky, and what is still unclear.
-5. Ask targeted clarifying questions before formalizing the direction. Ask enough questions to resolve the research contribution, scope, baseline, metric, dataset/evaluation assumptions, risk, and implementation feasibility; group questions so the user can answer them efficiently.
-6. Record each debate round in `docs/agent/brainstorming_brief.md`, including evidence found, questions asked, user responses, current interpretation, and unresolved uncertainty.
-7. Repeat lookup, synthesis, critique, and user questioning until the idea is either rejected, deferred, or strong enough to formalize.
-8. Use `literature-review` to synthesize the source base into closest prior work, gaps, baseline expectations, and context.
-9. Use `claim-auditor` to check whether the proposed research direction, novelty framing, and any early wording are claimable from the available references and project context.
-10. Use `scientific-critical-thinking` to pressure-test novelty, leakage risk, evaluation decisiveness, failure modes, and contribution strength.
-11. Use `citation-management` only when reference metadata or BibTeX hygiene needs verification for candidate sources.
-12. If the idea is weak, refine it or recommend stopping; if it is promising, propose a final research package and ask the user to approve, revise, or reject it.
+3. When novelty, closest prior work, or research positioning matters, use `research-lookup` to discover candidate sources, then record important sources in `sources/reading_queue.md`.
+4. Promote high-priority sources from `sources/reading_queue.md` into `sources/paper_cards/` before freezing strong novelty or positioning claims.
+5. Use `sources/literature_matrix.md` to compare closest prior work, method families, datasets, benchmarks, and research gaps.
+6. If a paper substantially weakens or complicates the proposed direction, update `docs/agent/research_direction.md`, `docs/agent/novelty_risk_matrix.md`, or `docs/agent/idea_archive.md`.
+7. Use `research-lookup` to gather candidate prior work, baselines, datasets, benchmarks, and technical references.
+8. Present a compact evidence briefing to the user: what was found, why it matters, what seems promising, what seems risky, and what is still unclear.
+9. Ask targeted clarifying questions before formalizing the direction. Ask enough questions to resolve the research contribution, scope, baseline, metric, dataset/evaluation assumptions, risk, and implementation feasibility; group questions so the user can answer them efficiently.
+10. Record each debate round in `docs/agent/brainstorming_brief.md`, including evidence found, questions asked, user responses, current interpretation, and unresolved uncertainty.
+11. Repeat lookup, synthesis, critique, and user questioning until the idea is either rejected, deferred, or strong enough to formalize.
+12. Use `literature-review` to synthesize the source base into closest prior work, gaps, baseline expectations, and context.
+13. Use `claim-auditor` to check whether the proposed research direction, novelty framing, and any early wording are claimable from the available references and project context.
+14. Use `scientific-critical-thinking` to pressure-test novelty, leakage risk, evaluation decisiveness, failure modes, and contribution strength.
+15. Use `citation-management` only when reference metadata or BibTeX hygiene needs verification for candidate sources.
+16. If the idea is weak, refine it or recommend stopping; if it is promising, propose a final research package and ask the user to approve, revise, or reject it.
 
 ### Interaction rule
 
@@ -208,6 +233,9 @@ The phase should also ensure `docs/current_status.md` records:
 
 Phase 1 is complete only when the idea has:
 
+- closest-prior-work and novelty-sensitive decisions are backed by paper cards or saved source artifacts;
+- major source candidates are tracked in `sources/reading_queue.md`;
+- literature comparisons that affect the direction are summarized in `sources/literature_matrix.md`;
 - at least one evidence-backed debate round;
 - user responses incorporated into the final direction;
 - a concrete failure mode;
@@ -235,10 +263,13 @@ Phase 2 turns an approved research direction into controlled implementation and 
 ### Actions
 
 1. Read `docs/agent/research_direction.md` before starting implementation or experimentation. If the research direction is missing, still a template, or not frozen enough to guide implementation, route back to Phase 1 or enter `backfill_required`.
-2. Read and update `docs/PROJECT_PLAN.md` as the canonical project plan with explicit objective, scope, workstreams, task breakdown, dependencies, validation per task, risks/blockers, and exit criteria. If it is missing or still a template, initialize it from the project-plan template before Phase 2 work.
-3. Use `docs/agent/implementation_notes.md` for implementation reasoning, engineering decisions, design tradeoffs, debugging notes, and non-experiment implementation context.
-4. Use `docs/agent/experiment_queue.md` before `docs/agent/experiment_plan.md` when experiment priority is unclear, multiple candidate experiments exist, compute is limited, or the next experiment should be selected by expected decision value.
-5. Promote a queue item to `docs/agent/experiment_plan.md` only when it has:
+2. When experiment design depends on prior work, inspect relevant paper cards and `sources/literature_matrix.md` before finalizing `docs/agent/experiment_plan.md`.
+3. Use `sources/baseline_candidates.md` to track baselines suggested by prior work before promoting them to `docs/agent/baseline_ledger.md`.
+4. If literature suggests a missing baseline, benchmark, dataset, metric, or ablation, update `docs/agent/experiment_queue.md` or `docs/agent/ablation_matrix.md`.
+5. Read and update `docs/PROJECT_PLAN.md` as the canonical project plan with explicit objective, scope, workstreams, task breakdown, dependencies, validation per task, risks/blockers, and exit criteria. If it is missing or still a template, initialize it from the project-plan template before Phase 2 work.
+6. Use `docs/agent/implementation_notes.md` for implementation reasoning, engineering decisions, design tradeoffs, debugging notes, and non-experiment implementation context.
+7. Use `docs/agent/experiment_queue.md` before `docs/agent/experiment_plan.md` when experiment priority is unclear, multiple candidate experiments exist, compute is limited, or the next experiment should be selected by expected decision value.
+8. Promote a queue item to `docs/agent/experiment_plan.md` only when it has:
    * a linked hypothesis or research direction;
    * a decision it will enable;
    * a baseline or control;
@@ -247,28 +278,28 @@ Phase 2 turns an approved research direction into controlled implementation and 
    * a minimal viable version;
    * a stop condition;
    * expected outcomes if the hypothesis is true or false.
-6. Before implementing a research change, check `docs/research_gates.md`, especially:
+9. Before implementing a research change, check `docs/research_gates.md`, especially:
    * Gate 2: Research Change Gate;
    * Gate 3: Implementation Gate;
    * Gate 4: Dataset and Leakage Gate;
    * Gate 5: Experiment Decision Gate.
-7. Keep implementation aligned with the frozen research direction, target failure mode, baseline/control, metric, and validation plan.
-8. Before running a serious experiment, check `docs/agent/experiment_queue.md` to see whether the experiment is already proposed, deferred, cancelled, or superseded.
-9. If the experiment is not yet approved, add or update it in `docs/agent/experiment_queue.md` rather than running it immediately.
-10. Once an experiment is selected, create or update `docs/agent/experiment_plan.md`.
-11. During execution, record actual runs in `docs/agent/run_registry.md`.
-12. Save experiment configs, logs, metrics, checkpoints, predictions, plots, and summaries under durable `runs/` and `outputs/` paths.
-13. Update `docs/agent/experiment_journal.md` as the chronological index of what happened, what failed, what changed, and what decision was made.
-14. When comparisons, ablations, datasets, or leakage risks matter, update the corresponding supporting artifact:
+10. Keep implementation aligned with the frozen research direction, target failure mode, baseline/control, metric, and validation plan.
+11. Before running a serious experiment, check `docs/agent/experiment_queue.md` to see whether the experiment is already proposed, deferred, cancelled, or superseded.
+12. If the experiment is not yet approved, add or update it in `docs/agent/experiment_queue.md` rather than running it immediately.
+13. Once an experiment is selected, create or update `docs/agent/experiment_plan.md`.
+14. During execution, record actual runs in `docs/agent/run_registry.md`.
+15. Save experiment configs, logs, metrics, checkpoints, predictions, plots, and summaries under durable `runs/` and `outputs/` paths.
+16. Update `docs/agent/experiment_journal.md` as the chronological index of what happened, what failed, what changed, and what decision was made.
+17. When comparisons, ablations, datasets, or leakage risks matter, update the corresponding supporting artifact:
 * `docs/agent/baseline_ledger.md` for baseline/control validity;
 * `docs/agent/ablation_matrix.md` for component or mechanism isolation;
 * `docs/agent/dataset_card.md` for dataset, split, preprocessing, and evaluation assumptions;
 * `docs/agent/leakage_audit.md` for leakage and evaluation trustworthiness.
-15. Run tests, sanity checks, smoke tests, small-subset runs, or minimal viable experiments before expensive or full-scale execution.
-16. Record failed, cancelled, unstable, or inconclusive implementation/experiment attempts instead of hiding them.
-17. If implementation reveals that the research direction, hypothesis, baseline, metric, or evaluation plan is flawed, pause Phase 2 and route back to Phase 1 or `backfill_required`.
-18. If experiment outputs are ready for interpretation, route to Phase 3 rather than turning raw metrics directly into claims.
-19. Update `docs/current_status.md` when the active implementation task, experiment state, artifact set, blocker, or next step changes.
+18. Run tests, sanity checks, smoke tests, small-subset runs, or minimal viable experiments before expensive or full-scale execution.
+19. Record failed, cancelled, unstable, or inconclusive implementation/experiment attempts instead of hiding them.
+20. If implementation reveals that the research direction, hypothesis, baseline, metric, or evaluation plan is flawed, pause Phase 2 and route back to Phase 1 or `backfill_required`.
+21. If experiment outputs are ready for interpretation, route to Phase 3 rather than turning raw metrics directly into claims.
+22. Update `docs/current_status.md` when the active implementation task, experiment state, artifact set, blocker, or next step changes.
 
 #### Project plan template
 
@@ -332,6 +363,7 @@ Phase 2 is complete only when:
 - candidate experiments are recorded, prioritized, deferred, cancelled, or promoted in `docs/agent/experiment_queue.md` when experiment choice matters;
 - every serious executed experiment has a linked queue item or an explicit reason for bypassing the queue;
 - every approved experiment has a linked experiment plan, run registry entry, saved config, saved output path, and recorded next decision;
+- literature-suggested baselines that matter for experiment validity are either promoted to `docs/agent/baseline_ledger.md`, deferred with a reason, or rejected with a reason;
 - comparisons are backed by `docs/agent/baseline_ledger.md` when baseline claims are likely;
 - ablations are backed by `docs/agent/ablation_matrix.md` when mechanism or component claims are likely;
 - dataset and leakage assumptions are backed by `docs/agent/dataset_card.md` and `docs/agent/leakage_audit.md` when evaluation validity depends on them;
@@ -428,17 +460,21 @@ Phase 4 turns the evidence package into a manuscript through collaborative, sect
 ### Actions
 
 1. Read `paper/AGENTS.md` before drafting or revising manuscript prose in `paper/`.
-2. Draft incrementally: one section, subsection, or paragraph group at a time rather than the entire paper at once.
-3. Use `literature-review` when introduction, motivation, or related-work context must be synthesized before prose is written.
-4. Use `results-scaffold` when result tables, placeholders, comparison structures, or evidence layouts are needed before drafting.
-5. Use `scientific-writing` to draft manuscript content from the available evidence.
-6. Use `citation-management` when touched sections need citation hygiene, metadata verification, or bibliography cleanup.
-7. Use `prior-style-adapter` in one of two modes:
+2. Before writing literature-dependent manuscript text, check `sources/paper_cards/`, `sources/literature_matrix.md`, and `sources/citation_intent_map.md`.
+3. Use `sources/citation_intent_map.md` to ensure each citation has a role and supports the intended claim or context.
+4. Do not cite a source in polished manuscript prose only because it appeared in a lookup result.
+5. If a needed citation does not have a paper card or verified source artifact, mark the claim as needing citation support rather than inventing support.
+6. Draft incrementally: one section, subsection, or paragraph group at a time rather than the entire paper at once.
+7. Use `literature-review` when introduction, motivation, or related-work context must be synthesized before prose is written.
+8. Use `results-scaffold` when result tables, placeholders, comparison structures, or evidence layouts are needed before drafting.
+9. Use `scientific-writing` to draft manuscript content from the available evidence.
+10. Use `citation-management` when touched sections need citation hygiene, metadata verification, or bibliography cleanup.
+11. Use `prior-style-adapter` in one of two modes:
    - if `paper/style/prior_paper_style.md` exists, use style-adaptation mode;
    - if it does not exist, check `paper/style/*.pdf`, generate `paper/style/prior_paper_style.md`, then continue with style-adaptation mode.
-8. Use `claim-auditor` after drafting or style adaptation to ensure claims remain proportional to evidence.
-9. Use `venue-templates` when venue-specific structure, formatting, limits, or submission requirements are relevant.
-10. Update `docs/current_status.md` after each meaningful manuscript step with the active section, touched evidence, and next writing action.
+12. Use `claim-auditor` after drafting or style adaptation to ensure claims remain proportional to evidence.
+13. Use `venue-templates` when venue-specific structure, formatting, limits, or submission requirements are relevant.
+14. Update `docs/current_status.md` after each meaningful manuscript step with the active section, touched evidence, and next writing action.
 
 ### Required skills
 
@@ -469,6 +505,8 @@ Phase 4 is complete only when:
 
 - the manuscript has been drafted collaboratively in small units;
 - important claims trace back to literature, experiment artifacts, result tables, or approved project context;
+- literature-dependent manuscript sections are grounded in paper cards, literature matrix entries, or verified source artifacts;
+- citation candidates have citation intent recorded before final use;
 - style adaptation has not changed technical meaning or overstated claims;
 - touched citations and references are stable enough for the current draft stage;
 - `docs/current_status.md` reflects the manuscript state and next review or revision step.

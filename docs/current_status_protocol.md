@@ -586,6 +586,32 @@ Use Phase 5 when the task involves:
 - revision planning;
 - response-to-reviewer drafting.
 
+### Source and Literature Active Artifacts
+
+When the live task involves literature search, source triage, paper reading, baseline discovery, citation support, related work, or reviewer-risk analysis, active artifacts may include:
+
+- `sources/reading_queue.md`
+- `sources/paper_cards/`
+- `sources/literature_matrix.md`
+- `sources/baseline_candidates.md`
+- `sources/citation_intent_map.md`
+- saved lookup outputs under `sources/`
+
+Use these artifacts when the current task involves:
+
+- closest prior work;
+- novelty assessment;
+- baseline selection;
+- benchmark or dataset selection;
+- related work;
+- citation support;
+- literature-dependent experiment design;
+- reviewer-risk analysis.
+
+Do not list all source artifacts by default during `intake`.
+
+List only the source artifacts needed for the active task.
+
 ---
 
 ## Experiment Queue Status Rules

@@ -29,6 +29,20 @@ It should not replace `scientific-writing` for polished prose or `claim-auditor`
 
 ---
 
+## Preferred Source Artifacts
+
+Prefer synthesizing from:
+
+- saved lookup artifacts under `sources/`;
+- `sources/paper_cards/`;
+- `sources/literature_matrix.md`;
+- `sources/baseline_candidates.md`;
+- `sources/citation_intent_map.md`.
+
+When paper cards are missing for sources that drive novelty, baseline, or claim decisions, recommend creating paper cards before strong synthesis.
+
+---
+
 ## When to Use This Skill
 
 Use this skill when:
