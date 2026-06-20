@@ -76,6 +76,7 @@ Do not use this skill as the primary tool for:
 This skill supports the following gates in `docs/research_gates.md`:
 
 - Research Direction Gate
+- Paper Reading Gate
 - Research Change Gate
 - Experiment Decision Gate
 - Evaluation and Result Interpretation Gate

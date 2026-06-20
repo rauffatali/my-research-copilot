@@ -175,11 +175,11 @@ Phase 1 is intentionally interactive. Do not treat brainstorming as a one-pass a
 
 1. Clarify the starting intent only enough to begin evidence lookup.
 2. Read relevant saved source artifacts from `sources/` before doing new lookup work.
-3. When novelty, closest prior work, or research positioning matters, use `research-lookup` to discover candidate sources, then record important sources in `sources/reading_queue.md`.
-4. Promote high-priority sources from `sources/reading_queue.md` into `sources/paper_cards/` before freezing strong novelty or positioning claims.
-5. Use `sources/literature_matrix.md` to compare closest prior work, method families, datasets, benchmarks, and research gaps.
-6. If a paper substantially weakens or complicates the proposed direction, update `docs/agent/research_direction.md`, `docs/agent/novelty_risk_matrix.md`, or `docs/agent/idea_archive.md`.
-7. Use `research-lookup` to gather candidate prior work, baselines, datasets, benchmarks, and technical references.
+3. Use `research-lookup` to gather candidate prior work, baselines, datasets, benchmarks, and technical references.
+4. When novelty, closest prior work, or research positioning matters, record important sources in `sources/reading_queue.md`.
+5. Promote high-priority sources from `sources/reading_queue.md` into `sources/paper_cards/` before freezing strong novelty or positioning claims.
+6. Use `sources/literature_matrix.md` to compare closest prior work, method families, datasets, benchmarks, and research gaps.
+7. If a paper substantially weakens or complicates the proposed direction, update `docs/agent/research_direction.md`, `docs/agent/novelty_risk_matrix.md`, or `docs/agent/idea_archive.md`.
 8. Present a compact evidence briefing to the user: what was found, why it matters, what seems promising, what seems risky, and what is still unclear.
 9. Ask targeted clarifying questions before formalizing the direction. Ask enough questions to resolve the research contribution, scope, baseline, metric, dataset/evaluation assumptions, risk, and implementation feasibility; group questions so the user can answer them efficiently.
 10. Record each debate round in `docs/agent/brainstorming_brief.md`, including evidence found, questions asked, user responses, current interpretation, and unresolved uncertainty.
@@ -279,10 +279,10 @@ Phase 2 turns an approved research direction into controlled implementation and 
    * a stop condition;
    * expected outcomes if the hypothesis is true or false.
 9. Before implementing a research change, check `docs/research_gates.md`, especially:
-   * Gate 2: Research Change Gate;
-   * Gate 3: Implementation Gate;
-   * Gate 4: Dataset and Leakage Gate;
-   * Gate 5: Experiment Decision Gate.
+   * Gate 3: Research Change Gate;
+   * Gate 4: Implementation Gate;
+   * Gate 5: Dataset and Leakage Gate;
+   * Gate 6: Experiment Decision Gate.
 10. Keep implementation aligned with the frozen research direction, target failure mode, baseline/control, metric, and validation plan.
 11. Before running a serious experiment, check `docs/agent/experiment_queue.md` to see whether the experiment is already proposed, deferred, cancelled, or superseded.
 12. If the experiment is not yet approved, add or update it in `docs/agent/experiment_queue.md` rather than running it immediately.
