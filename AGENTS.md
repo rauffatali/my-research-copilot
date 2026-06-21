@@ -135,7 +135,7 @@ Use `paper/agent/` review artifacts for manuscript-stage review.
 
 Keep early critique decision-oriented: every issue should lead to a fix, caveat, experiment, claim update, accepted risk, or phase rollback.
 
-Do not reserve red-team critique for manuscript review. Use early red-team artifacts before freezing directions, running expensive experiments, or turning evidence into strong claims.
+Use early red-team artifacts before freezing directions, running expensive experiments, or turning evidence into strong claims.
 
 ---
 
@@ -706,6 +706,8 @@ Before proposing major research, architecture, training, evaluation, or paper-wr
 - `docs/current_status.md`
 
 Before major research direction, implementation, experiment, evaluation, or paper-claim changes, apply the relevant gate from `docs/research_gates.md`.
+
+When the task involves high-risk direction, experiment, evidence, claim, or review decisions, also check relevant early red-team artifacts in `docs/agent/`, especially `pre_mortem.md`, `experiment_red_team.md`, `evidence_review.md`, and `red_team_issue_ledger.md`.
 
 Do not infer the current research direction from memory alone.
 
