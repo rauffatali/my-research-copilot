@@ -124,17 +124,17 @@ Examples:
 
 Be conservative.
 
-## Supported Claims
+## Supported or Affected Claims
 
-| Claim ID | Claim | Support Level | Notes |
+| Claim ID | Claim | Support Status | Notes |
 |---|---|---|---|
-| CL-XXX | | supported / partially_supported / preliminary | |
+| CL-XXX | | supported / partially_supported / preliminary / hypothesis / needs_citation / wrong_citation / unsupported / contradicted / out_of_scope / needs_manual_check | |
 
-## Weakened or Refuted Claims
+## Claims to Update
 
-| Claim ID | Claim | New Status | Reason |
+| Claim ID | Claim | New Support Status | Reason |
 |---|---|---|---|
-| CL-XXX | | unsupported / contradicted / needs_revision | |
+| CL-XXX | | partially_supported / preliminary / unsupported / contradicted / out_of_scope / needs_manual_check | |
 
 ## Claim Boundaries
 

@@ -85,6 +85,39 @@ Do not use a paper as closest prior work, baseline evidence, dataset evidence, e
 
 Do not treat lookup results as deeply read evidence. For novelty, baseline, dataset, evaluation, claim, or citation decisions, promote important sources through `sources/reading_queue.md`, `sources/paper_cards/`, and `sources/literature_matrix.md` before relying on them.
 
+### Claim Status Discipline
+
+Use one shared support-status vocabulary across claim-related artifacts.
+
+Allowed support statuses:
+
+- `supported`
+- `partially_supported`
+- `preliminary`
+- `hypothesis`
+- `needs_citation`
+- `wrong_citation`
+- `unsupported`
+- `contradicted`
+- `out_of_scope`
+- `needs_manual_check`
+
+Do not invent local claim-status labels.
+
+Use decision labels separately from support-status labels.
+
+Examples:
+
+- `supported` is a support status.
+- `remove` is a decision.
+- `weaken_claim` is a decision.
+- `run_ablation` is a decision.
+- `needs_more_evidence` is a decision or next action, not a support status.
+
+`docs/agent/claim_ledger.md` is the source of truth for final claim support status.
+
+Use the shared claim support-status vocabulary in all claim-related artifacts. Keep support status separate from decisions and next actions.
+
 ---
 
 ## Workflow Intake / Mode Selection
@@ -399,6 +432,8 @@ Expected inputs may include:
 
 ### Actions
 
+### Actions
+
 1. Inspect the relevant experiment plans, run registry entries, logs, metrics, and outputs.
 2. Create or update a result card in `docs/agent/result_cards/` for each major result or decision-relevant finding.
 3. Check baseline/control validity before interpreting comparison claims.
@@ -407,9 +442,21 @@ Expected inputs may include:
 6. Perform error or slice analysis in `docs/agent/error_analysis.md` when aggregate metrics are insufficient.
 7. Synthesize result cards in `docs/agent/result_interpretation.md`.
 8. Map interpreted results to claims in `docs/agent/result_to_claim_map.md`.
-9. Update `docs/agent/claim_ledger.md` with supported, partially supported, preliminary, unsupported, contradicted, or citation-needed status.
-10. Review figures and tables through `docs/agent/figure_review.md` before using them in manuscript writing.
-11. Update `docs/current_status.md` when the active evidence state, claim status, or next phase changes.
+9. Update `docs/agent/claim_ledger.md` using only the shared support-status vocabulary:
+   * `supported`
+   * `partially_supported`
+   * `preliminary`
+   * `hypothesis`
+   * `needs_citation`
+   * `wrong_citation`
+   * `unsupported`
+   * `contradicted`
+   * `out_of_scope`
+   * `needs_manual_check`
+10. Keep support status separate from decisions or next actions. For example, `unsupported` is a support status, while `remove`, `rewrite`, `weaken_claim`, or `run_ablation` are decisions or next actions.
+11. Review figures and tables through `docs/agent/figure_review.md` before using them in manuscript writing.
+12. Update `docs/current_status.md` when the active evidence state, claim status, or next phase changes.
+
 
 ### Required skills
 
@@ -442,7 +489,7 @@ Phase 3 can be frozen only when:
 - claim support is mapped in `result_to_claim_map.md`;
 - `claim_ledger.md` reflects the current evidence;
 - figures/tables are reviewed for traceability and claim safety;
-- unsupported or overbroad claims are marked as preliminary, unsupported, contradicted, or removed.
+- unsupported or overbroad claims are marked with canonical support statuses such as `preliminary`, `partially_supported`, `unsupported`, `contradicted`, `out_of_scope`, `needs_citation`, or `needs_manual_check`, with decisions such as `remove`, `rewrite`, or `weaken_claim` recorded separately.
 
 ---
 
@@ -459,22 +506,27 @@ Phase 4 turns the evidence package into a manuscript through collaborative, sect
 
 ### Actions
 
+### Actions
+
 1. Read `paper/AGENTS.md` before drafting or revising manuscript prose in `paper/`.
 2. Before writing literature-dependent manuscript text, check `sources/paper_cards/`, `sources/literature_matrix.md`, and `sources/citation_intent_map.md`.
 3. Use `sources/citation_intent_map.md` to ensure each citation has a role and supports the intended claim or context.
 4. Do not cite a source in polished manuscript prose only because it appeared in a lookup result.
-5. If a needed citation does not have a paper card or verified source artifact, mark the claim as needing citation support rather than inventing support.
-6. Draft incrementally: one section, subsection, or paragraph group at a time rather than the entire paper at once.
-7. Use `literature-review` when introduction, motivation, or related-work context must be synthesized before prose is written.
-8. Use `results-scaffold` when result tables, placeholders, comparison structures, or evidence layouts are needed before drafting.
-9. Use `scientific-writing` to draft manuscript content from the available evidence.
-10. Use `citation-management` when touched sections need citation hygiene, metadata verification, or bibliography cleanup.
-11. Use `prior-style-adapter` in one of two modes:
-   - if `paper/style/prior_paper_style.md` exists, use style-adaptation mode;
-   - if it does not exist, check `paper/style/*.pdf`, generate `paper/style/prior_paper_style.md`, then continue with style-adaptation mode.
-12. Use `claim-auditor` after drafting or style adaptation to ensure claims remain proportional to evidence.
-13. Use `venue-templates` when venue-specific structure, formatting, limits, or submission requirements are relevant.
-14. Update `docs/current_status.md` after each meaningful manuscript step with the active section, touched evidence, and next writing action.
+5. If a needed citation does not have a paper card or verified source artifact, mark the claim as `needs_citation` rather than inventing support.
+6. Before drafting claim-heavy prose, check `docs/agent/claim_ledger.md` and `docs/agent/result_to_claim_map.md`.
+7. Do not draft polished manuscript claims from claims marked `unsupported`, `contradicted`, `out_of_scope`, or `needs_manual_check`.
+8. Claims marked `preliminary`, `partially_supported`, or `needs_citation` may be used only with conservative wording, explicit caveats, or TODO markers.
+9. Draft incrementally: one section, subsection, or paragraph group at a time rather than the entire paper at once.
+10. Use `literature-review` when introduction, motivation, or related-work context must be synthesized before prose is written.
+11. Use `results-scaffold` when result tables, placeholders, comparison structures, or evidence layouts are needed before drafting.
+12. Use `scientific-writing` to draft manuscript content from the available evidence.
+13. Use `citation-management` when touched sections need citation hygiene, metadata verification, or bibliography cleanup.
+14. Use `prior-style-adapter` in one of two modes:
+    * if `paper/style/prior_paper_style.md` exists, use style-adaptation mode;
+    * if it does not exist, check `paper/style/*.pdf`, generate `paper/style/prior_paper_style.md`, then continue with style-adaptation mode.
+15. Use `claim-auditor` after drafting or style adaptation to ensure claims remain proportional to evidence.
+16. Use `venue-templates` when venue-specific structure, formatting, limits, or submission requirements are relevant.
+17. Update `docs/current_status.md` after each meaningful manuscript step with the active section, touched evidence, claim-status concerns, and next writing action.
 
 ### Required skills
 
@@ -509,6 +561,9 @@ Phase 4 is complete only when:
 - citation candidates have citation intent recorded before final use;
 - style adaptation has not changed technical meaning or overstated claims;
 - touched citations and references are stable enough for the current draft stage;
+- manuscript claims do not use unsupported, contradicted, out-of-scope, or manually unchecked claims as polished assertions;
+- preliminary, partially supported, or citation-needed claims are written conservatively or marked with TODO/caveat language;
+- claim support status remains aligned with `docs/agent/claim_ledger.md`;
 - `docs/current_status.md` reflects the manuscript state and next review or revision step.
 
 Do not write the paper as one monolithic pass. Keep drafting incremental, evidence-bound, and reviewable.
@@ -528,16 +583,32 @@ Phase 5 turns a mature manuscript draft into a structured review-and-revision cy
 
 ### Actions
 
+### Actions
+
 1. Read the manuscript draft and the current claim/support context before reviewing.
 2. Prepare a review context bundle in `paper/agent/review_context.md` with a compact paper summary, claim map, baseline context, a question engine, and the reviewer questions that should drive critique.
 3. Run reviewer-style critique with distinct roles rather than duplicate criticism.
 4. Use `peer-review` in multi-reviewer panel mode to simulate reviewer viewpoints such as methodology, novelty/related work, evidence/claim support, and presentation/clarity, followed by a meta-review.
 5. Use `scientific-critical-thinking` to pressure-test the weakest assumptions, the missing baseline, the leakage risk, and alternative explanations.
 6. Use `claim-auditor` to verify that the manuscript claims remain supported after drafting and style adaptation.
-7. Use `research-lookup` when a reviewer question requires missing prior work, baseline context, or citation support.
-8. Use `citation-management` when reviewer feedback exposes citation or metadata issues.
-9. Write revision-oriented artifacts in `paper/agent/` rather than silently revising the paper.
-10. Update `docs/current_status.md` with the review round, main objections, accepted fixes, and remaining risks.
+7. When auditing manuscript claims, assign one of the shared support-status labels:
+   * `supported`
+   * `partially_supported`
+   * `preliminary`
+   * `hypothesis`
+   * `needs_citation`
+   * `wrong_citation`
+   * `unsupported`
+   * `contradicted`
+   * `out_of_scope`
+   * `needs_manual_check`
+8. Update `paper/agent/claim_audit.md` with manuscript-facing claim audit findings.
+9. Update `docs/agent/claim_ledger.md` if the review changes final claim support status.
+10. Keep review decisions separate from support statuses. For example, `unsupported` is a support status, while `remove`, `rewrite`, `narrow`, `add_caveat`, or `run_ablation` are review decisions or next actions.
+11. Use `research-lookup` when a reviewer question requires missing prior work, baseline context, source-reading, or citation support.
+12. Use `citation-management` when reviewer feedback exposes citation or metadata issues.
+13. Write revision-oriented artifacts in `paper/agent/` rather than silently revising the paper.
+14. Update `docs/current_status.md` with the review round, main objections, claim-status changes, accepted fixes, and remaining risks.
 
 ### Reviewer roles
 
@@ -582,7 +653,8 @@ Phase 5 is complete only when:
 
 - reviewer concerns are organized into actionable buckets;
 - required fixes are separated from optional improvements;
-- claim support is rechecked after review;
+- claim support is rechecked after review using the shared support-status vocabulary;
+- any review-driven claim-status changes are reflected in `paper/agent/claim_audit.md` and, when final support status changes, in `docs/agent/claim_ledger.md`;
 - the next action is clear: revise, resubmit, hold, or return to an earlier phase;
 - `docs/current_status.md` reflects the review outcome and next decision.
 

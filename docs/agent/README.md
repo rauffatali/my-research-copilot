@@ -91,6 +91,33 @@ Supporting artifacts:
 
 Do not convert raw metrics directly into manuscript claims.
 
+## Claim Status Vocabulary
+
+Claim-related artifacts use one shared support-status vocabulary:
+
+- `supported`
+- `partially_supported`
+- `preliminary`
+- `hypothesis`
+- `needs_citation`
+- `wrong_citation`
+- `unsupported`
+- `contradicted`
+- `out_of_scope`
+- `needs_manual_check`
+
+Use this vocabulary in:
+
+- `claim_ledger.md`
+- `result_to_claim_map.md`
+- `result_cards/`
+- paper claim-support artifacts
+- claim-auditor outputs
+
+Do not introduce local variants.
+
+Keep support status separate from decisions or next actions.
+
 ## Experiment artifact chain
 
 For serious experiments, use this chain:

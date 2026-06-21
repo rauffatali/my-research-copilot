@@ -8,6 +8,23 @@ It is the bridge between Phase 3 result consolidation and Phase 4 writing.
 
 A manuscript claim should not be drafted as a strong claim unless it appears here or in `docs/agent/claim_ledger.md` with adequate support.
 
+## Support Status Vocabulary
+
+Use the same support-status values as `docs/agent/claim_ledger.md` and the claim-auditor skill:
+
+- `supported`
+- `partially_supported`
+- `preliminary`
+- `hypothesis`
+- `needs_citation`
+- `wrong_citation`
+- `unsupported`
+- `contradicted`
+- `out_of_scope`
+- `needs_manual_check`
+
+Do not introduce local variants.
+
 ## Status
 
 - draft
@@ -17,7 +34,7 @@ A manuscript claim should not be drafted as a strong claim unless it appears her
 
 | Claim ID | Claim | Claim type | Supporting result cards | Supporting citations | Support status | Allowed wording | Not allowed wording |
 |---|---|---|---|---|---|---|---|
-| CL-001 | | performance / robustness / novelty / efficiency / ablation / dataset / limitation | RES-001 | | supported / partially_supported / preliminary / unsupported / contradicted / needs_citation | | |
+| CL-001 | | performance / robustness / novelty / efficiency / ablation / dataset / limitation | RES-001 | | supported / partially_supported / preliminary / hypothesis / needs_citation / wrong_citation / unsupported / contradicted / out_of_scope / needs_manual_check | | |
 
 ## Claim Types
 

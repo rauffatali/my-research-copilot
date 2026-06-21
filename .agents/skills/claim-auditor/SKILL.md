@@ -418,6 +418,24 @@ Do not collapse these labels into only supported/unsupported when nuance matters
 
 ---
 
+## Canonical Status Vocabulary
+
+The support-status labels in this skill are canonical for the repository.
+
+Use the same labels in:
+
+- `docs/agent/claim_ledger.md`
+- `docs/agent/result_to_claim_map.md`
+- `docs/agent/result_cards/`
+- `paper/agent/claim_support.md`
+- `paper/agent/claim_audit.md`
+
+Do not invent local variants such as `valid`, `weak`, `maybe`, `verified`, or `done`.
+
+Decision labels such as `remove`, `rewrite`, `narrow`, `run_ablation`, or `needs_more_evidence` should be recorded separately from support status.
+
+---
+
 ## Evidence Hierarchy
 
 Use the right evidence for the claim type.
