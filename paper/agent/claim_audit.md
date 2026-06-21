@@ -17,13 +17,12 @@ Use the same support-status values as `docs/agent/claim_ledger.md` and the claim
 
 Review comments may explain nuance, but the final status must use one of these labels.
 
-## Status
-- draft
-- Allowed values: draft, frozen, superseded
+## Claim Audit Table
+
+No manuscript claims have been audited yet.
 
 | Claim ID | Manuscript Location | Claim | Evidence | Citation | Support Status | Required Fix |
 |---|---|---|---|---|---|---|
-| CL-001 | | | | | supported / partially_supported / preliminary / hypothesis / needs_citation / wrong_citation / unsupported / contradicted / out_of_scope / needs_manual_check | |
 
 ## Next Step
 - [State the next step.]

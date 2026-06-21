@@ -404,16 +404,15 @@ Use these labels consistently.
 | Label | Meaning | Action |
 |---|---|---|
 | `supported` | Direct evidence supports the claim as written | Keep |
-| `partially supported` | Evidence supports part of the claim, but wording is too broad or incomplete | Rewrite conservatively |
+| `partially_supported` | Evidence supports part of the claim, but wording is too broad or incomplete | Rewrite conservatively |
 | `preliminary` | Evidence exists but is limited, exploratory, single-run, or not fully validated | Mark as preliminary or weaken |
 | `hypothesis` | Plausible but not yet tested | Present as hypothesis or future work |
-| `needs citation` | Literature support is required but missing | Use `research-lookup` or `literature-review` |
-| `wrong citation` | Citation/reference exists but does not support the claim | Replace citation or rewrite; use `claim-auditor`/`research-lookup` |
+| `needs_citation` | Literature support is required but missing | Use `research-lookup` or `literature-review` |
+| `wrong_citation` | Citation/reference exists but does not support the claim | Replace citation or rewrite; use `claim-auditor`/`research-lookup` |
 | `unsupported` | No adequate evidence found | Remove, add TODO, or rewrite as planned work |
 | `contradicted` | Available evidence conflicts with the claim | Correct or remove immediately |
-| `out of scope` | Claim exceeds approved project scope | Remove or narrow |
-| `needs manual check` | Evidence may exist but is ambiguous or inaccessible | Do not approve yet |
-
+| `out_of_scope` | Claim exceeds approved project scope | Remove or narrow |
+| `needs_manual_check` | Evidence may exist but is ambiguous or inaccessible | Do not approve yet |
 Do not collapse these labels into only supported/unsupported when nuance matters.
 
 ---
@@ -492,10 +491,10 @@ Check:
 Labels to use:
 
 - `supported`;
-- `partially supported`;
-- `wrong citation`;
-- `needs citation`;
-- `needs manual check`.
+- `partially_supported`
+- `wrong_citation`
+- `needs_citation`
+- `needs_manual_check`
 
 If the reference is fake or metadata is wrong, hand off to `citation-management`.
 
@@ -529,7 +528,7 @@ A sentence may not need a citation when it states:
 - this project’s own results, if supported by tables, figures, logs, or outputs;
 - a transition sentence with no factual external claim.
 
-Use the label `needs citation` when a claim requires literature support but no citation, source artifact, or verified reference is present.
+Use the label `needs_citation` when a claim requires literature support but no citation, source artifact, or verified reference is present.
 
 If the sentence has a citation but the citation does not support it, use `wrong citation`.
 

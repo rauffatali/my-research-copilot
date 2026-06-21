@@ -432,8 +432,6 @@ Expected inputs may include:
 
 ### Actions
 
-### Actions
-
 1. Inspect the relevant experiment plans, run registry entries, logs, metrics, and outputs.
 2. Create or update a result card in `docs/agent/result_cards/` for each major result or decision-relevant finding.
 3. Check baseline/control validity before interpreting comparison claims.
@@ -503,8 +501,6 @@ Phase 4 turns the evidence package into a manuscript through collaborative, sect
 - Relevant source artifacts in `sources/`.
 - Manuscript-specific rules in `paper/AGENTS.md`.
 - Sample prior-paper style material in `paper/style/`.
-
-### Actions
 
 ### Actions
 
@@ -580,8 +576,6 @@ Phase 5 turns a mature manuscript draft into a structured review-and-revision cy
 - Stable claims and evidence artifacts from Phase 3 and Phase 4.
 - Relevant source artifacts in `sources/`.
 - Any manuscript-support notes in `paper/agent/`.
-
-### Actions
 
 ### Actions
 

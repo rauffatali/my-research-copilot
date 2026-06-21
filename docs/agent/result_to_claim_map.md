@@ -32,9 +32,10 @@ Do not introduce local variants.
 
 ## Claim Support Table
 
+No project-specific claim mappings have been recorded yet.
+
 | Claim ID | Claim | Claim type | Supporting result cards | Supporting citations | Support status | Allowed wording | Not allowed wording |
 |---|---|---|---|---|---|---|---|
-| CL-001 | | performance / robustness / novelty / efficiency / ablation / dataset / limitation | RES-001 | | supported / partially_supported / preliminary / hypothesis / needs_citation / wrong_citation / unsupported / contradicted / out_of_scope / needs_manual_check | | |
 
 ## Claim Types
 
@@ -72,30 +73,32 @@ Use the same vocabulary as `docs/agent/claim_ledger.md` and the claim auditor:
 
 ---
 
-## CL-001: [Short Claim Name]
+## Claim Mapping Entry Template
 
-### Claim
+### CL-001: [Short Claim Name]
+
+#### Claim
 
 [Write the claim.]
 
-### Claim Type
+#### Claim Type
 
 [Choose from claim types.]
 
-### Supporting Result Cards
+#### Supporting Result Cards
 
 - `docs/agent/result_cards/RES-001_...md`
 - `docs/agent/result_cards/RES-002_...md`
 
-### Supporting Citations
+#### Supporting Citations
 
 - `sources/...`
 
-### Support Status
+#### Support Status
 
-- supported / partially_supported / preliminary / hypothesis / needs_citation / unsupported / contradicted / needs_manual_check
+- supported / partially_supported / preliminary / hypothesis / needs_citation / wrong_citation / unsupported / contradicted / out_of_scope / needs_manual_check
 
-### Allowed Wording
+#### Allowed Wording
 
 [Conservative wording that the evidence supports.]
 
@@ -103,7 +106,7 @@ Example:
 
 - “In our evaluation setting, the method improves X over the reproduced baseline.”
 
-### Not Allowed Wording
+#### Not Allowed Wording
 
 [Overclaims not supported by evidence.]
 
@@ -113,15 +116,15 @@ Example:
 - “The method achieves state-of-the-art performance.”
 - “The method solves the failure mode.”
 
-### Missing Evidence
+#### Missing Evidence
 
 [What evidence is still needed?]
 
-### Required Manuscript Caveat
+#### Required Manuscript Caveat
 
 [What limitation or caveat must appear if this claim is used?]
 
-### Decision
+#### Decision
 
 Choose one:
 
@@ -132,6 +135,6 @@ Choose one:
 - remove
 - needs_more_evidence
 
-### Next Step
+#### Next Step
 
 [Concrete next action.]
