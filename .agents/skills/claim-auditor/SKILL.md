@@ -530,7 +530,7 @@ A sentence may not need a citation when it states:
 
 Use the label `needs_citation` when a claim requires literature support but no citation, source artifact, or verified reference is present.
 
-If the sentence has a citation but the citation does not support it, use `wrong citation`.
+If the sentence has a citation but the citation does not support it, use `wrong_citation`.
 
 If the needed source is missing, recommend `research-lookup`.
 
@@ -719,7 +719,7 @@ Before completing a claim audit:
 6. [ ] Strong claims are checked carefully.
 7. [ ] Citation-context issues are flagged.
 8. [ ] Missing citations are identified.
-9. [ ] Sentences needing citations are marked as `needs citation`.
+9. [ ] Sentences needing citations are marked as `needs_citation`.
 10. [ ] Missing baselines, ablations, or metrics are identified when relevant.
 11. [ ] Unsupported claims have TODOs or safer rewrites.
 12. [ ] Contradicted claims are clearly marked.

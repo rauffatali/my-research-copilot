@@ -75,7 +75,13 @@ Use the same vocabulary as `docs/agent/claim_ledger.md` and the claim auditor:
 
 ## Claim Mapping Entry Template
 
-### CL-001: [Short Claim Name]
+### Claim ID
+
+Use `CL-001`, `CL-002`, etc. only when adding a real project claim.
+
+### Short Claim Name
+
+[Short name.]
 
 #### Claim
 
