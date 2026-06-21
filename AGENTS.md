@@ -118,6 +118,25 @@ Examples:
 
 Use the shared claim support-status vocabulary in all claim-related artifacts. Keep support status separate from decisions and next actions.
 
+### Early Red-Team Discipline
+
+Do not reserve red-team critique only for Phase 5 manuscript review.
+
+Use early red-team artifacts when critique is needed before accepting a direction, experiment, result interpretation, or claim.
+
+Use:
+
+- `docs/agent/pre_mortem.md` before freezing high-impact or uncertain research directions.
+- `docs/agent/experiment_red_team.md` before expensive, claim-critical, or direction-changing experiments.
+- `docs/agent/evidence_review.md` before turning interpreted results into manuscript claims.
+- `docs/agent/red_team_issue_ledger.md` when critique creates concrete issues that must be tracked across phases.
+
+Use `paper/agent/` review artifacts for manuscript-stage review.
+
+Keep early critique decision-oriented: every issue should lead to a fix, caveat, experiment, claim update, accepted risk, or phase rollback.
+
+Do not reserve red-team critique for manuscript review. Use early red-team artifacts before freezing directions, running expensive experiments, or turning evidence into strong claims.
+
 ---
 
 ## Workflow Intake / Mode Selection
@@ -221,7 +240,10 @@ Phase 1 is intentionally interactive. Do not treat brainstorming as a one-pass a
 13. Use `claim-auditor` to check whether the proposed research direction, novelty framing, and any early wording are claimable from the available references and project context.
 14. Use `scientific-critical-thinking` to pressure-test novelty, leakage risk, evaluation decisiveness, failure modes, and contribution strength.
 15. Use `citation-management` only when reference metadata or BibTeX hygiene needs verification for candidate sources.
-16. If the idea is weak, refine it or recommend stopping; if it is promising, propose a final research package and ask the user to approve, revise, or reject it.
+16. When the direction has high novelty risk, unclear baseline, fragile assumptions, or uncertain evaluation, run an early pre-mortem in `docs/agent/pre_mortem.md`.
+17. Record concrete pre-mortem issues in `docs/agent/red_team_issue_ledger.md` when they require follow-up.
+18. Do not freeze a high-risk research direction until the pre-mortem decision is `proceed`, `proceed_with_caveats`, or the user explicitly accepts the recorded risk.
+19. If the idea is weak, refine it or recommend stopping; if it is promising, propose a final research package and ask the user to approve, revise, or reject it.
 
 ### Interaction rule
 
@@ -276,6 +298,8 @@ Phase 1 is complete only when the idea has:
 - a metric or evaluation signal;
 - an ablation or isolation plan;
 - an identified risk or tradeoff;
+- high-risk directions have a pre-mortem or an explicit reason why pre-mortem was deferred;
+- unresolved pre-mortem risks are recorded in `docs/agent/red_team_issue_ledger.md` or in the research direction artifact;
 - a publication-worthiness assessment or explicit reason to stop/defer;
 - a clear decision to proceed, revise, or stop.
 
@@ -320,19 +344,22 @@ Phase 2 turns an approved research direction into controlled implementation and 
 11. Before running a serious experiment, check `docs/agent/experiment_queue.md` to see whether the experiment is already proposed, deferred, cancelled, or superseded.
 12. If the experiment is not yet approved, add or update it in `docs/agent/experiment_queue.md` rather than running it immediately.
 13. Once an experiment is selected, create or update `docs/agent/experiment_plan.md`.
-14. During execution, record actual runs in `docs/agent/run_registry.md`.
-15. Save experiment configs, logs, metrics, checkpoints, predictions, plots, and summaries under durable `runs/` and `outputs/` paths.
-16. Update `docs/agent/experiment_journal.md` as the chronological index of what happened, what failed, what changed, and what decision was made.
-17. When comparisons, ablations, datasets, or leakage risks matter, update the corresponding supporting artifact:
+14. Before running an expensive, claim-critical, or direction-changing experiment, red-team the plan in `docs/agent/experiment_red_team.md`.
+15. Record concrete experiment critique issues in `docs/agent/red_team_issue_ledger.md` when they require follow-up.
+16. Do not run a red-flagged experiment until the decision is `approve_to_run`, `run_minimal_version_first`, or the user explicitly accepts the recorded risk.
+17. During execution, record actual runs in `docs/agent/run_registry.md`.
+18. Save experiment configs, logs, metrics, checkpoints, predictions, plots, and summaries under durable `runs/` and `outputs/` paths.
+19. Update `docs/agent/experiment_journal.md` as the chronological index of what happened, what failed, what changed, and what decision was made.
+20. When comparisons, ablations, datasets, or leakage risks matter, update the corresponding supporting artifact:
 * `docs/agent/baseline_ledger.md` for baseline/control validity;
 * `docs/agent/ablation_matrix.md` for component or mechanism isolation;
 * `docs/agent/dataset_card.md` for dataset, split, preprocessing, and evaluation assumptions;
 * `docs/agent/leakage_audit.md` for leakage and evaluation trustworthiness.
-18. Run tests, sanity checks, smoke tests, small-subset runs, or minimal viable experiments before expensive or full-scale execution.
-19. Record failed, cancelled, unstable, or inconclusive implementation/experiment attempts instead of hiding them.
-20. If implementation reveals that the research direction, hypothesis, baseline, metric, or evaluation plan is flawed, pause Phase 2 and route back to Phase 1 or `backfill_required`.
-21. If experiment outputs are ready for interpretation, route to Phase 3 rather than turning raw metrics directly into claims.
-22. Update `docs/current_status.md` when the active implementation task, experiment state, artifact set, blocker, or next step changes.
+21. Run tests, sanity checks, smoke tests, small-subset runs, or minimal viable experiments before expensive or full-scale execution.
+22. Record failed, cancelled, unstable, or inconclusive implementation/experiment attempts instead of hiding them.
+23. If implementation reveals that the research direction, hypothesis, baseline, metric, or evaluation plan is flawed, pause Phase 2 and route back to Phase 1 or `backfill_required`.
+24. If experiment outputs are ready for interpretation, route to Phase 3 rather than turning raw metrics directly into claims.
+25. Update `docs/current_status.md` when the active implementation task, experiment state, artifact set, blocker, or next step changes.
 
 #### Project plan template
 
@@ -400,6 +427,8 @@ Phase 2 is complete only when:
 - comparisons are backed by `docs/agent/baseline_ledger.md` when baseline claims are likely;
 - ablations are backed by `docs/agent/ablation_matrix.md` when mechanism or component claims are likely;
 - dataset and leakage assumptions are backed by `docs/agent/dataset_card.md` and `docs/agent/leakage_audit.md` when evaluation validity depends on them;
+- expensive, claim-critical, or direction-changing experiments have an experiment red-team record or an explicit reason why red-team was deferred;
+- unresolved experiment critique issues are recorded in `docs/agent/red_team_issue_ledger.md`;
 - the implementation has not silently changed the contribution target;
 - `docs/current_status.md` reflects the current implementation state and next step.
 
@@ -440,7 +469,10 @@ Expected inputs may include:
 6. Perform error or slice analysis in `docs/agent/error_analysis.md` when aggregate metrics are insufficient.
 7. Synthesize result cards in `docs/agent/result_interpretation.md`.
 8. Map interpreted results to claims in `docs/agent/result_to_claim_map.md`.
-9. Update `docs/agent/claim_ledger.md` using only the shared support-status vocabulary:
+9. Before freezing evidence or promoting results into manuscript claims, red-team the evidence in `docs/agent/evidence_review.md`.
+10. Record concrete evidence-review issues in `docs/agent/red_team_issue_ledger.md` when they require follow-up.
+11. If evidence review finds a missing baseline, leakage risk, unstable result, unsupported claim, or plausible alternative explanation, update the relevant result card, result-to-claim map, claim ledger, or route back to Phase 2.
+12. Update `docs/agent/claim_ledger.md` using only the shared support-status vocabulary:
    * `supported`
    * `partially_supported`
    * `preliminary`
@@ -451,9 +483,9 @@ Expected inputs may include:
    * `contradicted`
    * `out_of_scope`
    * `needs_manual_check`
-10. Keep support status separate from decisions or next actions. For example, `unsupported` is a support status, while `remove`, `rewrite`, `weaken_claim`, or `run_ablation` are decisions or next actions.
-11. Review figures and tables through `docs/agent/figure_review.md` before using them in manuscript writing.
-12. Update `docs/current_status.md` when the active evidence state, claim status, or next phase changes.
+13. Keep support status separate from decisions or next actions. For example, `unsupported` is a support status, while `remove`, `rewrite`, `weaken_claim`, or `run_ablation` are decisions or next actions.
+14. Review figures and tables through `docs/agent/figure_review.md` before using them in manuscript writing.
+15. Update `docs/current_status.md` when the active evidence state, claim status, or next phase changes.
 
 
 ### Required skills
@@ -487,6 +519,8 @@ Phase 3 can be frozen only when:
 - claim support is mapped in `result_to_claim_map.md`;
 - `claim_ledger.md` reflects the current evidence;
 - figures/tables are reviewed for traceability and claim safety;
+- claim-critical results have an evidence review or an explicit reason why evidence review was deferred;
+- unresolved evidence-review issues are recorded in `docs/agent/red_team_issue_ledger.md`;
 - unsupported or overbroad claims are marked with canonical support statuses such as `preliminary`, `partially_supported`, `unsupported`, `contradicted`, `out_of_scope`, `needs_citation`, or `needs_manual_check`, with decisions such as `remove`, `rewrite`, or `weaken_claim` recorded separately.
 
 ---
@@ -510,19 +544,21 @@ Phase 4 turns the evidence package into a manuscript through collaborative, sect
 4. Do not cite a source in polished manuscript prose only because it appeared in a lookup result.
 5. If a needed citation does not have a paper card or verified source artifact, mark the claim as `needs_citation` rather than inventing support.
 6. Before drafting claim-heavy prose, check `docs/agent/claim_ledger.md` and `docs/agent/result_to_claim_map.md`.
-7. Do not draft polished manuscript claims from claims marked `unsupported`, `contradicted`, `out_of_scope`, or `needs_manual_check`.
-8. Claims marked `preliminary`, `partially_supported`, or `needs_citation` may be used only with conservative wording, explicit caveats, or TODO markers.
-9. Draft incrementally: one section, subsection, or paragraph group at a time rather than the entire paper at once.
-10. Use `literature-review` when introduction, motivation, or related-work context must be synthesized before prose is written.
-11. Use `results-scaffold` when result tables, placeholders, comparison structures, or evidence layouts are needed before drafting.
-12. Use `scientific-writing` to draft manuscript content from the available evidence.
-13. Use `citation-management` when touched sections need citation hygiene, metadata verification, or bibliography cleanup.
-14. Use `prior-style-adapter` in one of two modes:
+7. Before drafting strong abstract, introduction, results, or conclusion claims, check `docs/agent/evidence_review.md` and `docs/agent/red_team_issue_ledger.md`.
+8. Do not write around unresolved red-team issues; either resolve them, caveat the claim, narrow the wording, or mark the issue as accepted risk.
+9. Do not draft polished manuscript claims from claims marked `unsupported`, `contradicted`, `out_of_scope`, or `needs_manual_check`.
+10. Claims marked `preliminary`, `partially_supported`, or `needs_citation` may be used only with conservative wording, explicit caveats, or TODO markers.
+11. Draft incrementally: one section, subsection, or paragraph group at a time rather than the entire paper at once.
+12. Use `literature-review` when introduction, motivation, or related-work context must be synthesized before prose is written.
+13. Use `results-scaffold` when result tables, placeholders, comparison structures, or evidence layouts are needed before drafting.
+14. Use `scientific-writing` to draft manuscript content from the available evidence.
+15. Use `citation-management` when touched sections need citation hygiene, metadata verification, or bibliography cleanup.
+16. Use `prior-style-adapter` in one of two modes:
     * if `paper/style/prior_paper_style.md` exists, use style-adaptation mode;
     * if it does not exist, check `paper/style/*.pdf`, generate `paper/style/prior_paper_style.md`, then continue with style-adaptation mode.
-15. Use `claim-auditor` after drafting or style adaptation to ensure claims remain proportional to evidence.
-16. Use `venue-templates` when venue-specific structure, formatting, limits, or submission requirements are relevant.
-17. Update `docs/current_status.md` after each meaningful manuscript step with the active section, touched evidence, claim-status concerns, and next writing action.
+17. Use `claim-auditor` after drafting or style adaptation to ensure claims remain proportional to evidence.
+18. Use `venue-templates` when venue-specific structure, formatting, limits, or submission requirements are relevant.
+19. Update `docs/current_status.md` after each meaningful manuscript step with the active section, touched evidence, claim-status concerns, and next writing action.
 
 ### Required skills
 
@@ -560,6 +596,8 @@ Phase 4 is complete only when:
 - manuscript claims do not use unsupported, contradicted, out-of-scope, or manually unchecked claims as polished assertions;
 - preliminary, partially supported, or citation-needed claims are written conservatively or marked with TODO/caveat language;
 - claim support status remains aligned with `docs/agent/claim_ledger.md`;
+- manuscript sections do not ignore unresolved red-team issues relevant to their claims;
+- accepted red-team risks are visible as caveats, limitations, or conservative wording where needed;
 - `docs/current_status.md` reflects the manuscript state and next review or revision step.
 
 Do not write the paper as one monolithic pass. Keep drafting incremental, evidence-bound, and reviewable.
@@ -575,17 +613,19 @@ Phase 5 turns a mature manuscript draft into a structured review-and-revision cy
 - Mature manuscript draft in `paper/`.
 - Stable claims and evidence artifacts from Phase 3 and Phase 4.
 - Relevant source artifacts in `sources/`.
+- Early red-team artifacts in `docs/agent/`, including `pre_mortem.md`, `experiment_red_team.md`, `evidence_review.md`, and `red_team_issue_ledger.md` when available.
 - Any manuscript-support notes in `paper/agent/`.
 
 ### Actions
 
 1. Read the manuscript draft and the current claim/support context before reviewing.
-2. Prepare a review context bundle in `paper/agent/review_context.md` with a compact paper summary, claim map, baseline context, a question engine, and the reviewer questions that should drive critique.
-3. Run reviewer-style critique with distinct roles rather than duplicate criticism.
-4. Use `peer-review` in multi-reviewer panel mode to simulate reviewer viewpoints such as methodology, novelty/related work, evidence/claim support, and presentation/clarity, followed by a meta-review.
-5. Use `scientific-critical-thinking` to pressure-test the weakest assumptions, the missing baseline, the leakage risk, and alternative explanations.
-6. Use `claim-auditor` to verify that the manuscript claims remain supported after drafting and style adaptation.
-7. When auditing manuscript claims, assign one of the shared support-status labels:
+2. Review early red-team artifacts before starting manuscript-stage critique, especially unresolved or accepted-risk issues in `docs/agent/red_team_issue_ledger.md`.
+3. Prepare a review context bundle in `paper/agent/review_context.md` with a compact paper summary, claim map, baseline context, a question engine, and the reviewer questions that should drive critique.
+4. Run reviewer-style critique with distinct roles rather than duplicate criticism.
+5. Use `peer-review` in multi-reviewer panel mode to simulate reviewer viewpoints such as methodology, novelty/related work, evidence/claim support, and presentation/clarity, followed by a meta-review.
+6. Use `scientific-critical-thinking` to pressure-test the weakest assumptions, the missing baseline, the leakage risk, and alternative explanations.
+7. Use `claim-auditor` to verify that the manuscript claims remain supported after drafting and style adaptation.
+8. When auditing manuscript claims, assign one of the shared support-status labels:
    * `supported`
    * `partially_supported`
    * `preliminary`
@@ -596,13 +636,13 @@ Phase 5 turns a mature manuscript draft into a structured review-and-revision cy
    * `contradicted`
    * `out_of_scope`
    * `needs_manual_check`
-8. Update `paper/agent/claim_audit.md` with manuscript-facing claim audit findings.
-9. Update `docs/agent/claim_ledger.md` if the review changes final claim support status.
-10. Keep review decisions separate from support statuses. For example, `unsupported` is a support status, while `remove`, `rewrite`, `narrow`, `add_caveat`, or `run_ablation` are review decisions or next actions.
-11. Use `research-lookup` when a reviewer question requires missing prior work, baseline context, source-reading, or citation support.
-12. Use `citation-management` when reviewer feedback exposes citation or metadata issues.
-13. Write revision-oriented artifacts in `paper/agent/` rather than silently revising the paper.
-14. Update `docs/current_status.md` with the review round, main objections, claim-status changes, accepted fixes, and remaining risks.
+9. Update `paper/agent/claim_audit.md` with manuscript-facing claim audit findings.
+10. Update `docs/agent/claim_ledger.md` if the review changes final claim support status.
+11. Keep review decisions separate from support statuses. For example, `unsupported` is a support status, while `remove`, `rewrite`, `narrow`, `add_caveat`, or `run_ablation` are review decisions or next actions.
+12. Use `research-lookup` when a reviewer question requires missing prior work, baseline context, source-reading, or citation support.
+13. Use `citation-management` when reviewer feedback exposes citation or metadata issues.
+14. Write revision-oriented artifacts in `paper/agent/` rather than silently revising the paper.
+15. Update `docs/current_status.md` with the review round, main objections, claim-status changes, accepted fixes, and remaining risks.
 
 ### Reviewer roles
 
@@ -648,6 +688,7 @@ Phase 5 is complete only when:
 - reviewer concerns are organized into actionable buckets;
 - required fixes are separated from optional improvements;
 - claim support is rechecked after review using the shared support-status vocabulary;
+- manuscript-stage review reconciles open or accepted-risk early red-team issues with the revision plan, limitations, or claim audit;
 - any review-driven claim-status changes are reflected in `paper/agent/claim_audit.md` and, when final support status changes, in `docs/agent/claim_ledger.md`;
 - the next action is clear: revise, resubmit, hold, or return to an earlier phase;
 - `docs/current_status.md` reflects the review outcome and next decision.

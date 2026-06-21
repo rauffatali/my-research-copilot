@@ -16,6 +16,25 @@
 ## Claim Map
 - [List the claims that the review should stress-test.]
 
+## Early Red-Team Context
+
+Relevant early red-team artifacts:
+
+- `docs/agent/pre_mortem.md`
+- `docs/agent/experiment_red_team.md`
+- `docs/agent/evidence_review.md`
+- `docs/agent/red_team_issue_ledger.md`
+
+### Open Issues
+
+| Issue ID | Source | Concern | Status | Review implication |
+|---|---|---|---|---|
+
+### Accepted Risks
+
+| Issue ID | Risk | Why accepted | Manuscript caveat |
+|---|---|---|---|
+
 ## Baseline and Context
 - [List the closest baselines, prior work, and contextual references the reviewers need.]
 

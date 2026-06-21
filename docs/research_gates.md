@@ -499,7 +499,23 @@ Use when helpful:
 
 ### Output artifact
 
-Prefer one of:
+For early research-direction critique, prefer:
+
+- `docs/agent/pre_mortem.md`
+- `docs/agent/red_team_issue_ledger.md`
+
+For experiment critique before execution, prefer:
+
+- `docs/agent/experiment_red_team.md`
+- `docs/agent/red_team_issue_ledger.md`
+
+For evidence or claim critique before writing, prefer:
+
+- `docs/agent/evidence_review.md`
+- `docs/agent/red_team_issue_ledger.md`
+- `docs/agent/claim_ledger.md`
+
+For manuscript-stage review, prefer:
 
 - `paper/agent/review_context.md`
 - `paper/agent/review_method.md`

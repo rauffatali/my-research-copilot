@@ -539,6 +539,21 @@ Do not list all Phase 3 artifacts by default.
 
 List only the artifacts needed for the active result consolidation task.
 
+## Early Red-Team Artifacts
+
+Use early red-team artifacts before review reaches the manuscript stage.
+
+- `pre_mortem.md` — red-team the research direction before freezing Phase 1.
+- `experiment_red_team.md` — red-team expensive or claim-critical experiments before running.
+- `evidence_review.md` — red-team interpreted evidence before turning it into manuscript claims.
+- `red_team_issue_ledger.md` — track red-team issues and decisions across phases.
+
+Early red-team artifacts live in `docs/agent/`.
+
+Manuscript-stage review artifacts live in `paper/agent/`.
+
+Do not wait until Phase 5 to identify missing baselines, weak assumptions, leakage risk, unsupported claims, or likely reviewer objections.
+
 ### Phase 4 Active
 
 When the current phase is `phase_4_active`, active artifacts may include:

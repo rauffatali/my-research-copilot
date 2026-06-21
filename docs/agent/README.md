@@ -91,6 +91,33 @@ Supporting artifacts:
 
 Do not convert raw metrics directly into manuscript claims.
 
+## Early Red-Team Artifacts
+
+Use early red-team artifacts before review reaches the manuscript stage.
+
+- `pre_mortem.md` — red-team the research direction before freezing Phase 1.
+- `experiment_red_team.md` — red-team expensive or claim-critical experiments before running.
+- `evidence_review.md` — red-team interpreted evidence before turning it into manuscript claims.
+- `red_team_issue_ledger.md` — track red-team issues and decisions across phases.
+
+Early red-team artifacts live in `docs/agent/`.
+
+Manuscript-stage review artifacts live in `paper/agent/`.
+
+Do not wait until Phase 5 to identify missing baselines, weak assumptions, leakage risk, unsupported claims, or likely reviewer objections.
+
+## Early Red-Team Rule
+
+Do not wait until Phase 5 to red-team the work.
+
+Use early red-team artifacts before accepting high-impact directions, expensive experiments, claim-critical evidence, or strong manuscript claims.
+
+Preferred chain:
+
+`pre_mortem.md` -> `experiment_red_team.md` -> `evidence_review.md` -> `red_team_issue_ledger.md` -> manuscript-stage review in `paper/agent/`
+
+Every red-team finding should lead to a decision: fix, caveat, test, narrow, accept risk, defer, or stop.
+
 ## Claim Status Vocabulary
 
 Claim-related artifacts use one shared support-status vocabulary:
