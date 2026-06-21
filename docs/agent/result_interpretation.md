@@ -58,17 +58,17 @@ Examples:
 - baseline comparison is weaker than expected;
 - qualitative examples reveal a different failure mode.
 
-## Supported Claims
+## Supported or Affected Claims
 
-| Claim ID | Claim | Supporting result cards | Support status | Notes |
+| Claim ID | Claim | Supporting result cards | Support status | Decision / Notes |
 |---|---|---|---|---|
-| CL-XXX | | | supported / partially_supported / preliminary | |
+| CL-XXX | | | supported / partially_supported / preliminary / hypothesis / needs_citation / wrong_citation / unsupported / contradicted / out_of_scope / needs_manual_check | |
 
 ## Claims to Weaken or Remove
 
-| Claim ID | Claim | Reason | Recommended action |
-|---|---|---|---|
-| CL-XXX | | | weaken / remove / mark preliminary / needs evidence |
+| Claim ID | Claim | Current support status | Reason | Recommended decision |
+|---|---|---|---|---|
+| CL-XXX | | preliminary / partially_supported / unsupported / contradicted / out_of_scope / needs_manual_check | | weaken / remove / add_caveat / needs_more_evidence |
 
 ## Limitations Revealed by Results
 
