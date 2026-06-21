@@ -414,14 +414,20 @@ rather than supported.
 
 Use this before writing, editing, or strengthening manuscript/report claims.
 
-Every important claim must be classified as one of:
+Every important claim must be classified using the shared support-status vocabulary:
 
-- supported,
-- preliminary,
-- hypothesis,
-- needs citation,
-- unsupported,
-- contradicted.
+- `supported`
+- `partially_supported`
+- `preliminary`
+- `hypothesis`
+- `needs_citation`
+- `wrong_citation`
+- `unsupported`
+- `contradicted`
+- `out_of_scope`
+- `needs_manual_check`
+
+Keep support status separate from decisions, next actions, rewrites, and review instructions.
 
 A claim must identify its support:
 
@@ -603,7 +609,7 @@ Prefer one of:
 
 ---
 
-## Gate 12: Final Handoff Gate
+## Gate 13: Final Handoff Gate
 
 Use this at the end of substantial research, code, experiment, or writing tasks.
 
