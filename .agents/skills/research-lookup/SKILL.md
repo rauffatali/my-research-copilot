@@ -130,6 +130,7 @@ For direct Zotero Desktop operations, treat Zotero as a local-library mode of th
 This skill is most relevant to the following gates in `docs/research_gates.md`:
 
 - Research Direction Gate
+- Paper Reading Gate
 - Research Change Gate
 - Experiment Decision Gate
 - Evaluation and Result Interpretation Gate
