@@ -32,6 +32,16 @@ The goal is not to make claims sound stronger. The goal is to make claims clear,
 
 ---
 
+## Tool Workflow Policy
+
+Follow `docs/tool_workflow_policy.md`.
+
+This skill's useful output must be written to the appropriate durable repository artifact rather than left only in chat.
+
+When this skill changes workflow state, active artifacts, blockers, claim status, experiment status, manuscript state, or next step, update `docs/current_status.md`.
+
+---
+
 ## Core Principle: Evidence-First Writing
 
 Do not write manuscript claims first and look for support later.

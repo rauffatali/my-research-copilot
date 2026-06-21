@@ -43,6 +43,7 @@ This repository uses file-backed workflow memory. Chat is for interaction, but d
 
 - `docs/current_status.md` is the short shared live state pointer across all phases. It should record the current phase, current substep, latest action, active artifact paths, blockers, open questions, and next recommended step.
 - `docs/current_status_protocol.md` defines how `docs/current_status.md` should be updated, when it is stale, and how to handle template-default or backfilled state.
+- `docs/tool_workflow_policy.md` defines how tool, skill, MCP, lookup, retrieval, and code-execution outputs become durable workflow state.
 - `docs/agent/` stores agent-generated research workflow artifacts such as brainstorming briefs, research direction notes, hypotheses, novelty-risk notes, planning notes, and result-interpretation notes.
 - `paper/agent/` stores agent-generated manuscript-support artifacts such as claim audits, review rounds, revision plans, and response-to-reviewers drafts.
 - `sources/` stores external evidence artifacts gathered from search, APIs, papers, dataset pages, benchmark pages, and technical documentation. These are source-trace artifacts, not manuscript prose.
@@ -136,6 +137,29 @@ Use `paper/agent/` review artifacts for manuscript-stage review.
 Keep early critique decision-oriented: every issue should lead to a fix, caveat, experiment, claim update, accepted risk, or phase rollback.
 
 Use early red-team artifacts before freezing directions, running expensive experiments, or turning evidence into strong claims.
+
+### Tool Workflow Discipline
+
+Use `docs/tool_workflow_policy.md` as the canonical policy for tool, skill, MCP, retrieval, lookup, code-execution, and automated-helper use.
+
+Do not treat tool output as durable project memory until it is written to the appropriate repository artifact.
+
+Before using a meaningful tool, identify:
+
+- the current workflow phase;
+- the upstream artifacts that must be read first;
+- the output class the tool is expected to produce;
+- the durable artifact that must be updated afterward.
+
+After using a meaningful tool, update the relevant artifact and, when the tool changes project state, update `docs/current_status.md`.
+
+Use `docs/agent/tool_routing_matrix.md` to choose tools for workflow situations.
+
+Use `docs/agent/tool_use_log.md` to record meaningful tool-assisted actions that affect direction, implementation, experiments, evidence, claims, manuscript text, or review decisions.
+
+Do not log trivial helper calls that have no project consequence.
+
+Do not promote chat-only lookup, execution output, retrieval output, or model-generated analysis into claims, experiments, or manuscript prose until the appropriate durable artifact exists.
 
 ---
 

@@ -45,3 +45,11 @@ Use this skill to manage the repository's workflow skeleton, not to fabricate pr
 - Do not silently skip a workflow phase.
 - Do not treat the validator or state checker as proof of scientific progress.
 - Prefer the skeleton example and state machine over ad hoc interpretation when the workflow is ambiguous.
+
+## Tool Workflow Policy
+
+Follow `docs/tool_workflow_policy.md`.
+
+This skill's useful output must be written to the appropriate durable repository artifact rather than left only in chat.
+
+When this skill changes workflow state, active artifacts, blockers, claim status, experiment status, manuscript state, or next step, update `docs/current_status.md`.

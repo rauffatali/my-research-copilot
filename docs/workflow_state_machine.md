@@ -148,33 +148,26 @@ Use these labels in backfilled artifacts:
 
 A backfilled artifact may support progress, but it should not become frozen until reviewed or approved.
 
-## Current Status Freshness
-
-`docs/current_status.md` is the live state pointer, but it may be stale when the scaffold is first cloned into an existing project or when project artifacts have changed without a status update.
-
-A status file should be treated as stale when:
-
-- `Status type` is `template_default` but project-specific artifacts exist;
-- listed active artifacts do not exist;
-- listed blockers have already been resolved;
-- the status phase is earlier than the latest valid project evidence;
-- the status conflicts with frozen artifacts, run outputs, claim ledgers, or manuscript artifacts.
-
-When status is stale:
-
-1. Do not use stale status as project truth.
-2. Inspect durable artifacts.
-3. Route through `intake`, `bootstrap_existing_project`, or `backfill_required`.
-4. Rewrite `docs/current_status.md` before continuing downstream work.
-
-Use `blocked` only when the conflict cannot be resolved from available artifacts.
-
 ## Artifact Discipline
 
 - `docs/agent/` stores Phase 1 to Phase 3 working artifacts.
 - `paper/agent/` stores Phase 4 to Phase 5 manuscript-support artifacts.
 - `sources/` stores external evidence artifacts.
 - `docs/current_status.md` stores the live state pointer.
+
+## Tool Workflow Discipline
+
+Tool use does not create a workflow state by itself.
+
+Tools, skills, MCP servers, lookup systems, retrieval systems, code execution, and automated helpers must operate inside the current workflow state.
+
+If tool output changes the research direction, implementation plan, experiment state, result interpretation, claim support, manuscript state, review status, blocker, or next step, update `docs/current_status.md`.
+
+If tool output reveals that the current state lacks required prerequisites, route to the earliest valid prerequisite state, such as `backfill_required`, `phase_1_active`, `phase_2_active`, or `phase_3_active`.
+
+Do not use tool success as evidence that a workflow phase is complete.
+
+A phase is complete only when the required durable artifacts and exit conditions are satisfied.
 
 ### Experiment Queue Discipline
 
@@ -202,6 +195,27 @@ Queued experiments may be:
 
 Do not move from a vague queue item directly to execution.
 Do not treat a queue item as evidence for a claim.
+
+## Current Status Freshness
+
+`docs/current_status.md` is the live state pointer, but it may be stale when the scaffold is first cloned into an existing project or when project artifacts have changed without a status update.
+
+A status file should be treated as stale when:
+
+- `Status type` is `template_default` but project-specific artifacts exist;
+- listed active artifacts do not exist;
+- listed blockers have already been resolved;
+- the status phase is earlier than the latest valid project evidence;
+- the status conflicts with frozen artifacts, run outputs, claim ledgers, or manuscript artifacts.
+
+When status is stale:
+
+1. Do not use stale status as project truth.
+2. Inspect durable artifacts.
+3. Route through `intake`, `bootstrap_existing_project`, or `backfill_required`.
+4. Rewrite `docs/current_status.md` before continuing downstream work.
+
+Use `blocked` only when the conflict cannot be resolved from available artifacts.
 
 ## Canonical Flows
 

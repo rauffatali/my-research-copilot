@@ -118,6 +118,18 @@ Preferred chain:
 
 Every red-team finding should lead to a decision: fix, caveat, test, narrow, accept risk, defer, or stop.
 
+## Tool Workflow Artifacts
+
+Use tool workflow artifacts to ensure tools, skills, MCP servers, lookup systems, retrieval systems, code execution, and automated helpers produce durable workflow state rather than chat-only output.
+
+- `../tool_workflow_policy.md` — canonical policy for tool use and durable artifact promotion.
+- `tool_routing_matrix.md` — maps workflow situations to preferred tools, required inputs, and required durable outputs.
+- `tool_use_log.md` — records meaningful tool-assisted actions that affect research direction, implementation, experiments, evidence, claims, manuscript text, or review decisions.
+
+Tool output is not project memory until it is written to the correct repository artifact.
+
+Do not leave important source discovery, experiment execution, result analysis, claim audit, citation work, or review decisions only in chat, terminal output, notebooks, or temporary files.
+
 ## Claim Status Vocabulary
 
 Claim-related artifacts use one shared support-status vocabulary:

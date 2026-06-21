@@ -22,8 +22,9 @@ Core gates:
 - Gate 8: Result-to-Claim Gate
 - Gate 9: Claim Support Gate
 - Gate 10: Red-Team Review Gate
-- Gate 11: Paper Writing Gate
-- Gate 12: Final Handoff Gate
+- Gate 11: Tool Workflow Gate
+- Gate 12: Paper Writing Gate
+- Gate 13: Final Handoff Gate
 
 The canonical transition rules for moving between phases live in `docs/workflow_state_machine.md`.
 
@@ -529,7 +530,40 @@ For manuscript-stage review, prefer:
 
 ---
 
-## Gate 11: Paper Writing Gate
+## Gate 11: Tool Workflow Gate
+
+Use this gate whenever a tool, skill, MCP server, lookup system, retrieval system, code-execution step, or automated helper affects research direction, implementation, experiments, evidence, claims, manuscript text, or review decisions.
+
+### Required checks
+
+- What workflow phase is active?
+- What upstream artifacts must be read before tool use?
+- What output class will the tool produce?
+- What durable artifact must be updated afterward?
+- Does the tool output affect source evidence, implementation, experiment execution, result interpretation, claim support, manuscript prose, or review decisions?
+- Does the tool output change `docs/current_status.md`?
+- Does the output require uncertainty, failure, contradiction, or manual-check notes?
+- Is the output being incorrectly treated as evidence before being written to a durable artifact?
+
+### Output artifact
+
+Use as relevant:
+
+- `docs/tool_workflow_policy.md`
+- `docs/agent/tool_routing_matrix.md`
+- `docs/agent/tool_use_log.md`
+- The phase-specific artifact that receives the tool output
+- `docs/current_status.md` when project state changes
+
+### Stop rule
+
+Do not promote chat-only, terminal-only, notebook-only, retrieval-only, or lookup-only output into research decisions, experiment decisions, claims, citations, manuscript prose, or review conclusions.
+
+First write the useful output to the correct durable artifact.
+
+---
+
+## Gate 12: Paper Writing Gate
 
 Use this before drafting or revising manuscript text.
 

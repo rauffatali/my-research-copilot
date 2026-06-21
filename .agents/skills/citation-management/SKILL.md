@@ -119,6 +119,16 @@ A clean reference does not prove that the source supports a claim. It only prove
 
 ---
 
+## Tool Workflow Policy
+
+Follow `docs/tool_workflow_policy.md`.
+
+This skill's useful output must be written to the appropriate durable repository artifact rather than left only in chat.
+
+When this skill changes workflow state, active artifacts, blockers, claim status, experiment status, manuscript state, or next step, update `docs/current_status.md`.
+
+---
+
 ## Active Inputs
 
 This skill may operate on:

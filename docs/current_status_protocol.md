@@ -554,6 +554,22 @@ Manuscript-stage review artifacts live in `paper/agent/`.
 
 Do not wait until Phase 5 to identify missing baselines, weak assumptions, leakage risk, unsupported claims, or likely reviewer objections.
 
+### Tool Workflow Active Artifacts
+
+When the active task involves meaningful tool use, MCP use, lookup, retrieval, code execution, experiment execution, automated review, or workflow validation, active artifacts may include:
+
+- `docs/tool_workflow_policy.md`
+- `docs/agent/tool_routing_matrix.md`
+- `docs/agent/tool_use_log.md`
+
+Use:
+
+- `docs/tool_workflow_policy.md` when deciding how a tool output becomes durable workflow state.
+- `docs/agent/tool_routing_matrix.md` when selecting a tool for a workflow situation.
+- `docs/agent/tool_use_log.md` when a meaningful tool-assisted action affects direction, implementation, experiment design, evidence, claims, manuscript text, review, or phase routing.
+
+Do not list tool workflow artifacts during default `intake` unless the active task involves tool-use policy, tool routing, workflow validation, or tool-assisted state changes.
+
 ### Phase 4 Active
 
 When the current phase is `phase_4_active`, active artifacts may include:
