@@ -821,13 +821,15 @@ When discussing results, identify the supporting artifact.
 
 Do not claim novelty unless supported by project literature artifacts, citation records, or an explicit gap analysis.
 
-If evidence is missing, mark the statement as:
+If evidence is missing, mark the statement using the shared claim support-status vocabulary when applicable:
 
 - `unsupported`
-- `needs citation`
+- `needs_citation`
 - `hypothesis`
 - `preliminary`
-- `requires validation`
+- `needs_manual_check`
+
+Use `requires_validation` only as a next action or decision note, not as a claim support status.
 
 ### Paper claims
 
