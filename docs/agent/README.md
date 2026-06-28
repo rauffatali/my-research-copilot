@@ -34,7 +34,7 @@ Phase 1 brainstorming artifacts should preserve the discussion path, not only th
 
 ### Phase 2: Implementation and experimentation
 
-- `project_plan.md`
+- `../PROJECT_PLAN.md`
 - `implementation_notes.md`
 - `experiment_queue.md`
 - `experiment_plan.md`
