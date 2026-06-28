@@ -50,12 +50,14 @@ Expected inputs may include:
 15. Update `docs/current_status.md` when the active evidence state, claim status, or next phase changes.
 
 
-## Required skills
+## Relevant Skills
 
-- `results-scaffold`
-- `claim-auditor`
-- `scientific-critical-thinking`
-- `literature-review` when comparison context is needed
+Use the smallest relevant set:
+
+- `results-scaffold` when result tables, comparison layouts, or result-section scaffolds are needed.
+- `claim-auditor` when mapping interpreted results to claim support.
+- `scientific-critical-thinking` when testing alternative explanations, missing baselines, leakage risk, or evidence strength.
+- `literature-review` when comparison context is needed.
 
 ## Outputs
 

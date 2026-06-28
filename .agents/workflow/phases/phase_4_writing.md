@@ -12,34 +12,26 @@ Phase 4 turns the evidence package into a manuscript through collaborative, sect
 ## Actions
 
 1. Read `paper/AGENTS.md` before drafting or revising manuscript prose in `paper/`.
-2. Before writing literature-dependent manuscript text, check `sources/paper_cards/`, `sources/literature_matrix.md`, and `sources/citation_intent_map.md`.
-3. Use `sources/citation_intent_map.md` to ensure each citation has a role and supports the intended claim or context.
-4. Do not cite a source in polished manuscript prose only because it appeared in a lookup result.
-5. If a needed citation does not have a paper card or verified source artifact, mark the claim as `needs_citation` rather than inventing support.
-6. Before drafting claim-heavy prose, check `docs/agent/claim_ledger.md` and `docs/agent/result_to_claim_map.md`.
-7. Before drafting strong abstract, introduction, results, or conclusion claims, check `docs/agent/evidence_review.md` and `docs/agent/red_team_issue_ledger.md`.
-8. Do not write around unresolved red-team issues; either resolve them, caveat the claim, narrow the wording, or mark the issue as accepted risk.
-9. Do not draft polished manuscript claims from claims marked `unsupported`, `contradicted`, `out_of_scope`, or `needs_manual_check`.
-10. Claims marked `preliminary`, `partially_supported`, or `needs_citation` may be used only with conservative wording, explicit caveats, or TODO markers.
-11. Draft incrementally: one section, subsection, or paragraph group at a time rather than the entire paper at once.
-12. Use `literature-review` when introduction, motivation, or related-work context must be synthesized before prose is written.
-13. Use `results-scaffold` when result tables, placeholders, comparison structures, or evidence layouts are needed before drafting.
-14. Use `scientific-writing` to draft manuscript content from the available evidence.
-15. Use `citation-management` when touched sections need citation hygiene, metadata verification, or bibliography cleanup.
-16. Use `prior-style-adapter` in one of two modes:
-    * if `paper/style/prior_paper_style.md` exists, use style-adaptation mode;
-    * if it does not exist, check `paper/style/*.pdf`, generate `paper/style/prior_paper_style.md`, then continue with style-adaptation mode.
-17. Use `claim-auditor` after drafting or style adaptation to ensure claims remain proportional to evidence.
-18. Use `venue-templates` when venue-specific structure, formatting, limits, or submission requirements are relevant.
-19. Update `docs/current_status.md` after each meaningful manuscript step with the active section, touched evidence, claim-status concerns, and next writing action.
+2. Before literature-dependent prose, check `sources/paper_cards/`, `sources/literature_matrix.md`, and `sources/citation_intent_map.md`; do not cite lookup-only sources in polished prose, and mark unsupported citation needs as `needs_citation`.
+3. Before claim-heavy prose, check `docs/agent/claim_ledger.md`, `docs/agent/result_to_claim_map.md`, `docs/agent/evidence_review.md`, and `docs/agent/red_team_issue_ledger.md`.
+4. Do not write around unresolved red-team issues; resolve them, caveat or narrow the claim, or mark the issue as accepted risk.
+5. Do not draft polished manuscript claims from claims marked `unsupported`, `contradicted`, `out_of_scope`, or `needs_manual_check`.
+6. Use claims marked `preliminary`, `partially_supported`, or `needs_citation` only with conservative wording, explicit caveats, or TODO markers.
+7. Draft incrementally: one section, subsection, or paragraph group at a time rather than the entire paper at once.
+8. Use `literature-review` for introduction, motivation, or related-work synthesis; `results-scaffold` for result tables/placeholders/layouts; `scientific-writing` for evidence-bound prose; `citation-management` for citation hygiene; and `venue-templates` for venue-specific requirements.
+9. Use `prior-style-adapter` when adapting to established project style; if `paper/style/prior_paper_style.md` is missing, derive it from `paper/style/*.pdf` before adapting.
+10. Use `claim-auditor` after drafting or style adaptation to ensure claims remain proportional to evidence.
+11. Update `docs/current_status.md` after each meaningful manuscript step with the active section, touched evidence, claim-status concerns, and next writing action.
 
-## Required skills
+## Relevant Skills
+
+Use the smallest relevant set:
 
 - `scientific-writing`
 - `claim-auditor`
 - `citation-management`
 - `literature-review` when literature-backed framing is needed
-- `prior-style-adapter`
+- `prior-style-adapter` when style adaptation is needed
 - `venue-templates` when venue constraints apply
 - `results-scaffold` when result structure must be prepared before prose
 

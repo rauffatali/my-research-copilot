@@ -13,24 +13,18 @@ Phase 1 is intentionally interactive. Do not treat brainstorming as a one-pass a
 ## Actions
 
 1. Clarify the starting intent only enough to begin evidence lookup.
-2. Read relevant saved source artifacts from `sources/` before doing new lookup work.
+2. Read relevant saved source artifacts from `sources/` before new lookup work.
 3. Use `research-lookup` to gather candidate prior work, baselines, datasets, benchmarks, and technical references.
-4. When novelty, closest prior work, or research positioning matters, record important sources in `sources/reading_queue.md`.
-5. Promote high-priority sources from `sources/reading_queue.md` into `sources/paper_cards/` before freezing strong novelty or positioning claims.
-6. Use `sources/literature_matrix.md` to compare closest prior work, method families, datasets, benchmarks, and research gaps.
-7. If a paper substantially weakens or complicates the proposed direction, update `docs/agent/research_direction.md`, `docs/agent/novelty_risk_matrix.md`, or `docs/agent/idea_archive.md`.
-8. Present a compact evidence briefing to the user: what was found, why it matters, what seems promising, what seems risky, and what is still unclear.
-9. Ask targeted clarifying questions before formalizing the direction. Ask enough questions to resolve the research contribution, scope, baseline, metric, dataset/evaluation assumptions, risk, and implementation feasibility; group questions so the user can answer them efficiently.
-10. Record each debate round in `docs/agent/brainstorming_brief.md`, including evidence found, questions asked, user responses, current interpretation, and unresolved uncertainty.
-11. Repeat lookup, synthesis, critique, and user questioning until the idea is either rejected, deferred, or strong enough to formalize.
-12. Use `literature-review` to synthesize the source base into closest prior work, gaps, baseline expectations, and context.
-13. Use `claim-auditor` to check whether the proposed research direction, novelty framing, and any early wording are claimable from the available references and project context.
-14. Use `scientific-critical-thinking` to pressure-test novelty, leakage risk, evaluation decisiveness, failure modes, and contribution strength.
-15. Use `citation-management` only when reference metadata or BibTeX hygiene needs verification for candidate sources.
-16. When the direction has high novelty risk, unclear baseline, fragile assumptions, or uncertain evaluation, run an early pre-mortem in `docs/agent/pre_mortem.md`.
-17. Record concrete pre-mortem issues in `docs/agent/red_team_issue_ledger.md` when they require follow-up.
-18. Do not freeze a high-risk research direction until the pre-mortem decision is `proceed`, `proceed_with_caveats`, or the user explicitly accepts the recorded risk.
-19. If the idea is weak, refine it or recommend stopping; if it is promising, propose a final research package and ask the user to approve, revise, or reject it.
+4. For novelty, closest-prior-work, baseline, dataset, benchmark, evaluation, or positioning decisions, track important sources in `sources/reading_queue.md`, promote high-priority sources into `sources/paper_cards/`, and summarize direction-relevant comparisons in `sources/literature_matrix.md`.
+5. If a source substantially weakens or complicates the proposed direction, update `docs/agent/research_direction.md`, `docs/agent/novelty_risk_matrix.md`, or `docs/agent/idea_archive.md`.
+6. Present a compact evidence briefing to the user: what was found, why it matters, what seems promising, what seems risky, and what remains unclear.
+7. Ask targeted clarifying questions before formalizing the direction, covering contribution, scope, baseline/reference point, metric or evaluation signal, dataset/evaluation assumptions, risk, and implementation feasibility.
+8. Record each debate round in `docs/agent/brainstorming_brief.md`, including evidence found, questions asked, user responses, current interpretation, and unresolved uncertainty.
+9. Repeat lookup, synthesis, critique, and user questioning until the idea is rejected, deferred, or strong enough to formalize.
+10. Use `literature-review`, `claim-auditor`, and `scientific-critical-thinking` as needed to synthesize closest prior work, test claimability, and pressure-test novelty, leakage risk, evaluation decisiveness, failure modes, and contribution strength.
+11. Use `citation-management` only when reference metadata or BibTeX hygiene needs verification for candidate sources.
+12. For high novelty risk, unclear baseline, fragile assumptions, or uncertain evaluation, run an early pre-mortem in `docs/agent/pre_mortem.md`, record concrete follow-up issues in `docs/agent/red_team_issue_ledger.md`, and do not freeze the direction until the decision is `proceed`, `proceed_with_caveats`, or the user explicitly accepts the recorded risk.
+13. If the idea is weak, refine it or recommend stopping; if it is promising, propose a final research package and ask the user to approve, revise, or reject it.
 
 ## Interaction rule
 
@@ -45,17 +39,19 @@ Phase 1 may write draft brainstorming notes while the discussion is active, but 
 - the final direction has been presented for user approval;
 - the user has approved proceeding, or the decision is recorded as revise, defer, or stop.
 
-## Required skills
+## Relevant Skills
 
-- `research-lookup`
-- `literature-review`
-- `claim-auditor`
-- `scientific-critical-thinking`
-- `citation-management` when references are being stabilized
+Use the smallest relevant set:
+
+- `research-lookup` for external discovery.
+- `literature-review` when selected sources need synthesis.
+- `claim-auditor` when proposed direction, novelty framing, or early wording needs claimability checking.
+- `scientific-critical-thinking` when novelty, leakage risk, evaluation decisiveness, failure modes, or contribution strength need pressure testing.
+- `citation-management` only when references are being stabilized.
 
 ## Outputs
 
-Phase 1 must write its durable artifacts to `docs/agent/`, including as needed:
+Phase 1 durable artifacts live in `docs/agent/`, including as needed:
 
 - `docs/agent/research_direction.md`
 - `docs/agent/brainstorming_brief.md`
@@ -63,13 +59,7 @@ Phase 1 must write its durable artifacts to `docs/agent/`, including as needed:
 - `docs/agent/hypotheses.md`
 - `docs/agent/novelty_risk_matrix.md`
 
-The phase should also ensure `docs/current_status.md` records:
-
-- current phase and substep;
-- latest action taken;
-- active artifact paths;
-- unresolved questions or blockers;
-- next recommended step.
+Update `docs/current_status.md` with the active Phase 1 artifact paths, unresolved questions or blockers, and next recommended step.
 
 ## Exit condition
 

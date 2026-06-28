@@ -12,31 +12,16 @@ Phase 5 turns a mature manuscript draft into a structured review-and-revision cy
 
 ## Actions
 
-1. Read the manuscript draft and the current claim/support context before reviewing.
-2. Review early red-team artifacts before starting manuscript-stage critique, especially unresolved or accepted-risk issues in `docs/agent/red_team_issue_ledger.md`.
-3. Prepare a review context bundle in `paper/agent/review_context.md` with a compact paper summary, claim map, baseline context, a question engine, and the reviewer questions that should drive critique.
-4. Run reviewer-style critique with distinct roles rather than duplicate criticism.
-5. Use `peer-review` in multi-reviewer panel mode to simulate reviewer viewpoints such as methodology, novelty/related work, evidence/claim support, and presentation/clarity, followed by a meta-review.
-6. Use `scientific-critical-thinking` to pressure-test the weakest assumptions, the missing baseline, the leakage risk, and alternative explanations.
-7. Use `claim-auditor` to verify that the manuscript claims remain supported after drafting and style adaptation.
-8. When auditing manuscript claims, assign one of the shared support-status labels:
-   * `supported`
-   * `partially_supported`
-   * `preliminary`
-   * `hypothesis`
-   * `needs_citation`
-   * `wrong_citation`
-   * `unsupported`
-   * `contradicted`
-   * `out_of_scope`
-   * `needs_manual_check`
-9. Update `paper/agent/claim_audit.md` with manuscript-facing claim audit findings.
-10. Update `docs/agent/claim_ledger.md` if the review changes final claim support status.
-11. Keep review decisions separate from support statuses. For example, `unsupported` is a support status, while `remove`, `rewrite`, `narrow`, `add_caveat`, or `run_ablation` are review decisions or next actions.
-12. Use `research-lookup` when a reviewer question requires missing prior work, baseline context, source-reading, or citation support.
-13. Use `citation-management` when reviewer feedback exposes citation or metadata issues.
-14. Write revision-oriented artifacts in `paper/agent/` rather than silently revising the paper.
-15. Update `docs/current_status.md` with the review round, main objections, claim-status changes, accepted fixes, and remaining risks.
+1. Read the manuscript draft, current claim/support context, and early red-team artifacts before reviewing, especially unresolved or accepted-risk issues in `docs/agent/red_team_issue_ledger.md`.
+2. Prepare `paper/agent/review_context.md` with a compact paper summary, claim map, baseline context, question engine, and reviewer questions.
+3. Run distinct reviewer-style critique roles rather than duplicate criticism; use `peer-review` in multi-reviewer panel mode for methodology, novelty/related work, evidence/claim support, presentation/clarity, and meta-review.
+4. Use `scientific-critical-thinking` to pressure-test weak assumptions, missing baselines, leakage risk, and alternative explanations.
+5. Use `claim-auditor` to verify manuscript claims after drafting or style adaptation; assign only the shared support-status labels and keep decisions such as `remove`, `rewrite`, `narrow`, `add_caveat`, or `run_ablation` separate from support status.
+6. Update `paper/agent/claim_audit.md` with manuscript-facing claim audit findings, and update `docs/agent/claim_ledger.md` if final claim support status changes.
+7. Use `research-lookup` when reviewer questions require missing prior work, baseline context, source-reading, or citation support.
+8. Use `citation-management` when reviewer feedback exposes citation or metadata issues.
+9. Write revision-oriented artifacts in `paper/agent/` rather than silently revising the paper.
+10. Update `docs/current_status.md` with the review round, main objections, claim-status changes, accepted fixes, and remaining risks.
 
 ## Reviewer roles
 
@@ -49,7 +34,9 @@ Run separate reviewer passes so the feedback remains distinct and auditable.
 
 Each reviewer role should use the same underlying `peer-review` skill, but with a different critique focus and output artifact. The meta-reviewer synthesizes the panel into one decision-oriented summary.
 
-## Required skills
+## Relevant Skills
+
+Use the smallest relevant set:
 
 - `peer-review`
 - `scientific-critical-thinking`
