@@ -70,9 +70,11 @@ Default intake:
 1. Read the user prompt.
 2. Inspect `docs/current_status.md`.
 3. Load the matching phase contract.
-4. If status is stale, template-default, contradictory, or phase flow is unclear, load `.agents/workflow/policies/workflow_intake_policy.md`.
+4. If `docs/current_status.md` is stale, template-default, contradictory, or the phase flow is genuinely unclear, load `.agents/workflow/policies/workflow_intake_policy.md`; do not load it for routine phase routing.
 
 Phase contracts:
+
+After routing the task, always load the matching phase contract before taking workflow actions.
 
 - Phase 1 -> `.agents/workflow/phases/phase_1_research_formalization.md`
 - Phase 2 -> `.agents/workflow/phases/phase_2_implementation.md`
@@ -99,6 +101,22 @@ When the task involves high-risk direction, experiment, evidence, claim, or revi
 Do not infer the current research direction from memory alone.
 
 If these files conflict, prefer the most project-specific and most recent status document. If the conflict matters, state it explicitly before proceeding.
+
+---
+
+## Policy Loading
+
+When a task matches a policy condition below, load that policy before making the related decision, edit, claim, tool call, or workflow-state change.
+
+---
+
+## Rule Precedence
+
+`AGENTS.md` is the always-loaded router and summary.
+
+When a referenced phase contract or policy file is loaded, follow that file for detailed procedure, required artifacts, and phase-specific exit conditions.
+
+If `AGENTS.md` and a loaded phase or policy file appear to conflict, prefer the more specific loaded file unless it would violate the core evidence, scope, or safety rules in `AGENTS.md`.
 
 ---
 

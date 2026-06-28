@@ -22,8 +22,8 @@ STATUS_KEYS = (
     "Next recommended step",
 )
 
-SCaffold_STATE = "not started"
-ACTIVE_ARTIFACT_MARKERS = ("- Active artifact paths:", "- Active Artifacts:")
+SCAFFOLD_PHASES = {"intake", "not started", "bootstrap_existing_project", "backfill_required"}
+
 
 PHASE_REQUIRED_ARTIFACTS: dict[str, tuple[str, ...]] = {
     "phase_1": (
@@ -78,120 +78,71 @@ def repo_root() -> Path:
     return Path(__file__).resolve().parents[4]
 
 
-def _find_status_block(lines: list[str]) -> int:
-    for index in range(len(lines) - 1, -1, -1):
-        if lines[index].strip() == "## Status":
-            return index
-    return -1
+def _strip_inline_code(value: str) -> str:
+    value = value.strip()
+    if value.startswith("`") and value.endswith("`"):
+        return value[1:-1].strip()
+    return value
 
 
-def _extract_field_value(line: str, prefix: str) -> str | None:
-    stripped = line.strip()
-    if stripped.startswith("-"):
-        stripped = stripped.removeprefix("-").strip()
-    if stripped.startswith(prefix + ":"):
-        return stripped.split(":", 1)[1].strip()
-    return None
+def _section_map(lines: list[str]) -> dict[str, list[str]]:
+    sections: dict[str, list[str]] = {}
+    current: str | None = None
+
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("## "):
+            current = stripped.removeprefix("## ").strip()
+            sections[current] = []
+            continue
+        if current is not None:
+            sections[current].append(line)
+
+    return sections
 
 
-def _field_prefix(line: str) -> str | None:
-    stripped = line.strip()
-    for key in STATUS_KEYS:
-        if stripped.startswith(f"- {key}:"):
-            return key
-    return None
+def _field_from_section(section: list[str], key: str) -> str:
+    prefix = f"- {key}:"
+    for line in section:
+        stripped = line.strip()
+        if stripped.startswith(prefix):
+            return _strip_inline_code(stripped.split(":", 1)[1].strip())
+    return ""
+
+
+def _bullet_values(section: list[str]) -> tuple[str, ...]:
+    values: list[str] = []
+    for line in section:
+        stripped = line.strip()
+        if stripped.startswith("- "):
+            values.append(_strip_inline_code(stripped.removeprefix("- ").strip()))
+    return tuple(values)
 
 
 def parse_current_status(text: str) -> StatusSnapshot:
-    lines = text.splitlines()
-    start = _find_status_block(lines)
-    if start == -1:
-        raise ValueError("missing ## Status section")
+    sections = _section_map(text.splitlines())
 
-    current_phase = ""
-    current_substep = ""
-    latest_action = ""
-    blockers = ""
-    next_recommended_step = ""
-    active_artifact_paths: list[str] = []
-    active_paths_mode = False
-    blockers_mode = False
-    next_step_mode = False
+    if "Phase" not in sections:
+        raise ValueError("missing ## Phase section")
+    if "Latest Action" not in sections:
+        raise ValueError("missing ## Latest Action section")
+    if "Active Artifacts" not in sections:
+        raise ValueError("missing ## Active Artifacts section")
+    if "Blockers" not in sections:
+        raise ValueError("missing ## Blockers section")
+    if "Next Step" not in sections:
+        raise ValueError("missing ## Next Step section")
 
-    def finalize_modes() -> None:
-        nonlocal active_paths_mode, blockers_mode, next_step_mode, blockers, next_recommended_step
-        active_paths_mode = False
-        if blockers_mode:
-            blockers_mode = False
-            if not blockers and blockers_values:
-                blockers = "; ".join(blockers_values)
-        if next_step_mode:
-            next_step_mode = False
-            if not next_recommended_step and next_step_values:
-                next_recommended_step = "; ".join(next_step_values)
-
-    blockers_values: list[str] = []
-    next_step_values: list[str] = []
-
-    for line in lines[start + 1 :]:
-        stripped = line.strip()
-        if stripped.startswith("## "):
-            finalize_modes()
-            break
-        if not stripped:
-            finalize_modes()
-            continue
-
-        if stripped.startswith(ACTIVE_ARTIFACT_MARKERS):
-            finalize_modes()
-            active_paths_mode = True
-            continue
-
-        marker = _field_prefix(line)
-        if marker is not None:
-            finalize_modes()
-            value = _extract_field_value(line, marker)
-            if marker == "Current phase" and value is not None:
-                current_phase = value
-            elif marker == "Current substep" and value is not None:
-                current_substep = value
-            elif marker == "Latest action" and value is not None:
-                latest_action = value
-            elif marker == "Blockers" and value is not None:
-                if value:
-                    blockers = value
-                else:
-                    blockers_mode = True
-                    blockers_values = []
-            elif marker == "Next recommended step" and value is not None:
-                if value:
-                    next_recommended_step = value
-                else:
-                    next_step_mode = True
-                    next_step_values = []
-            continue
-
-        if line.startswith(" ") and stripped.startswith("-"):
-            item = stripped.removeprefix("-").strip()
-            if item.startswith("`") and item.endswith("`"):
-                item = item[1:-1]
-            if active_paths_mode:
-                active_artifact_paths.append(item)
-                continue
-            if blockers_mode:
-                blockers_values.append(item)
-                continue
-            if next_step_mode:
-                next_step_values.append(item)
-                continue
-
-    finalize_modes()
+    latest_action = "; ".join(_bullet_values(sections["Latest Action"]))
+    active_artifact_paths = _bullet_values(sections["Active Artifacts"])
+    blockers = "; ".join(_bullet_values(sections["Blockers"]))
+    next_recommended_step = "; ".join(_bullet_values(sections["Next Step"]))
 
     return StatusSnapshot(
-        current_phase=current_phase,
-        current_substep=current_substep,
+        current_phase=_field_from_section(sections["Phase"], "Current phase"),
+        current_substep=_field_from_section(sections["Phase"], "Current substep"),
         latest_action=latest_action,
-        active_artifact_paths=tuple(active_artifact_paths),
+        active_artifact_paths=active_artifact_paths,
         blockers=blockers,
         next_recommended_step=next_recommended_step,
     )
@@ -199,7 +150,7 @@ def parse_current_status(text: str) -> StatusSnapshot:
 
 def infer_phase_key(current_phase: str) -> str | None:
     normalized = current_phase.strip().lower()
-    if not normalized or normalized == SCaffold_STATE:
+    if not normalized or normalized in SCAFFOLD_PHASES:
         return None
     if normalized in {"blocked", "archived"}:
         return normalized
