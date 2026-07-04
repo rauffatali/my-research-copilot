@@ -153,6 +153,7 @@ A backfilled artifact may support progress, but it should not become frozen unti
 - `docs/agent/` stores Phase 1 to Phase 3 working artifacts.
 - `paper/agent/` stores Phase 4 to Phase 5 manuscript-support artifacts.
 - `sources/` stores external evidence artifacts.
+- `docs/research_context.md` stores the stable, high-level project snapshot created in Phase 1; it is a framing reference, not a decision log.
 - `docs/current_status.md` stores the live state pointer.
 
 ## Tool Workflow Discipline

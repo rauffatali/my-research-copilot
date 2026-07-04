@@ -27,6 +27,7 @@ SCAFFOLD_PHASES = {"intake", "not started", "bootstrap_existing_project", "backf
 
 PHASE_REQUIRED_ARTIFACTS: dict[str, tuple[str, ...]] = {
     "phase_1": (
+        "docs/research_context.md",
         "docs/agent/brainstorming_brief.md",
         "docs/agent/research_direction.md",
         "docs/agent/hypotheses.md",

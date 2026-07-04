@@ -83,6 +83,7 @@ class WorkflowStateCheckerTests(unittest.TestCase):
             root = Path(tmp)
             for path in [
                 "docs/current_status.md",
+                "docs/research_context.md",
                 "docs/agent/brainstorming_brief.md",
                 "docs/agent/research_direction.md",
                 "docs/agent/hypotheses.md",
@@ -97,6 +98,7 @@ class WorkflowStateCheckerTests(unittest.TestCase):
                 current_substep="research direction definition",
                 latest_actions=("drafted the research direction",),
                 active_artifacts=(
+                    "docs/research_context.md",
                     "docs/agent/brainstorming_brief.md",
                     "docs/agent/research_direction.md",
                     "docs/agent/hypotheses.md",

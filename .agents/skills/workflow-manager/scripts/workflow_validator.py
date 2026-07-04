@@ -82,6 +82,21 @@ DEFAULT_SPECS: tuple[TemplateSpec, ...] = (
         ("Status", "Notes", "Next Step"),
     ),
     TemplateSpec(
+        "docs/research_context.md",
+        (
+            "Status",
+            "Project Snapshot",
+            "Data and Domain Context",
+            "Objectives",
+            "High-Level Approach",
+            "Key Constraints and Assumptions",
+            "Known Risks and Failure Modes",
+            "Relationship to Other Artifacts",
+            "Starting References",
+            "Next Step",
+        ),
+    ),
+    TemplateSpec(
         "docs/PROJECT_PLAN.md",
         (
             "Status",

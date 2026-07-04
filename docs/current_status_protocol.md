@@ -378,6 +378,7 @@ Backfilled artifacts must be clearly marked as reconstructed, assumed, or needin
 
 When the current phase is `phase_1_active`, active artifacts may include:
 
+- `docs/research_context.md`
 - `docs/agent/research_direction.md`
 - `docs/agent/brainstorming_brief.md`
 - `docs/agent/hypotheses.md`

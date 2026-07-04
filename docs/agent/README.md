@@ -32,6 +32,8 @@ Phase 1 brainstorming artifacts should preserve the discussion path, not only th
 - `hypotheses.md`
 - `novelty_risk_matrix.md`
 
+Note: `docs/research_context.md` (in `docs/`, not `docs/agent/`) holds the stable, high-level project snapshot. Keep it distinct from `research_direction.md`, which holds the debated, approved decision record.
+
 ### Phase 2: Implementation and experimentation
 
 - `../PROJECT_PLAN.md`
