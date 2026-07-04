@@ -11,6 +11,7 @@ Examples:
 - Use `citation-management` for BibTeX, references, and citation hygiene.
 - Use `claim-auditor` for checking whether manuscript or report claims are supported.
 - Use `scientific-critical-thinking` for hypothesis critique, novelty risk, and methodological weakness analysis.
+- Use `theoretical-lens` when a failure mode or design choice may have a load-bearing mathematical framing worth adopting; use sparingly, not by default.
 - Use `peer-review` for reviewer-style criticism.
 - Use `results-scaffold` for preparing result tables, experiment summaries, and output organization.
 - Use `scientific-writing` for manuscript drafting or revision.

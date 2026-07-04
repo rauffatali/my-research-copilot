@@ -48,6 +48,8 @@ For theoretical claims or proposals, state:
 
 Do not present informal intuition as a proven result.
 
+Use `theoretical-lens` when exploring whether a failure mode or design choice has a load-bearing mathematical framing, and label every mathematical claim using the rigor vocabulary in `.agents/workflow/policies/evidence_and_claim_policy.md`.
+
 ## Architectural novelty
 
 For architecture or method-design proposals, state:
@@ -60,6 +62,8 @@ For architecture or method-design proposals, state:
 6. minimal comparison needed.
 
 Do not introduce architectural complexity without a clear contribution hypothesis.
+
+Consider `theoretical-lens` when the expected mechanism of improvement may have a principled mathematical explanation beyond "this worked in similar settings," but do not force a mathematical framing onto a change that is only an empirical trick.
 
 ## Dataset, benchmark, or evaluation work
 

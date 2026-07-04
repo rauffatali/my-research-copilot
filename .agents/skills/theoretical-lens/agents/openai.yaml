@@ -1,0 +1,4 @@
+interface:
+  display_name: "Theoretical Lens"
+  short_description: "Find load-bearing mathematical framings, with mandatory rigor labels"
+  default_prompt: "Use $theoretical-lens to check whether this failure mode or design choice has a load-bearing mathematical framing."

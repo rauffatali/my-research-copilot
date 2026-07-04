@@ -68,6 +68,7 @@ The workflow is intentionally phased and file-backed:
 - `citation-management`: verify references, BibTeX, DOI/arXiv metadata, and citation hygiene.
 - `claim-auditor`: check whether claims are supported by evidence, citations, and artifacts.
 - `scientific-critical-thinking`: pressure-test novelty, leakage, methodology, and experiment decisiveness.
+- `theoretical-lens`: identify load-bearing mathematical framings for a failure mode or design choice, with mandatory rigor labeling; use sparingly.
 - `peer-review`: simulate reviewer critique with distinct reviewer roles and a meta-review.
 - `scientific-writing`: draft evidence-first manuscript prose without inventing support.
 - `results-scaffold`: create result tables, ablations, and evidence placeholders without fabricating metrics.

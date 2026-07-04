@@ -35,6 +35,7 @@ For a real project, agents must use `docs/PROJECT_PLAN.md` as the active project
 ## Required Skills And Policies
 
 - Use `scientific-critical-thinking` when implementation or experiment choices need methodological critique.
+- Use `theoretical-lens` when designing a loss, regularizer, sampling strategy, or architecture change and a more principled mathematical framing may exist; use sparingly.
 - Load `.agents/workflow/policies/engineering_policy.md` for material code, config, script, data, training, evaluation, packaging, notebook, or reproducibility changes.
 - Load `.agents/workflow/policies/research_policy.md` for research-design, architecture, method, dataset, training, evaluation, or claim-sensitive changes.
 

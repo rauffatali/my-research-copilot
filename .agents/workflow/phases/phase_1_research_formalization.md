@@ -68,6 +68,7 @@ Use the smallest relevant set:
 - `literature-review` when selected sources need synthesis.
 - `claim-auditor` when proposed direction, novelty framing, or early wording needs claimability checking.
 - `scientific-critical-thinking` when novelty, leakage risk, evaluation decisiveness, failure modes, or contribution strength need pressure testing.
+- `theoretical-lens` when a failure mode or design choice may have a load-bearing mathematical framing worth adopting as part of the contribution; use sparingly, not on every idea.
 - `citation-management` only when references are being stabilized.
 
 ## Outputs
