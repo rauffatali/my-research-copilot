@@ -66,10 +66,14 @@ A research direction must state:
 9. Evidence briefing shown to the user.
 10. Clarifying questions asked and user responses incorporated.
 11. Publication-worthiness decision: proceed, revise, defer, or stop.
+12. Contribution type: architectural novelty, adaptation/combination for a domain, systematic comparative study, dataset/benchmark, theoretical, or engineering-systems.
+13. Comparator ledger closure: every plausible closest-prior-work or reviewer-alternative comparator in `docs/agent/novelty_risk_matrix.md` has a decision of `include`, `probe_planned`, `probe_completed`, `excluded_with_evidence`, or `deferred_with_reason` — none left `unresolved`.
 
 Do not proceed if the proposal cannot identify a concrete failure mode, baseline, and validation path.
 
 Do not freeze Phase 1 from the first user idea alone. Phase 1 must include at least one evidence-backed debate round unless the user explicitly requests a narrow no-research sketch.
+
+Do not freeze the direction while any comparator-ledger row remains `unresolved`, or while the contribution type is unstated. An `excluded_with_evidence` decision requires a specific, cited reason, not "out of scope" or "no time" alone.
 
 ### Output artifact
 
@@ -78,6 +82,7 @@ Prefer one of:
 - `docs/agent/research_direction.md`
 - `docs/agent/brainstorming_brief.md`
 - `docs/agent/hypotheses.md`
+- `docs/agent/novelty_risk_matrix.md`
 - a short section in `docs/current_status.md`
 - a task-specific planning note
 

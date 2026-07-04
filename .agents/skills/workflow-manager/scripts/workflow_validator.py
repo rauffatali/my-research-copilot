@@ -13,7 +13,6 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-
 ALLOWED_STATUSES = {"draft", "frozen", "superseded"}
 TERMINAL_HEADINGS = {"Next Step", "Recommendation"}
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
@@ -38,6 +37,7 @@ DEFAULT_SPECS: tuple[TemplateSpec, ...] = (
             "Status",
             "Research Question",
             "Scope",
+            "Contribution Type",
             "Closest Prior Work",
             "Baseline or Reference Point",
             "Failure Mode",
@@ -79,7 +79,7 @@ DEFAULT_SPECS: tuple[TemplateSpec, ...] = (
     ),
     TemplateSpec(
         "docs/agent/novelty_risk_matrix.md",
-        ("Status", "Notes", "Next Step"),
+        ("Status", "Comparator Ledger", "Notes", "Next Step"),
     ),
     TemplateSpec(
         "docs/research_context.md",
@@ -177,15 +177,42 @@ DEFAULT_SPECS: tuple[TemplateSpec, ...] = (
     ),
     TemplateSpec(
         "paper/agent/review_method.md",
-        ("Status", "Round 1", "Summary", "Strengths", "Major Concerns", "Minor Concerns", "Required Fixes", "Recommendation"),
+        (
+            "Status",
+            "Round 1",
+            "Summary",
+            "Strengths",
+            "Major Concerns",
+            "Minor Concerns",
+            "Required Fixes",
+            "Recommendation",
+        ),
     ),
     TemplateSpec(
         "paper/agent/review_domain.md",
-        ("Status", "Round 1", "Summary", "Strengths", "Major Concerns", "Minor Concerns", "Required Fixes", "Recommendation"),
+        (
+            "Status",
+            "Round 1",
+            "Summary",
+            "Strengths",
+            "Major Concerns",
+            "Minor Concerns",
+            "Required Fixes",
+            "Recommendation",
+        ),
     ),
     TemplateSpec(
         "paper/agent/review_hybrid.md",
-        ("Status", "Round 1", "Summary", "Strengths", "Major Concerns", "Minor Concerns", "Required Fixes", "Recommendation"),
+        (
+            "Status",
+            "Round 1",
+            "Summary",
+            "Strengths",
+            "Major Concerns",
+            "Minor Concerns",
+            "Required Fixes",
+            "Recommendation",
+        ),
     ),
     TemplateSpec(
         "paper/agent/review_meta.md",
@@ -202,11 +229,24 @@ DEFAULT_SPECS: tuple[TemplateSpec, ...] = (
     ),
     TemplateSpec(
         "paper/agent/revision_plan.md",
-        ("Status", "Must-Fix Issues", "Optional Improvements", "Planned Changes", "Next Step"),
+        (
+            "Status",
+            "Must-Fix Issues",
+            "Optional Improvements",
+            "Planned Changes",
+            "Next Step",
+        ),
     ),
     TemplateSpec(
         "paper/agent/response_to_reviewers_draft.md",
-        ("Status", "Reviewer 1", "Reviewer 2", "Reviewer 3", "Meta-Reviewer", "Next Step"),
+        (
+            "Status",
+            "Reviewer 1",
+            "Reviewer 2",
+            "Reviewer 3",
+            "Meta-Reviewer",
+            "Next Step",
+        ),
     ),
     TemplateSpec(
         "paper/agent/review_notes.md",
@@ -256,7 +296,9 @@ def validate_template(root: Path, spec: TemplateSpec) -> list[ValidationIssue]:
 
     for required in spec.required_headings:
         if required not in heading_set:
-            issues.append(ValidationIssue(spec.path, f"missing required heading: {required}"))
+            issues.append(
+                ValidationIssue(spec.path, f"missing required heading: {required}")
+            )
 
     status = extract_status(text)
     if status is None:
@@ -282,7 +324,9 @@ def validate_template(root: Path, spec: TemplateSpec) -> list[ValidationIssue]:
     return issues
 
 
-def validate_specs(root: Path, specs: tuple[TemplateSpec, ...] = DEFAULT_SPECS) -> list[ValidationIssue]:
+def validate_specs(
+    root: Path, specs: tuple[TemplateSpec, ...] = DEFAULT_SPECS
+) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
     for spec in specs:
         issues.extend(validate_template(root, spec))
@@ -290,7 +334,9 @@ def validate_specs(root: Path, specs: tuple[TemplateSpec, ...] = DEFAULT_SPECS) 
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Validate required workflow artifact files after project initialization.")
+    parser = argparse.ArgumentParser(
+        description="Validate required workflow artifact files after project initialization."
+    )
     parser.add_argument(
         "--root",
         type=Path,

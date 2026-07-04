@@ -10,8 +10,13 @@
 ## Scope
 - [State the intended scope.]
 
+## Contribution Type
+- [State the primary contribution archetype: architectural novelty / adaptation-and-combination for a domain / systematic comparative or benchmarking study / dataset or benchmark contribution / theoretical contribution / engineering-systems contribution.]
+- [State why this archetype fits the evidence gathered so far, not preference alone.]
+
 ## Closest Prior Work
 - [List the closest prior work.]
+- See `docs/agent/novelty_risk_matrix.md` for the full comparator ledger and per-comparator decisions.
 
 ## Baseline or Reference Point
 - [State the baseline or reference point.]
