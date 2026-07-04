@@ -28,6 +28,8 @@ Core gates:
 
 The canonical transition rules for moving between phases live in `docs/workflow_state_machine.md`.
 
+Gates and phase contracts serve different roles. Phase contracts in `.agents/workflow/phases/` own the overall sequencing of a task: what inputs are needed, what actions to take and in what order, and what must be true before a phase can be considered complete. Gates are decision checkpoints invoked *inside* those phase actions at specific high-risk or irreversible moments, such as freezing a research direction, running an expensive or claim-critical experiment, or upgrading a claim's support status. Use the phase contract to know what to do next; use a gate to slow down and verify a specific decision before committing to it. A single phase action may pass through zero, one, or several gates depending on how consequential the decision is.
+
 ---
 
 ## When to use this document
