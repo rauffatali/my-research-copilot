@@ -5,7 +5,7 @@
 - Project initialized: no
 - Last updated: YYYY-MM-DD
 - State source: `docs/workflow_state_machine.md`
-- Status protocol: `docs/current_status_protocol.md`
+- Status protocol: `.agents/workflow/policies/current_status_policy.md`
 
 ## Phase
 - Current phase: `intake`

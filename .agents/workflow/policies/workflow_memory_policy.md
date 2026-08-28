@@ -3,7 +3,7 @@
 This repository uses file-backed workflow memory. Chat is for interaction, but durable research context must be written to repository artifacts.
 
 - `docs/current_status.md` is the short shared live state pointer across all phases. It should record the current phase, current substep, latest action, active artifact paths, blockers, open questions, and next recommended step.
-- `docs/current_status_protocol.md` defines how `docs/current_status.md` should be updated, when it is stale, and how to handle template-default or backfilled state.
+- `.agents/workflow/policies/current_status_policy.md` defines how `docs/current_status.md` should be updated, when it is stale, and how to handle template-default or backfilled state.
 - `.agents/workflow/policies/tool_workflow_policy.md` defines how tool, skill, MCP, lookup, retrieval, and code-execution outputs become durable workflow state.
 - `docs/agent/` stores agent-generated research workflow artifacts such as brainstorming briefs, research direction notes, hypotheses, novelty-risk notes, planning notes, and result-interpretation notes.
 - `paper/agent/` stores agent-generated manuscript-support artifacts such as claim audits, review rounds, revision plans, and response-to-reviewers drafts.

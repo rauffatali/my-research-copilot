@@ -32,7 +32,7 @@ This protocol defines how `docs/current_status.md` should be updated, when it is
 Use these files together:
 
 - `docs/current_status.md` — short live state pointer.
-- `docs/current_status_protocol.md` — rules for updating the live state pointer.
+- `.agents/workflow/policies/current_status_policy.md` — rules for updating the live state pointer.
 - `docs/workflow_state_machine.md` — canonical phase and transition model.
 - `docs/research_gates.md` — gates that decide whether work can proceed.
 - `docs/agent/` — durable research workflow artifacts.
@@ -67,7 +67,7 @@ Recommended shape:
     - Project initialized:
     - Last updated:
     - State source: `docs/workflow_state_machine.md`
-    - Status protocol: `docs/current_status_protocol.md`
+    - Status protocol: `.agents/workflow/policies/current_status_policy.md`
 
     ## Phase
     - Current phase:
@@ -162,7 +162,7 @@ Use:
 
 Use:
 
-    - Status protocol: `docs/current_status_protocol.md`
+    - Status protocol: `.agents/workflow/policies/current_status_policy.md`
 
 ---
 
@@ -904,7 +904,7 @@ A safe fresh-clone status should look like this:
     - Project initialized: no
     - Last updated: YYYY-MM-DD
     - State source: `docs/workflow_state_machine.md`
-    - Status protocol: `docs/current_status_protocol.md`
+    - Status protocol: `.agents/workflow/policies/current_status_policy.md`
 
     ## Phase
     - Current phase: `intake`

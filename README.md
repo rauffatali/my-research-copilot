@@ -38,8 +38,8 @@ The workflow is intentionally phased and file-backed:
 ## Persistent Memory
 
 - `docs/current_status.md` — short live state pointer
-- `docs/current_status_protocol.md` — rules for updating and refreshing live status
 - `docs/workflow_state_machine.md` — canonical phase and transition model
+- `docs/research_gates.md` — decision gates before major research direction, source-reading, implementation, experiment, evaluation, claim, writing, or review changes
 - `docs/research_context.md` — stable, high-level project snapshot created in Phase 1
 - `docs/agent/` — research workflow artifacts
 - `paper/agent/` — manuscript-support and review artifacts
@@ -107,7 +107,6 @@ AGENTS.md
 .codex/
 docs/
   current_status.md
-  current_status_protocol.md
   workflow_state_machine.md
   research_gates.md
   research_context.md
