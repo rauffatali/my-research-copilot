@@ -14,14 +14,23 @@
 - [List saved source artifacts.]
 
 ## Evidence Briefing
-- [Summarize what was found, why it matters, and what remains uncertain.]
+- Summary: [State what was found, why it matters, and what remains uncertain.]
+- Evidence references: [List durable source artifacts and relevant pages, sections, tables, or comparisons.]
+- Verification: [State how the evidence was checked.]
+- Support status when applicable: [Use the canonical support-status vocabulary.]
+- Scope and limitations: [State what the evidence supports and what it does not establish.]
 
 ## Debate Rounds
 ### Round 1
-- Evidence considered: [List papers, sources, baselines, datasets, or benchmark notes.]
+- Claim or decision under discussion: [State the claim or decision being tested.]
+- Evidence references: [List durable artifacts and relevant locations.]
+- Verification performed: [State how the evidence was checked.]
+- Support status when applicable: [Use the canonical support-status vocabulary.]
+- Scope and limitations: [State what the evidence supports and what it does not establish.]
 - Agent challenge: [State the strongest critique or alternative interpretation.]
 - User response: [Record the user's answer or decision.]
 - Updated interpretation: [State how the idea changed.]
+- Unresolved uncertainty: [Record what remains unknown or disputed.]
 
 ## Open Questions
 - [List unresolved questions.]

@@ -49,9 +49,9 @@ Do not use vague labels such as:
 
 Map them to the allowed support-status values instead.
 
-A claim can be marked `supported` only when the supporting result cards, citations, source artifacts, or other durable evidence are listed.
+A claim can be marked `supported` only when durable evidence references, the verification method, scope, and limitations are recorded, and the evidence directly supports the exact claim.
 
-A claim should be marked `preliminary`, `partially_supported`, `needs_citation`, or `needs_manual_check` when evidence exists but is incomplete, indirect, or not yet audited.
+A claim should be marked `preliminary`, `partially_supported`, `needs_citation`, or `needs_manual_check` when evidence exists but is incomplete, indirect, out of scope, or not yet audited.
 
 ## Canonical Claim Status Rule
 
@@ -82,7 +82,7 @@ Preferred evidence chain:
 
 `docs/agent/result_cards/` -> `docs/agent/result_to_claim_map.md` -> `docs/agent/claim_ledger.md`
 
-A claim can be marked `supported` only when the supporting result cards, citations, or other durable evidence are listed.
+A claim cannot be marked `supported` from raw metrics or a completed run alone. It must be linked through interpreted evidence in a result card and `docs/agent/result_to_claim_map.md`, with verification, scope, and limitations recorded in the claim ledger.
 
 Do not mark a claim as supported only because a run completed.
 
@@ -97,8 +97,16 @@ Do not mark a claim as supported only because a run completed.
 
 No project-specific claims have been recorded yet.
 
-| Claim ID | Claim | Claim Type | Location | Evidence | Support Status | Missing Evidence | Risk | Decision | Allowed Wording |
-| -------- | ----- | ---------- | -------- | -------- | -------------- | ---------------- | ---- | -------- | --------------- |
+| Claim ID | Claim | Claim Type | Location | Evidence References | Verification | Support Status | Scope And Limitations | Missing Evidence | Risk | Decision | Allowed Wording |
+| -------- | ----- | ---------- | -------- | ------------------- | ------------ | -------------- | --------------------- | ---------------- | ---- | -------- | --------------- |
+
+For every real claim row:
+
+- `Evidence References` must identify durable project artifacts and relevant sections, metrics, tables, or citation locations.
+- `Verification` must state how the evidence was checked.
+- `Scope And Limitations` must state where the claim applies and what it does not establish.
+- `Missing Evidence` must identify any unresolved support gap; use `none` only when the chain is complete.
+- `Allowed Wording` must not be stronger than the recorded evidence.
 
 ## Decision Values
 

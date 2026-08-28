@@ -8,6 +8,8 @@ It is the bridge between Phase 3 result consolidation and Phase 4 writing.
 
 A manuscript claim should not be drafted as a strong claim unless it appears here or in `docs/agent/claim_ledger.md` with adequate support.
 
+Each mapping entry must connect a claim to interpreted, durable evidence. Raw metrics, completed runs, or the existence of a citation do not establish claim support by themselves.
+
 ## Support Status Vocabulary
 
 Use the same support-status values as `docs/agent/claim_ledger.md` and the claim-auditor skill:
@@ -34,8 +36,8 @@ Do not introduce local variants.
 
 No project-specific claim mappings have been recorded yet.
 
-| Claim ID | Claim | Claim type | Supporting result cards | Supporting citations | Support status | Allowed wording | Not allowed wording |
-|---|---|---|---|---|---|---|---|
+| Claim ID | Claim | Claim Type | Evidence References | Verification | Support Status | Scope And Limitations | Allowed Wording | Not Allowed Wording | Missing Evidence | Decision |
+|---|---|---|---|---|---|---|---|---|---|---|
 
 ## Claim Types
 
@@ -91,18 +93,29 @@ Use `CL-001`, `CL-002`, etc. only when adding a real project claim.
 
 [Choose from claim types.]
 
-#### Supporting Result Cards
+#### Evidence References
+
+List every durable artifact that supports or constrains the claim.
+
+Examples:
 
 - `docs/agent/result_cards/RES-001_...md`
-- `docs/agent/result_cards/RES-002_...md`
-
-#### Supporting Citations
-
+- `sources/paper_cards/...`
 - `sources/...`
+- `runs/...`
+- `outputs/...`
+
+#### Verification
+
+[Explain how the evidence was checked. Include the relevant source section, metric, table, comparison, rerun, calculation, or audit.]
 
 #### Support Status
 
 - supported / partially_supported / preliminary / hypothesis / needs_citation / wrong_citation / unsupported / contradicted / out_of_scope / needs_manual_check
+
+#### Scope And Limitations
+
+[State where the evidence supports the claim and what it does not establish.]
 
 #### Allowed Wording
 

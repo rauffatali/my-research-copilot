@@ -19,9 +19,9 @@ Phase 1 is intentionally interactive. Do not treat brainstorming as a one-pass a
 5. For novelty, closest-prior-work, baseline, dataset, benchmark, evaluation, or positioning decisions, track important sources in `sources/reading_queue.md`, promote high-priority sources into `sources/paper_cards/`, and summarize direction-relevant comparisons in `sources/literature_matrix.md`.
 6. For every plausible closest-prior-work or reviewer-alternative comparator surfaced during lookup or critique, add or update a row in `docs/agent/novelty_risk_matrix.md`'s comparator ledger with a decision of `include`, `probe_planned`, `probe_completed`, `excluded_with_evidence`, or `deferred_with_reason`. Do not leave a comparator row `unresolved` when freezing the direction, and do not accept "out of scope" or "no time" alone as an `excluded_with_evidence` reason.
 7. If a source substantially weakens or complicates the proposed direction, update `docs/agent/research_direction.md`, `docs/agent/novelty_risk_matrix.md`, or `docs/agent/idea_archive.md`.
-8. Present a compact evidence briefing to the user: what was found, why it matters, what seems promising, what seems risky, and what remains unclear.
+8. Present a compact evidence briefing to the user: what was found, why it matters, what seems promising, what seems risky, and what remains unclear. For each material literature, novelty, baseline, dataset, evaluation, or direction claim, include its durable evidence reference, verification note, support status when applicable, and scope or limitation.
 9. Ask targeted clarifying questions before formalizing the direction, covering contribution type (architectural novelty, adaptation/combination for a domain, systematic comparative study, dataset/benchmark, or theoretical/engineering-systems contribution), scope, baseline/reference point, metric or evaluation signal, dataset/evaluation assumptions, risk, and implementation feasibility.
-10. Record each debate round in `docs/agent/brainstorming_brief.md`, including evidence found, questions asked, user responses, current interpretation, and unresolved uncertainty.
+10. Record each debate round in `docs/agent/brainstorming_brief.md`, including the claim or decision under discussion, durable evidence references, verification performed, questions asked, user responses, current interpretation, and unresolved uncertainty.
 11. Repeat lookup, synthesis, critique, and user questioning until the idea is rejected, deferred, or strong enough to formalize.
 12. Use `literature-review`, `claim-auditor`, and `scientific-critical-thinking` as needed to synthesize closest prior work, test claimability, and pressure-test novelty, leakage risk, evaluation decisiveness, failure modes, and contribution strength. When invoking `scientific-critical-thinking` at the point of freezing the direction, require a decision per comparator-ledger row rather than a general risk narrative.
 13. Use `citation-management` only when reference metadata or BibTeX hygiene needs verification for candidate sources.
@@ -92,6 +92,8 @@ Update `docs/current_status.md` with the active Phase 1 artifact paths, unresolv
 Phase 1 is complete only when the idea has:
 
 - closest-prior-work and novelty-sensitive decisions are backed by paper cards or saved source artifacts;
+- material direction, novelty, baseline, dataset, and evaluation claims have durable evidence references, or are explicitly marked as hypotheses or unresolved;
+- evidence references identify the relevant source artifact and page, section, metric, comparison, or other verification location when available;
 - major source candidates are tracked in `sources/reading_queue.md`;
 - literature comparisons that affect the direction are summarized in `sources/literature_matrix.md`;
 - at least one evidence-backed debate round;

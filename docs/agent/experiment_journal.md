@@ -15,6 +15,8 @@ It should not replace:
 
 Use this file to preserve the execution path, failed attempts, pivots, blockers, and next actions.
 
+For each meaningful execution step, link the durable evidence artifacts involved and record execution verification separately from interpretation. This journal preserves chronology and decisions; it does not assign claim support.
+
 ## Status
 
 - draft
@@ -22,9 +24,9 @@ Use this file to preserve the execution path, failed attempts, pivots, blockers,
 
 ## Journal
 
-| Date | Stage | Queue item | Experiment ID | Linked plan | Linked runs | Summary | Issue / blocker | Decision / next action |
-|---|---|---|---|---|---|---|---|---|
-| YYYY-MM-DD | main_experiment | `docs/agent/experiment_queue.md#...` | EXP-001 | `docs/agent/experiment_plan.md#exp-001` | `docs/agent/run_registry.md#run-001` | | | |
+| Date | Stage | Queue item | Experiment ID | Linked plan | Linked runs | Evidence references | Verification status | Summary | Issue / blocker | Decision / next action |
+|---|---|---|---|---|---|---|---|---|---|---|
+| YYYY-MM-DD | main_experiment | `docs/agent/experiment_queue.md#...` | EXP-001 | `docs/agent/experiment_plan.md#exp-001` | `docs/agent/run_registry.md#run-001` | | not started / partial / complete / blocked | | | |
 
 ## Suggested Stages
 
@@ -44,6 +46,8 @@ Use this file to preserve the execution path, failed attempts, pivots, blockers,
 - Record the smallest meaningful experiment step.
 - Keep failed, buggy, cancelled, or inconclusive runs visible.
 - Link to configs, logs, plots, checkpoints, and outputs instead of embedding them here.
+- Use durable paths for evidence references; raw chat, lookup output, or unrecorded tool output is not evidence.
+- Keep verification status consistent with the linked run registry entry and use it to describe execution checks, not claim support.
 - Do not use this file as the only evidence for a manuscript claim.
 - If a run changes the research direction, mark the decision and route back to Phase 1 or `backfill_required`.
 

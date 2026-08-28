@@ -28,6 +28,18 @@
 - Figure/table path:
 - Commit:
 - Seed(s):
+- Source or comparison artifacts, if relevant:
+
+## Evidence Verification
+
+- Evidence completeness: complete / partial / blocked
+- Verification method:
+- Artifact consistency checks:
+- Unresolved evidence gaps:
+
+Record how the result was checked against its configuration, run identity, dataset or split, baseline/control, metrics, outputs, and relevant source artifacts.
+
+Use `none` for unresolved evidence gaps only when the evidence chain is complete.
 
 ## What Was Tested
 

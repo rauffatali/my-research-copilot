@@ -14,6 +14,8 @@ The run registry records what was actually run.
 
 Do not use this file for interpretation. Use it to make runs reproducible and auditable.
 
+The registry records whether execution produced the intended artifacts and whether the execution was verified. A completed run is not interpreted evidence or claim support until Phase 3 consolidates it into a result card and a result-to-claim mapping.
+
 ## Run Index
 
 | Run ID | Experiment ID | Status | Commit | Config | Dataset/split | Seed | Output path | Metric summary | Notes |
@@ -32,6 +34,14 @@ Do not use this file for interpretation. Use it to make runs reproducible and au
 ### Linked Experiment
 
 - Experiment plan: `docs/agent/experiment_plan.md#exp-001`
+
+### Evidence Binding
+
+- Intended evidence target: [Link to the evidence target in the approved experiment plan.]
+- Scope and claim boundary: [State what this run may support and what it cannot establish.]
+- Expected evidence artifacts: [List the durable artifacts this run is intended to produce.]
+- Execution verification status: not started / partial / complete / blocked
+- Verification record: [State how code state, configuration, dataset/split, execution, metrics, and output artifacts were checked.]
 
 ### Code State
 
@@ -82,6 +92,7 @@ Do not use this file for interpretation. Use it to make runs reproducible and au
 - Prediction path:
 - Figure/table path:
 - Other artifacts:
+- Evidence artifact paths:
 
 ### Metrics
 

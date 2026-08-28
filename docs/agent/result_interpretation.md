@@ -12,6 +12,8 @@ Each major finding should first be recorded in:
 
 Then this file should summarize what the collection of result cards means for the research direction, hypotheses, claims, and next decisions.
 
+Each major finding must preserve its evidence chain: durable evidence references, verification, evidence completeness, and scope and limitations. Interpretation does not replace the result card, result-to-claim map, or claim ledger.
+
 ## Status
 
 - draft
@@ -31,8 +33,12 @@ Then this file should summarize what the collection of result cards means for th
 - Runs:
 - Baseline/control:
 - Dataset/split:
+- Evidence references:
+- Verification:
+- Evidence completeness: complete / partial / blocked
 - Interpretation:
 - Confidence:
+- Scope and limitations:
 - Claim impact:
 
 ### Finding 2: [Short Name]
@@ -41,8 +47,12 @@ Then this file should summarize what the collection of result cards means for th
 - Runs:
 - Baseline/control:
 - Dataset/split:
+- Evidence references:
+- Verification:
+- Evidence completeness: complete / partial / blocked
 - Interpretation:
 - Confidence:
+- Scope and limitations:
 - Claim impact:
 
 ## Cross-Result Patterns
@@ -60,9 +70,9 @@ Examples:
 
 ## Supported or Affected Claims
 
-| Claim ID | Claim | Supporting result cards | Support status | Decision / Notes |
-|---|---|---|---|---|
-| CL-XXX | | | supported / partially_supported / preliminary / hypothesis / needs_citation / wrong_citation / unsupported / contradicted / out_of_scope / needs_manual_check | |
+| Claim ID | Claim | Supporting result cards | Evidence References | Verification | Support status | Scope And Limitations | Decision / Notes |
+|---|---|---|---|---|---|---|---|
+| CL-XXX | | | | | supported / partially_supported / preliminary / hypothesis / needs_citation / wrong_citation / unsupported / contradicted / out_of_scope / needs_manual_check | | |
 
 ## Claims to Weaken or Remove
 

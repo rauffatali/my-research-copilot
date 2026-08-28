@@ -6,6 +6,8 @@ This file records red-team review of interpreted results before they become manu
 
 Use it to check whether evidence actually supports the intended claims, whether alternative explanations remain, and whether results require additional experiments, caveats, or claim weakening.
 
+The review must check both Chain of Evidence completeness and correctness: every material claim needs durable evidence references, and those references must support the exact claim, scope, and strength being asserted.
+
 ## Status
 
 - Status: `draft`
@@ -37,6 +39,17 @@ No evidence review findings have been recorded yet.
 - Claim ledger:
 - Figure/table:
 - Source/literature artifacts:
+- Evidence references:
+- Verification record:
+- Scope and claim boundary:
+
+## Chain-of-Evidence Check
+
+- Evidence completeness: complete / partial / blocked
+- Evidence correctness: [Explain whether the references support the exact claim, scope, and strength being asserted.]
+- Verification performed: [State how the result, source, calculation, comparison, or artifact was checked.]
+- Scope and limitations: [State what the evidence supports and what it does not establish.]
+- Unresolved evidence gaps: [List gaps or write `none` only when the chain is complete.]
 
 ## Questions
 

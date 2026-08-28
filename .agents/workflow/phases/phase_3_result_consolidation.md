@@ -6,6 +6,8 @@ Convert experiment outputs into interpreted evidence and claim support decisions
 
 Phase 3 should not merely summarize metrics. It should determine what the results actually support, what they do not support, and what claims must be strengthened, weakened, or removed.
 
+Apply the Chain of Evidence from execution artifacts through interpreted results to claim support. Chain completeness means that each material claim has durable evidence references; chain correctness means that the references support the exact claim, scope, and strength being asserted.
+
 ## Inputs
 
 Expected inputs may include:
@@ -24,14 +26,14 @@ Expected inputs may include:
 ## Actions
 
 1. Inspect the relevant experiment plans, run registry entries, logs, metrics, and outputs.
-2. Create or update a result card in `docs/agent/result_cards/` for each major result or decision-relevant finding.
+2. Create or update a result card in `docs/agent/result_cards/` for each major result or decision-relevant finding, preserving durable evidence references, verification method, evidence completeness, scope and claim boundaries, limitations, and alternative explanations.
 3. Check baseline/control validity before interpreting comparison claims.
 4. Check dataset and leakage status before interpreting evaluation claims.
 5. Record instability, failed runs, inconclusive results, or non-improvements in `docs/agent/negative_results.md`.
 6. Perform error or slice analysis in `docs/agent/error_analysis.md` when aggregate metrics are insufficient.
-7. Synthesize result cards in `docs/agent/result_interpretation.md`.
+7. Synthesize result cards in `docs/agent/result_interpretation.md` without collapsing raw metrics into claim support; carry forward evidence references, verification, evidence completeness, scope, and limitations.
 8. Map interpreted results to claims in `docs/agent/result_to_claim_map.md`.
-9. Before freezing evidence or promoting results into manuscript claims, red-team the evidence in `docs/agent/evidence_review.md`.
+9. Before freezing evidence or promoting results into manuscript claims, red-team the evidence in `docs/agent/evidence_review.md`, explicitly checking chain completeness and correctness.
 10. Record concrete evidence-review issues in `docs/agent/red_team_issue_ledger.md` when they require follow-up.
 11. If evidence review finds a missing baseline, leakage risk, unstable result, unsupported claim, or plausible alternative explanation, update the relevant result card, result-to-claim map, claim ledger, or route back to Phase 2.
 12. Update `docs/agent/claim_ledger.md` using only the shared support-status vocabulary:
@@ -77,6 +79,7 @@ Phase 3 can be frozen only when:
 
 - major results have result cards;
 - result cards link to runs, outputs, and relevant experiment plans;
+- result cards and synthesized findings record durable evidence references, verification, evidence completeness, scope, and limitations;
 - comparison claims have baseline/control support;
 - evaluation claims have dataset/leakage support when relevant;
 - important failures or inconclusive results are recorded;
@@ -84,5 +87,6 @@ Phase 3 can be frozen only when:
 - `claim_ledger.md` reflects the current evidence;
 - figures/tables are reviewed for traceability and claim safety;
 - claim-critical results have an evidence review or an explicit reason why evidence review was deferred;
+- evidence review checks whether each material claim has a complete and correct evidence chain before claim promotion;
 - unresolved evidence-review issues are recorded in `docs/agent/red_team_issue_ledger.md`;
 - unsupported or overbroad claims are marked with canonical support statuses such as `preliminary`, `partially_supported`, `unsupported`, `contradicted`, `out_of_scope`, `needs_citation`, or `needs_manual_check`, with decisions such as `remove`, `rewrite`, or `weaken_claim` recorded separately.

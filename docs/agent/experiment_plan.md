@@ -18,7 +18,10 @@ An experiment should not be considered approved unless it states:
 - the metric or failure mode;
 - the minimal viable version;
 - what would support or refute the hypothesis;
-- required output artifacts.
+- required output artifacts;
+- the evidence to be produced;
+- the verification method;
+- the scope and claim boundary.
 
 ## Experiment Index
 
@@ -65,6 +68,13 @@ Examples:
 - change dataset split;
 - weaken paper claim;
 - stop this line of work.
+
+### Evidence Target and Verification
+
+- Evidence to be produced: [State exactly what the experiment should establish, measure, or rule out.]
+- Verification method: [State how the resulting evidence will be checked.]
+- Scope and claim boundary: [State what this experiment may support and what it cannot establish.]
+- Missing evidence or failure condition: [State what would make the evidence incomplete or unusable.]
 
 ### Baseline or Control
 
@@ -163,6 +173,7 @@ Before running, define the expected artifacts:
 - Summary path:
 - Registry entry:
 - Result interpretation entry:
+- Verification record:
 
 ### Validation Before Full Run
 
@@ -173,6 +184,7 @@ Before running, define the expected artifacts:
 - [ ] Baseline comparison is valid.
 - [ ] Leakage risk checked.
 - [ ] Outputs are saved to durable paths.
+- [ ] Evidence target, verification method, and claim boundary are defined.
 
 ### Risks and Alternative Explanations
 
@@ -194,5 +206,7 @@ Fill after execution.
 - Linked runs:
 - Linked outputs:
 - Linked result interpretation:
+- Evidence verification result:
+- Phase 3 handoff: ready / incomplete / blocked
 - Decision:
 - Follow-up experiment:

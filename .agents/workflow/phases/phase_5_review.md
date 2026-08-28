@@ -2,6 +2,8 @@
 
 Phase 5 turns a mature manuscript draft into a structured review-and-revision cycle.
 
+Every material reviewer finding must be traceable to a manuscript section or claim, durable evidence or an explicitly recorded evidence gap, and a closure record. Use `paper/agent/claim_audit.md` for claim-support and status changes and `paper/agent/revision_plan.md` for revision actions; do not leave finding rationale or closure only in chat.
+
 ## Input
 
 - Mature manuscript draft in `paper/`.
@@ -14,13 +16,13 @@ Phase 5 turns a mature manuscript draft into a structured review-and-revision cy
 
 1. Read the manuscript draft, current claim/support context, and early red-team artifacts before reviewing, especially unresolved or accepted-risk issues in `docs/agent/red_team_issue_ledger.md`.
 2. Prepare `paper/agent/review_context.md` with a compact paper summary, claim map, baseline context, question engine, and reviewer questions.
-3. Run distinct reviewer-style critique roles rather than duplicate criticism; use `peer-review` in multi-reviewer panel mode for methodology, novelty/related work, evidence/claim support, presentation/clarity, and meta-review.
+3. Run distinct reviewer-style critique roles rather than duplicate criticism; use `peer-review` in multi-reviewer panel mode for methodology, novelty/related work, evidence/claim support, presentation/clarity, and meta-review. For each material finding, record the affected manuscript section or claim, evidence references or an explicit missing-evidence record, concern, severity, and required action.
 4. Use `scientific-critical-thinking` to pressure-test weak assumptions, missing baselines, leakage risk, and alternative explanations.
 5. Use `claim-auditor` to verify manuscript claims after drafting or style adaptation; assign only the shared support-status labels and keep decisions such as `remove`, `rewrite`, `narrow`, `add_caveat`, or `run_ablation` separate from support status.
-6. Update `paper/agent/claim_audit.md` with manuscript-facing claim audit findings, and update `docs/agent/claim_ledger.md` if final claim support status changes.
+6. Update `paper/agent/claim_audit.md` with manuscript-facing claim audit findings, and update `docs/agent/claim_ledger.md` if final claim support status changes. Record the finding's evidence references, verification, scope and limitations, and closure status in the claim audit or revision plan.
 7. Use `research-lookup` when reviewer questions require missing prior work, baseline context, source-reading, or citation support.
 8. Use `citation-management` when reviewer feedback exposes citation or metadata issues.
-9. Write revision-oriented artifacts in `paper/agent/` rather than silently revising the paper.
+9. Write revision-oriented artifacts in `paper/agent/` rather than silently revising the paper. Link each revision item to its originating finding, affected claim or section, relevant evidence, and verification of closure where applicable.
 10. Update `docs/current_status.md` with the review round, main objections, claim-status changes, accepted fixes, and remaining risks.
 
 ## Reviewer roles
@@ -67,10 +69,12 @@ Each reviewer file should keep all rounds in one place, with new rounds appended
 Phase 5 is complete only when:
 
 - reviewer concerns are organized into actionable buckets;
+- material reviewer findings link concerns to claims or sections and durable evidence, or explicitly record missing evidence;
 - required fixes are separated from optional improvements;
 - claim support is rechecked after review using the shared support-status vocabulary;
 - manuscript-stage review reconciles open or accepted-risk early red-team issues with the revision plan, limitations, or claim audit;
 - any review-driven claim-status changes are reflected in `paper/agent/claim_audit.md` and, when final support status changes, in `docs/agent/claim_ledger.md`;
+- required fixes have a closure status in `paper/agent/claim_audit.md` or `paper/agent/revision_plan.md`, with closure verification where applicable;
 - the next action is clear: revise, resubmit, hold, or return to an earlier phase;
 - `docs/current_status.md` reflects the review outcome and next decision.
 

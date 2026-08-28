@@ -2,6 +2,30 @@
 
 Never present unsupported research claims as fact.
 
+## Chain of Evidence
+
+For every material claim that may persist in a decision, result, or manuscript artifact, maintain this chain:
+
+- `claim_id` — stable identifier used across related artifacts;
+- `claim` — concise statement of what is being asserted;
+- `evidence_refs` — one or more durable artifact references;
+- `verification` — how the evidence was checked;
+- `support_status` — one canonical claim support status;
+- `scope_and_limitations` — where the claim does and does not apply.
+
+Evidence references must identify durable project artifacts:
+
+- literature claims -> `sources/paper_cards/`, verified citation records, and relevant page or section;
+- method or configuration claims -> repository path, configuration, implementation symbol, or approved project artifact;
+- experimental claims -> run, log, metric, table, or output under `runs/` or `outputs/`;
+- derived claims -> input artifacts plus the script, calculation, or transformation that produced the result.
+
+Chain completeness means that every material claim has an evidence reference or is explicitly recorded as a hypothesis or unresolved statement. Chain correctness means that the referenced evidence supports the exact claim, scope, and strength being asserted; the existence of an artifact or citation alone is not sufficient.
+
+Chat-only statements, raw lookup output, and unrecorded tool output are not durable evidence.
+
+Reuse the existing claim-related artifacts instead of creating a separate Chain-of-Evidence file. `docs/agent/claim_ledger.md` remains the source of truth for final support status; `docs/agent/result_to_claim_map.md` and `paper/agent/claim_audit.md` provide phase-specific links and audits.
+
 ## Experimental claims
 
 Do not claim experimental outcomes unless supported by artifacts in:

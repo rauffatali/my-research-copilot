@@ -12,13 +12,13 @@ Phase 4 turns the evidence package into a manuscript through collaborative, sect
 ## Actions
 
 1. Read `paper/AGENTS.md` before drafting or revising manuscript prose in `paper/`.
-2. Before literature-dependent prose, check `sources/paper_cards/`, `sources/literature_matrix.md`, and `sources/citation_intent_map.md`; do not cite lookup-only sources in polished prose, and mark unsupported citation needs as `needs_citation`.
-3. Before claim-heavy prose, check `docs/agent/claim_ledger.md`, `docs/agent/result_to_claim_map.md`, `docs/agent/evidence_review.md`, and `docs/agent/red_team_issue_ledger.md`.
+2. Before literature-dependent prose, check `sources/paper_cards/`, `sources/literature_matrix.md`, and `sources/citation_intent_map.md`; do not cite lookup-only sources in polished prose, and mark unsupported citation needs as `needs_citation`. Record the durable source artifact and location, what the citation supports, verification, and scope/limitations in `paper/agent/citation_support.md`.
+3. Before claim-heavy prose, check `docs/agent/claim_ledger.md`, `docs/agent/result_to_claim_map.md`, `docs/agent/evidence_review.md`, and `docs/agent/red_team_issue_ledger.md`. Record `Evidence References`, `Verification`, canonical `Support Status`, `Scope And Limitations`, and any `Required Change` in `paper/agent/claim_support.md`.
 4. Do not write around unresolved red-team issues; resolve them, caveat or narrow the claim, or mark the issue as accepted risk.
 5. Do not draft polished manuscript claims from claims marked `unsupported`, `contradicted`, `out_of_scope`, or `needs_manual_check`.
 6. Use claims marked `preliminary`, `partially_supported`, or `needs_citation` only with conservative wording, explicit caveats, or TODO markers.
 7. Draft incrementally: one section, subsection, or paragraph group at a time rather than the entire paper at once.
-8. Use `literature-review` for introduction, motivation, or related-work synthesis; `results-scaffold` for result tables/placeholders/layouts; `scientific-writing` for evidence-bound prose; `citation-management` for citation hygiene; and `venue-templates` for venue-specific requirements.
+8. Use `literature-review` for introduction, motivation, or related-work synthesis; `results-scaffold` for result tables/placeholders/layouts; `scientific-writing` for evidence-bound prose; `citation-management` for citation hygiene; and `venue-templates` for venue-specific requirements. For manuscript figures or tables, record durable evidence sources, claim IDs when applicable, verification, and scope/limitations in `paper/agent/figure_support.md`, then use `docs/agent/figure_review.md` for post-aggregation safety review.
 9. Use `prior-style-adapter` when adapting to established project style; if `paper/style/prior_paper_style.md` is missing, derive it from `paper/style/*.pdf` before adapting.
 10. Use `claim-auditor` after drafting or style adaptation to ensure claims remain proportional to evidence.
 11. Update `docs/current_status.md` after each meaningful manuscript step with the active section, touched evidence, claim-status concerns, and next writing action.
@@ -61,6 +61,7 @@ Phase 4 is complete only when:
 - manuscript claims do not use unsupported, contradicted, out-of-scope, or manually unchecked claims as polished assertions;
 - preliminary, partially supported, or citation-needed claims are written conservatively or marked with TODO/caveat language;
 - claim support status remains aligned with `docs/agent/claim_ledger.md`;
+- manuscript support records preserve durable evidence references, claim IDs where applicable, verification, and scope/limitations; claim records use canonical support statuses while citation and figure records keep workflow-specific statuses separate;
 - manuscript sections do not ignore unresolved red-team issues relevant to their claims;
 - accepted red-team risks are visible as caveats, limitations, or conservative wording where needed;
 - `docs/current_status.md` reflects the manuscript state and next review or revision step.
