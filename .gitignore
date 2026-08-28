@@ -13,6 +13,9 @@
 # .codex/
 # sources/
 
+# Local tests
+tests/
+
 # Core workflow state
 # docs/current_status.md
 # docs/research_gates.md
