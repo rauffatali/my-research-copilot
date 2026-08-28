@@ -91,7 +91,7 @@ These are not optional.
 
 ## Durable Output
 
-This skill's notes are not durable until written to a repository artifact, per `docs/tool_workflow_policy.md`. Depending on context, record a Theoretical Lens Note in:
+This skill's notes are not durable until written to a repository artifact, per `.agents/workflow/policies/tool_workflow_policy.md`. Depending on context, record a Theoretical Lens Note in:
 
 - `docs/agent/research_direction.md`'s Expected Mechanism field, when it shapes the frozen direction;
 - `docs/agent/novelty_risk_matrix.md`'s comparator ledger Rationale column, when it explains why a comparator is included, probed, or excluded;

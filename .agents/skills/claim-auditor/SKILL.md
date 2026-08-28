@@ -106,7 +106,7 @@ runs/ + outputs/ + paper/
 
 ## Tool Workflow Policy
 
-Follow `docs/tool_workflow_policy.md`.
+Follow `.agents/workflow/policies/tool_workflow_policy.md`.
 
 This skill's useful output must be written to the appropriate durable repository artifact rather than left only in chat.
 

@@ -124,7 +124,7 @@ Every red-team finding should lead to a decision: fix, caveat, test, narrow, acc
 
 Use tool workflow artifacts to ensure tools, skills, MCP servers, lookup systems, retrieval systems, code execution, and automated helpers produce durable workflow state rather than chat-only output.
 
-- `../tool_workflow_policy.md` — canonical policy for tool use and durable artifact promotion.
+- `.agents/workflow/policies/tool_workflow_policy.md` — canonical policy for tool use and durable artifact promotion.
 - `tool_routing_matrix.md` — maps workflow situations to preferred tools, required inputs, and required durable outputs.
 - `tool_use_log.md` — records meaningful tool-assisted actions that affect research direction, implementation, experiments, evidence, claims, manuscript text, or review decisions.
 

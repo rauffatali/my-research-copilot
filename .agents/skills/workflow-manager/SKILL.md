@@ -48,7 +48,7 @@ Use this skill to manage the repository's workflow skeleton, not to fabricate pr
 
 ## Tool Workflow Policy
 
-Follow `docs/tool_workflow_policy.md`.
+Follow `.agents/workflow/policies/tool_workflow_policy.md`.
 
 This skill's useful output must be written to the appropriate durable repository artifact rather than left only in chat.
 

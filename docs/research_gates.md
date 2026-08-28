@@ -562,7 +562,7 @@ Use this gate whenever a tool, skill, MCP server, lookup system, retrieval syste
 
 Use as relevant:
 
-- `docs/tool_workflow_policy.md`
+- `.agents/workflow/policies/tool_workflow_policy.md`
 - `docs/agent/tool_routing_matrix.md`
 - `docs/agent/tool_use_log.md`
 - The phase-specific artifact that receives the tool output
