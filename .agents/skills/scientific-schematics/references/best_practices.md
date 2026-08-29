@@ -324,13 +324,13 @@ Captions should describe what the diagram shows.
 Good caption:
 
 ```text
-Overview of the proposed road damage detection pipeline, showing preprocessing, model inference, and bounding-box output stages.
+Overview of the proposed visual detection pipeline, showing preprocessing, model inference, and bounding-box output stages.
 ```
 
 Risky caption:
 
 ```text
-The proposed pipeline robustly detects road damage in real-world scenes.
+The proposed pipeline robustly detects targets in real-world scenes.
 ```
 
 Use `claim-auditor` for caption claims.

@@ -124,7 +124,7 @@ Prefer OpenAlex, arXiv, Crossref, and Semantic Scholar first.
 Run from the skill folder:
 
 ```bash
-python lookup.py "road damage detection computer vision" --mode prior-work --limit 10
+python lookup.py "small object detection aerial imagery benchmark" --mode prior-work --limit 10
 ```
 
 Print results without saving:
@@ -174,7 +174,7 @@ python lookup.py "small object detection benchmark YOLO mAP" --mode baseline-sco
 ```
 
 ```bash
-python lookup.py "road crack detection dataset annotation protocol" --mode dataset-benchmark --limit 10
+python lookup.py "medical image segmentation dataset annotation protocol" --mode dataset-benchmark --limit 10
 ```
 
 ```bash
@@ -198,7 +198,7 @@ By default, use:
 Force one backend when needed:
 
 ```bash
-python lookup.py "road damage detection" --backend openalex --mode prior-work
+python lookup.py "time series anomaly detection" --backend openalex --mode prior-work
 ```
 
 ```bash
@@ -210,7 +210,7 @@ python lookup.py "domain shift computer vision" --backend crossref --mode citati
 ```
 
 ```bash
-python lookup.py "road damage detection benchmark" --backend semantic-scholar --mode baseline-scout
+python lookup.py "medical image segmentation benchmark" --backend semantic-scholar --mode baseline-scout
 ```
 
 Use paid/synthesis backends only when configured:
@@ -220,7 +220,7 @@ python lookup.py "official YOLO documentation benchmark evaluation" --backend pa
 ```
 
 ```bash
-python lookup.py "recent benchmark pages for road damage detection" --backend perplexity --mode technical-verification
+python lookup.py "recent benchmark pages for enterprise question answering" --backend perplexity --mode technical-verification
 ```
 
 ---
@@ -289,25 +289,24 @@ Important: quality filters are metadata-based heuristics. Verify venue and peer-
 
 ## Boost Phrases
 
-Use `--boost-phrase` when the query is broad but the agent wants results ranked toward a project-specific domain.
+Use `--boost-phrase` when the query is broad but the agent wants results ranked toward a target domain.
 
 Example:
 
 ```bash
 python lookup.py "object detection YOLO benchmark" \
   --mode baseline-scout \
-  --boost-phrase "road damage" \
-  --boost-phrase "pavement distress" \
+  --boost-phrase "medical imaging" \
+  --boost-phrase "annotation protocol" \
   --limit 10
 ```
 
 Boost phrases affect ranking only. They do not hard-filter results.
 
-This keeps the script broad for AI/CV while allowing project-specific prioritization.
+This keeps the script broad for AI/CV while allowing task-specific prioritization.
 
 Use boost phrases for domains such as:
 
-- road damage;
 - medical imaging;
 - remote sensing;
 - autonomous driving;
@@ -337,7 +336,7 @@ Examples:
 ```text
 sources/papers_20260521_120000_object_detection_yolo.md
 sources/baselines_20260521_120000_small_object_detection.md
-sources/datasets_20260521_120000_road_crack_detection_dataset.md
+sources/datasets_20260521_120000_medical_image_segmentation.md
 sources/citations_20260521_120000_domain_shift_cv.md
 ```
 
@@ -458,7 +457,7 @@ Example:
 ```bash
 python lookup.py "YOLO benchmark object detection" \
   --mode baseline-scout \
-  --boost-phrase "road damage"
+  --boost-phrase "medical imaging"
 ```
 
 ### Results are too narrow
@@ -503,11 +502,11 @@ Good queries include task, method, dataset, benchmark, or metric terms.
 Examples:
 
 ```text
-road damage detection computer vision
+small object detection aerial imagery
 small object detection YOLO benchmark mAP
 vision transformer object detection benchmark
 domain shift computer vision evaluation
-road crack detection dataset annotation protocol
+medical image segmentation dataset annotation protocol
 foundation models image segmentation benchmark
 ```
 
@@ -516,7 +515,7 @@ Avoid overly vague queries:
 ```text
 AI papers
 best computer vision method
-road damage novelty
+time series anomaly detection novelty
 ```
 
 ---

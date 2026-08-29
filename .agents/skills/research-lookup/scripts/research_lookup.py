@@ -540,10 +540,10 @@ def relevance_score(
 ) -> int:
     """Score result relevance using generic query overlap and optional boosts.
 
-    This function is intentionally domain-agnostic. It does not hardcode road
-    damage, medical imaging, remote sensing, or any other specific AI/CV domain.
+    This function is intentionally domain-agnostic. It does not hardcode a
+    particular research domain or application.
 
-    Use --boost-phrase to prioritize project-specific phrases when needed.
+    Use --boost-phrase to prioritize task- or domain-specific phrases when needed.
     """
     terms = _query_terms(query)
 
@@ -1420,25 +1420,25 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python scripts/research_lookup.py "road damage detection computer vision" --mode prior-work
+  python scripts/research_lookup.py "small object detection aerial imagery benchmark" --mode prior-work
 
-  python scripts/research_lookup.py "road damage detection YOLO benchmark mAP" \\
-    --mode baseline-scout --limit 15 --out sources/baselines_road_damage.md
+  python scripts/research_lookup.py "medical image segmentation dataset annotation protocol" \\
+    --mode baseline-scout --limit 15 --out sources/baselines_medical_segmentation.md
 
-  python scripts/research_lookup.py "road crack detection dataset annotation protocol" \\
+  python scripts/research_lookup.py "time series anomaly detection benchmark" \\
     --mode dataset-benchmark --backend auto
 
   python scripts/research_lookup.py "domain shift in computer vision evaluation" \\
     --mode citation-candidates --json-out sources/citations_domain_shift.json
 
-  python scripts/research_lookup.py "road damage detection object detection benchmark" \\
+  python scripts/research_lookup.py "transformer versus CNN image classification benchmark" \\
     --mode recent-developments --recent-years 3 --quality peer-reviewed --limit 20
 
-  python scripts/research_lookup.py "small object detection road damage detection" \\
+  python scripts/research_lookup.py "enterprise question answering faithfulness benchmark" \\
     --mode baseline-scout --year-from 2020 --quality proceedings --limit 20
   
   python scripts/research_lookup.py "YOLO benchmark object detection" --mode baseline-scout \\
-    --boost-phrase "road damage" --boost-phrase "pavement distress" --limit 10
+    --boost-phrase "medical imaging" --boost-phrase "annotation protocol" --limit 10
         """,
     )
 
@@ -1511,7 +1511,7 @@ Examples:
         help=(
             "Optional phrase to boost in relevance ranking. "
             "Can be used multiple times, for example: "
-            '--boost-phrase "road damage" --boost-phrase "pavement distress".'
+            '--boost-phrase "medical imaging" --boost-phrase "annotation protocol".'
         ),
     )
     parser.add_argument(

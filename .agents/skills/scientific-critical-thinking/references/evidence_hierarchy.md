@@ -17,7 +17,7 @@ Example:
 ```text
 Strong: The method improves mAP on this dataset split under this protocol.
 
-Weak: The method generalizes to real-world road damage detection.
+Weak: The method generalizes reliably across real-world deployment conditions.
 ```
 
 Always match the evidence to the claim scope.
@@ -155,7 +155,7 @@ Useful evidence:
 Supports claims like:
 
 ```text
-The main remaining failure mode is small, low-contrast damage.
+The main remaining failure mode is small, low-contrast targets.
 ```
 
 Does not replace quantitative evaluation.

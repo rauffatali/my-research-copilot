@@ -25,11 +25,11 @@ A research direction is shallow when it sounds plausible but does not identify a
 
 Weak:
 
-> Use a transformer-based architecture to improve road damage detection.
+> Use a transformer-based architecture to improve object detection.
 
 Stronger:
 
-> Test whether adding global context improves false-negative recall for long cracks compared with the current detector, especially on small or partially occluded damage regions.
+> Test whether adding global context reduces false negatives for small or partially occluded objects compared with the current baseline under the same evaluation protocol.
 
 ### Critical questions
 

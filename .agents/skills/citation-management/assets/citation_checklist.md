@@ -250,7 +250,7 @@ Example key style:
 redmon2016yolo
 dosovitskiy2021vit
 lin2014coco
-wang2025roadDamage
+example2025method
 ```
 
 If changing keys:

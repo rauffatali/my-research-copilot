@@ -37,6 +37,8 @@ This skill's useful output must be written to the appropriate durable repository
 
 When this skill changes workflow state, active artifacts, blockers, claim status, experiment status, manuscript state, or next step, update `docs/current_status.md`.
 
+When the active role is `independent_reviewer`, its strict read-only boundary overrides this skill's normal durable-output and status-update requirements. Return source findings or lookup analysis in the response instead; a writable role may later record accepted results under normal workflow policy.
+
 ---
 
 ## Automation-First Backend Strategy
@@ -371,19 +373,19 @@ Good lookup queries should include:
 Examples:
 
 ```text
-road damage detection computer vision benchmark datasets mAP baseline YOLO
+small object detection aerial imagery benchmark datasets AP baseline
 ```
 
 ```text
-small object detection road crack damage detection false negative recall augmentation baseline
+medical image segmentation dataset annotation protocol Dice U-Net false negative recall
 ```
 
 ```text
-vision transformer road damage detection comparison CNN YOLO baseline
+transformer versus CNN image classification benchmark baseline comparison
 ```
 
 ```text
-latest CVPR ECCV ICCV road damage detection dataset benchmark
+recent time series anomaly detection benchmark evaluation
 ```
 
 Avoid vague queries such as:
@@ -397,7 +399,7 @@ best computer vision method
 ```
 
 ```text
-road damage novelty
+time series anomaly detection novelty
 ```
 
 ---
@@ -567,6 +569,8 @@ If a listed backend is not implemented yet, do not pretend it was used. State th
 ## Mandatory Saving Policy
 
 Every research lookup result must be saved to the project’s `sources/` folder.
+
+That saving rule applies to writable roles. For an `independent_reviewer` invocation, return the lookup result in the response without writing `sources/`, status files, or any other repository artifact; a writable role may record accepted results later.
 
 Research lookup results are source artifacts. They support reproducibility, context recovery, citation tracing, and later claim auditing.
 

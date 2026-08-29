@@ -10,6 +10,8 @@ For checking whether claims are supported, use `claim-auditor`.
 
 For verifying citations and references, use `citation-management`.
 
+For repository manuscript work, follow `.agents/guidance/manuscript-writing.md` for writing-slice orchestration, provisional `paper/draft/` staging, role boundaries, and integration authorization. This reference provides writing principles and does not replace that workflow contract.
+
 ---
 
 ## 1. Core Principle
@@ -47,7 +49,7 @@ If evidence is missing, write a visible TODO rather than a polished unsupported 
 Examples:
 
 ```text
-TODO: needs citation for road damage detection benchmark usage.
+TODO: needs citation for benchmark usage in the target application.
 ```
 
 ```text
@@ -85,19 +87,19 @@ In recent years, artificial intelligence has revolutionized numerous domains, of
 Better:
 
 ```text
-Computer vision methods are increasingly used to automate visual inspection tasks, including road-surface monitoring.
+Computer vision methods are increasingly used to automate visual inspection and classification tasks across scientific and industrial settings.
 ```
 
 Bad pattern:
 
 ```text
-This study presents a comprehensive and robust framework that significantly enhances road damage detection performance.
+This study presents a comprehensive and robust framework that significantly improves performance across challenging real-world conditions.
 ```
 
 Better:
 
 ```text
-This study evaluates a detection pipeline for road damage localization and compares it with baseline models under the same dataset split and evaluation protocol.
+This study evaluates a detection pipeline for the target task and compares it with baseline models under the same dataset split and evaluation protocol.
 ```
 
 The better version is less flashy but more credible.
@@ -122,13 +124,13 @@ It means the prose has:
 Use natural variation:
 
 ```text
-Road damage detection is visually challenging. Cracks can be thin, low contrast, or partially occluded, and the appearance of damage varies with lighting, pavement material, and camera viewpoint.
+Image-based classification is visually challenging. Relevant patterns can be small, low contrast, or partially occluded, and their appearance may vary with acquisition conditions and viewpoint.
 ```
 
 Avoid robotic parallelism:
 
 ```text
-Road damage detection is challenging because cracks are thin. Road damage detection is challenging because cracks are low contrast. Road damage detection is challenging because cracks are occluded.
+Image-based classification is challenging because patterns can be small. Image-based classification is challenging because patterns can be low contrast. Image-based classification is challenging because patterns can be occluded.
 ```
 
 Avoid over-perfect paragraph shapes where every paragraph has the same sentence count and rhythm.
@@ -152,7 +154,7 @@ Use prior style to adapt:
 - paragraph flow;
 - sentence rhythm;
 - level of technical detail;
-- conservative claim style;
+- stylistic expression of evidence-calibrated hedging already authorized by the scientific brief;
 - transition style;
 - contribution phrasing.
 
@@ -171,6 +173,7 @@ Recommended workflow:
 ```text
 scientific-writing
     → prior-style-adapter
+    → academic-humanizer when useful
     → claim-auditor
 ```
 
@@ -178,8 +181,15 @@ If only style adaptation is requested:
 
 ```text
 prior-style-adapter
+    → academic-humanizer when useful
     → claim-auditor
 ```
+
+### Material transformation audit
+
+When `prior-style-adapter`, `academic-humanizer`, or another material prose-refinement pass changes wording, preserve the pre-transformation and post-transformation text long enough to compare them. Then use `claim-auditor` to check claim strength, hedging, scope, certainty, interpretation, caveats, citation relationship, numbers, results, equations, technical terminology, and LaTeX-sensitive content against current evidence. Use `citation-management` when citation or reference integrity may have changed.
+
+Style adaptation and humanization may not independently strengthen, weaken, broaden, or narrow a scientific claim. They may only express evidence-calibrated wording already authorized by the scientific brief; unresolved issues return to `research_lead`.
 
 The author’s style should make the text feel human and consistent, but evidence integrity still comes first.
 
@@ -211,7 +221,7 @@ Examples:
 Too strong:
 
 ```text
-The proposed method generalizes to real-world road damage detection.
+The proposed method generalizes to real-world deployment.
 ```
 
 Safer:
@@ -223,7 +233,7 @@ The proposed method was evaluated on the available test split and showed improve
 Too strong:
 
 ```text
-The model is robust to challenging road conditions.
+The model is robust to challenging operating conditions.
 ```
 
 Safer:

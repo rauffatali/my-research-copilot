@@ -127,6 +127,14 @@ This skill's useful output must be written to the appropriate durable repository
 
 When this skill changes workflow state, active artifacts, blockers, claim status, experiment status, manuscript state, or next step, update `docs/current_status.md`.
 
+When the active role is `independent_reviewer`, its strict read-only boundary overrides this skill's normal durable-output and status-update behavior. Return findings in the response and do not write review artifacts, manuscript files, status files, or any other repository artifact. Writable roles retain the normal durable-output requirements.
+
+## Workflow and Role Boundary
+
+For manuscript review, follow `.agents/guidance/manuscript-writing.md` and the phase contracts. `independent_reviewer` is the governance and permission role; single-reviewer, Method, Domain, Hybrid, Meta, and multi-reviewer panel choices are review modes or lenses and do not grant repository permissions.
+
+Use peer review inside `phase_4_active` only as an embedded writing-slice challenge when assigned or required. Use formal Phase 5 review for a broader integrated manuscript or coherent manuscript unit. Formal Phase 5 review is not mandatory for every sentence or ordinary writing slice. Peer review must expose issues and must not silently fix manuscript prose.
+
 ---
 
 ## Review Modes
@@ -177,18 +185,12 @@ Default panel:
 4. **Meta-Reviewer / Area Chair**
    - synthesizes reviewer disagreement, consensus, must-fix issues, and likely decision.
 
-For example, for:
-
-```text
-Road damage detection using AI
-```
-
-use:
+For example, when a manuscript applies an AI method to a specialized domain, use:
 
 ```text
 Reviewer A — AI/CV Method Reviewer
-Reviewer B — Road Damage / Infrastructure Domain Reviewer
-Reviewer C — Hybrid Applied AI + Road Damage Reviewer
+Reviewer B — Application-Domain Reviewer
+Reviewer C — Hybrid Applied AI + Domain Reviewer
 Meta-Reviewer — Area Chair synthesis
 ```
 
@@ -274,19 +276,18 @@ Expertise:
 application domain, task realism, data meaning, annotation validity, deployment context, domain-specific failure modes
 ```
 
-For road damage detection, this reviewer checks:
+For an applied domain, adapt this reviewer to check:
 
-- damage taxonomy;
-- severity relevance;
-- road-surface conditions;
-- camera and acquisition realism;
+- task taxonomy;
+- severity, priority, or other domain relevance when applicable;
+- data-collection and acquisition realism;
 - annotation consistency;
 - deployment constraints;
-- maintenance decision usefulness;
-- weather, lighting, occlusion, and road-type variation;
-- whether metrics reflect practical road-inspection value.
+- domain-specific usefulness;
+- variation across sources, environments, or operating conditions;
+- whether metrics reflect practical value.
 
-For other domains, adapt the reviewer to the application area.
+Adapt the reviewer to the application area rather than assuming a fixed domain checklist.
 
 Primary questions:
 
@@ -881,18 +882,18 @@ The meta-review should be more than a summary. It should decide what matters mos
 
 ---
 
-## Road Damage Detection Example Panel
+## Applied Domain Example Panel
 
-When reviewing road damage detection using AI, use this reviewer panel unless a different panel is requested.
+When reviewing a paper that applies an AI method to a specialized domain, use these neutral reviewer lenses unless a different panel is requested.
 
 ### Reviewer A — AI/CV Method Reviewer
 
 Focus:
 
-- detector/segmenter choice;
+- model choice;
 - baselines;
-- mAP, AP50/AP75, recall, per-class metrics;
-- small-object performance;
+- task-appropriate metrics and class-wise metrics when relevant;
+- difficult or underrepresented cases;
 - train/validation/test protocol;
 - augmentation;
 - ablations;
@@ -900,17 +901,15 @@ Focus:
 - reproducibility;
 - comparison fairness.
 
-### Reviewer B — Road Damage / Infrastructure Reviewer
+### Reviewer B — Application-Domain Reviewer
 
 Focus:
 
-- damage taxonomy;
-- road-surface realism;
-- severity labels;
-- annotation reliability;
-- acquisition conditions;
-- maintenance relevance;
-- practical false positives/false negatives;
+- task taxonomy and domain realism;
+- label and annotation reliability;
+- data-collection and operating conditions;
+- practical relevance;
+- domain-specific false positives/false negatives;
 - domain-specific failure modes;
 - deployment constraints.
 
@@ -918,8 +917,8 @@ Focus:
 
 Focus:
 
-- whether the AI evaluation maps to road-inspection needs;
-- whether the contribution is meaningful to both CV and infrastructure audiences;
+- whether the AI evaluation maps to application needs;
+- whether the contribution is meaningful to both method and domain audiences;
 - whether domain limitations weaken technical claims;
 - whether better domain-aware metrics or slices are needed;
 - whether the paper bridges technical and practical impact.
@@ -1005,7 +1004,7 @@ Do not:
 
 This skill includes reference materials to support peer review:
 
-- `references/multi_reviewer_panel.md` — reviewer-panel guidance for applied AI/ML/CV work. Defines the AI/CV method reviewer, domain reviewer, hybrid reviewer, meta-reviewer, disagreement handling, readiness labels, and domain-specific panel adaptation such as road damage detection.
+- `references/multi_reviewer_panel.md` — reviewer-panel guidance for applied AI/ML/CV work. Defines the AI/CV method reviewer, domain reviewer, hybrid reviewer, meta-reviewer, disagreement handling, readiness labels, and adaptation to a paper's application domain.
 - `references/ai_cv_review_criteria.md` — AI/ML/CV-specific peer-review criteria covering contribution clarity, novelty, task formulation, dataset and split validity, leakage risk, baseline fairness, method justification, ablation quality, evaluation protocol, failure analysis, reproducibility, claim-evidence alignment, limitations, and recommendation heuristics.
 - `references/common_issues.md` — frequent methodological, statistical, reporting, reproducibility, and interpretation problems encountered during scientific peer review.
 - `references/reporting_standards.md` — general reporting standards across disciplines. Use only when relevant to the manuscript type or venue.

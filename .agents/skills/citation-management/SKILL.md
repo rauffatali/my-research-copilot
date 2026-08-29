@@ -127,6 +127,12 @@ This skill's useful output must be written to the appropriate durable repository
 
 When this skill changes workflow state, active artifacts, blockers, claim status, experiment status, manuscript state, or next step, update `docs/current_status.md`.
 
+When the active role is `independent_reviewer`, its strict read-only boundary overrides this skill's normal durable-output and status-update requirements. Return citation findings or analysis in the response instead; a writable role may later record accepted results under normal workflow policy.
+
+## Evidence-State Boundary
+
+Use the canonical `citation_pending` evidence state when a required source/reference or source-to-claim verification relationship remains incomplete. Metadata verification alone does not establish that a source supports the claim. Resolving citation metadata may be one prerequisite for moving away from `citation_pending`, but `claim-auditor` remains responsible for the exact support relationship. `evidence_ready` is appropriate only after the relevant source and relationship checks are sufficiently verified for downstream claim evaluation, and it still does not imply `supported`.
+
 ---
 
 ## Active Inputs
@@ -225,8 +231,8 @@ A possible report format:
 ```md
 | Citation key | Status | Problem | Correction / action |
 |---|---|---|---|
-| smith2024road | hallucinated | no matching title/DOI found | remove or replace after research-lookup |
-| wang2025rdd | corrected | DOI mismatch | update DOI |
+| example2024dataset | hallucinated | no matching title/DOI found | remove or replace after research-lookup |
+| example2025method | corrected | DOI mismatch | update DOI |
 | yolo2024survey | verified | metadata matches | keep |
 ```
 
@@ -335,7 +341,7 @@ Good citation keys are:
 Examples:
 
 ```bibtex
-@article{wang2025roadDamage,
+@article{example2025method,
 @inproceedings{redmon2016yolo,
 @article{dosovitskiy2021vit,
 @inproceedings{lin2014coco,

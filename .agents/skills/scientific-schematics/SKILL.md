@@ -442,7 +442,7 @@ Example:
 
 ```text
 Create a clean left-to-right method pipeline diagram with five blocks:
-(1) input road image, (2) preprocessing, (3) detector backbone, (4) detection head,
+(1) input image, (2) preprocessing, (3) detector backbone, (4) detection head,
 (5) bounding-box output. Show arrows only between adjacent blocks. Do not include
 performance numbers, datasets, or deployment components. Use simple labels and a
 white background.
@@ -451,7 +451,7 @@ white background.
 Avoid vague prompts:
 
 ```text
-Make a powerful AI road damage detection figure.
+Make a powerful AI method figure.
 ```
 
 Vague prompts invite hallucinated visual content.

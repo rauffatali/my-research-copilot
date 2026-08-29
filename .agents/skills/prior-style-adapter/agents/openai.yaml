@@ -1,4 +1,4 @@
 interface:
   display_name: "Style Adapter"
   short_description: "Adapt prose to prior-paper style"
-  default_prompt: "Use $prior-style-adapter to adapt prose to the prior-paper style without changing meaning."
+  default_prompt: "Use $prior-style-adapter to adapt a provisional writing slice to the prior-paper style without changing meaning or evidence-calibrated claim wording."

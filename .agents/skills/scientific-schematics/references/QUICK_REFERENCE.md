@@ -151,8 +151,8 @@ Do not include:
 ### Method Pipeline
 
 ```text
-Create a left-to-right road damage detection pipeline with five blocks:
-input road image → preprocessing → detector backbone → detection head → bounding-box output.
+Create a left-to-right visual detection pipeline with five blocks:
+input image → preprocessing → detector backbone → detection head → bounding-box output.
 Use only these blocks. Do not include performance metrics, dataset names, or deployment steps.
 ```
 
@@ -187,7 +187,7 @@ Create a state-of-the-art architecture diagram.
 ```
 
 ```text
-Show that our method improves road damage detection.
+Show that our method improves performance on the target task.
 ```
 
 These invite unsupported content.

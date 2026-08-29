@@ -88,7 +88,7 @@ Results of the method.
 Better caption:
 
 ```text
-Detection examples on the test split. Green boxes indicate correct detections, while red boxes indicate missed or false-positive road damage instances.
+Detection examples on the test split. Green boxes indicate correct detections, while red boxes indicate missed or false-positive instances.
 ```
 
 Do not use captions to introduce unsupported claims.

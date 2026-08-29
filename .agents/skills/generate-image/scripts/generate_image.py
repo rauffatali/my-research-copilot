@@ -16,7 +16,7 @@ Examples:
 
     python scripts/generate_image.py "make the sky warmer" --input photo.jpg -o edited_photo.png
 
-    python scripts/generate_image.py "conceptual non-technical road surface illustration, no arrows, no labels" --mode general
+    python scripts/generate_image.py "conceptual non-technical abstract texture illustration, no arrows, no labels" --mode general
 """
 
 from __future__ import annotations
@@ -476,7 +476,7 @@ Examples:
 
   python scripts/generate_image.py "make the sky warmer" --input photo.jpg -o edited_photo.png
 
-  python scripts/generate_image.py "conceptual road surface illustration, no arrows, no labels" --mode general
+  python scripts/generate_image.py "conceptual abstract texture illustration, no arrows, no labels" --mode general
 
 Windows PowerShell:
   $env:OPENROUTER_API_KEY = "your_key_here"

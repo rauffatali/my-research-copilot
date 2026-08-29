@@ -184,47 +184,46 @@ Common objections:
 
 ---
 
-## 6. Road Damage Detection Example Panel
+## 6. Applied Domain Example Panel
 
-For a paper on road damage detection using AI:
+For a paper applying an AI method to an application domain:
 
 ### Reviewer A — AI/CV Method Reviewer
 
 Focus:
 
-- detector/segmenter choice;
-- YOLO/Faster R-CNN/DETR/segmentation baselines;
-- mAP, AP50/AP75, recall, per-class AP;
-- small-object performance;
+- model choice;
+- task-appropriate baselines and metrics;
+- class-wise or slice-based performance when relevant;
+- difficult or underrepresented cases;
 - ablations;
 - augmentation;
 - split and leakage;
 - reproducibility;
 - qualitative false positives/false negatives.
 
-### Reviewer B — Road Damage / Infrastructure Reviewer
+### Reviewer B — Application-Domain Reviewer
 
 Focus:
 
-- damage taxonomy;
-- severity categories;
-- road-surface variability;
-- lighting/weather/camera angle;
+- task taxonomy and domain realism;
+- domain-relevant categories or priorities;
+- source and operating-condition variability;
 - annotation ambiguity;
-- maintenance relevance;
-- real inspection workflow;
+- practical relevance;
+- real deployment workflow;
 - practical false positives/false negatives;
-- whether the dataset reflects deployment conditions.
+- whether the dataset reflects the intended setting.
 
 ### Reviewer C — Hybrid Reviewer
 
 Focus:
 
-- whether technical metrics map to infrastructure decision needs;
-- whether model performance helps practical inspection;
+- whether technical metrics map to application needs;
+- whether model performance supports the intended use;
 - whether evaluation includes domain-relevant slices;
 - whether contribution is meaningful beyond applying a detector;
-- whether the paper bridges CV and road-infrastructure literature.
+- whether the paper bridges method and domain literature.
 
 ---
 

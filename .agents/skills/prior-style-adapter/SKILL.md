@@ -1,6 +1,6 @@
 ---
 name: prior-style-adapter
-description: Adapt manuscript prose to the project's prior-paper writing style using paper/style/prior_paper_style.md. If that file is missing, derive it from one or more PDFs in paper/style/ before adapting prose. Use when revising paper/ text for tone, phrasing, paragraph flow, sentence rhythm, claim conservativeness, and author-like academic style without copying prior wording, importing claims, inventing evidence, or changing technical meaning. Use claim-auditor after adaptation when claims are changed or clarified.
+description: Adapt manuscript prose to the project's prior-paper writing style using paper/style/prior_paper_style.md. If that file is missing, derive it from one or more PDFs in paper/style/ before adapting prose. Use when revising paper/ text for tone, phrasing, paragraph flow, sentence rhythm, and stylistic expression of evidence-calibrated hedging already authorized by the scientific brief, without copying prior wording, importing claims, inventing evidence, or changing technical meaning. Use claim-auditor after adaptation when claims are changed or clarified.
 ---
 
 # Prior Style Adapter
@@ -19,6 +19,10 @@ Use this skill when the user wants text in `paper/` to sound more like the autho
 This skill adapts style, not scientific content.
 
 It should preserve technical meaning, evidence strength, citation intent, LaTeX structure, and claim scope.
+
+For manuscript work, follow `.agents/guidance/manuscript-writing.md` for writing-slice staging, transformation checks, and integration boundaries. This skill is a style adapter, not a scientific or integration authority.
+
+When the active role is `independent_reviewer`, its strict read-only boundary overrides style-bootstrap or adaptation writes. Return observations or suggested wording in the response and do not write style guides, drafts, review artifacts, or any other repository file.
 
 ---
 
@@ -82,7 +86,7 @@ In this mode:
    - sentence rhythm;
    - paragraph flow;
    - transition habits;
-   - claim conservativeness;
+   - how the author expresses cautious or qualified claims;
    - contribution phrasing;
    - results narration style;
    - limitation style;
@@ -121,11 +125,13 @@ It should adapt:
 - contribution phrasing;
 - results narration style;
 - limitation phrasing;
-- claim conservativeness;
+- stylistic expression of evidence-calibrated hedging already specified by the scientific brief;
 - level of technical density;
 - author-like academic voice.
 
 It should not create new scientific content.
+
+After a material style adaptation, preserve the pre-adaptation and post-adaptation text for differential comparison and route the result to `claim-auditor`. Citation or reference changes go to `citation-management` when relevant.
 
 ---
 
@@ -221,7 +227,7 @@ If content is scientifically weak, mark the issue instead of hiding it with styl
    - contribution phrasing;
    - results narration style;
    - limitation style;
-   - claim conservativeness;
+   - how cautious or qualified claims are expressed;
    - technical density.
 8. Identify claims that must not be strengthened.
 9. Revise the text to better match the style.
@@ -316,7 +322,7 @@ The text should sound human, careful, and technically grounded.
 
 ---
 
-## Claim Conservativeness Rules
+## Claim-Strength Boundary
 
 Preserve or improve claim discipline.
 
@@ -348,7 +354,7 @@ Prefer safer wording when evidence is limited:
 | state-of-the-art | competitive / strong / improved over evaluated baselines |
 | first | avoid unless literature evidence is strong |
 
-If the original text is overclaiming, style adaptation may make it more conservative.
+If the original text appears to overclaim or requires a change in scientific strength, flag it to `research_lead` and `claim-auditor`. Do not independently choose stronger, weaker, broader, or narrower scientific wording.
 
 If the original text is under-specific, style adaptation may clarify it without strengthening the claim.
 
@@ -522,7 +528,7 @@ Use when style-sensitive changes or scientific caution matters.
 ## Style Adaptation Notes
 
 - [tone/rhythm/flow adjustment]
-- [claim conservativeness adjustment]
+- [stylistic expression of evidence-calibrated hedging]
 
 ## Preserved Elements
 

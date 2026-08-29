@@ -281,7 +281,7 @@ he2016resnet
 lin2014coco
 dosovitskiy2021vit
 kirillov2023sam
-wang2025roadDamage
+example2025method
 ```
 
 Avoid:

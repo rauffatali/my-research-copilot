@@ -148,13 +148,13 @@ For generic reports:
 Example:
 
 ```latex
-Prior work has commonly formulated road damage detection as an object detection problem~\cite{TODO_NEEDS_VERIFIED_CITATION}.
+Prior work has commonly formulated the target visual task as an object detection problem~\cite{TODO_NEEDS_VERIFIED_CITATION}.
 ```
 
 Better when no verified key exists:
 
 ```text
-TODO: needs citation for road damage detection object-detection framing.
+TODO: needs citation for the target visual task's object-detection framing.
 ```
 
 ---
@@ -256,7 +256,7 @@ Artificial intelligence has revolutionized numerous domains and provides unprece
 Better:
 
 ```text
-Computer vision methods are increasingly used for visual inspection tasks, including automated road-surface monitoring.
+Computer vision methods are increasingly used for visual inspection tasks, including automated inspection in scientific and industrial settings.
 ```
 
 Use `prior-style-adapter` if the report should match the author’s previous writing style.

@@ -80,15 +80,15 @@ For AI/ML/CV work, report:
 - leakage checks;
 - limitations.
 
-For road damage detection, consider:
+For an applied visual task, consider:
 
-- road type;
-- weather/lighting;
+- acquisition setting;
+- environmental or operating conditions;
 - camera perspective;
-- damage classes;
+- target classes;
 - severity if available;
 - geographic/source distribution;
-- small or low-contrast damage cases.
+- small or low-contrast target cases.
 
 ---
 

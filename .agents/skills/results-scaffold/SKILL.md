@@ -185,6 +185,10 @@ TODO
 
 depending on the manuscript style.
 
+## Evidence-State Boundary
+
+Result tables, figures, metric cells, and prose shells created before actual evidence exists are `placeholder_only` until durable evidence replaces them. Existing `TODO`, `TODO_RESULT`, and `TODO_METRIC` conventions remain structural placeholders; they must not be interpreted as `result_pending` unless a real result dependency exists. If a run or raw output exists but the result is not consolidated through the applicable Phase 3 process, use `result_pending`. Neither state permits invented numerical data or final result claims.
+
 ---
 
 ## Result Block Types
@@ -304,9 +308,9 @@ Example:
 \toprule
 Slice & Samples & Baseline mAP & Proposed mAP \\
 \midrule
-Small damage & TODO & TODO & TODO \\
+Small targets & TODO & TODO & TODO \\
 Low-light scenes & TODO & TODO & TODO \\
-Occluded damage & TODO & TODO & TODO \\
+Occluded targets & TODO & TODO & TODO \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -536,7 +540,7 @@ Metrics may be grouped by:
 - camera type;
 - object size;
 - occlusion;
-- damage severity;
+- severity or priority;
 - geographic/source split.
 
 ### Efficiency
@@ -554,15 +558,15 @@ Only include columns that are relevant to the claim and likely to be filled.
 
 ---
 
-## Road Damage Detection Example
+## Applied Object-Detection Example
 
-For road damage detection, possible scaffold tables include:
+For an applied object-detection task, possible scaffold tables include:
 
 1. Main detector comparison;
-2. Per-damage-class AP;
-3. Small/large damage performance;
-4. Weather or lighting slice;
-5. Road type or source-domain slice;
+2. Per-class AP;
+3. Small/large target performance;
+4. Acquisition-condition slice;
+5. Source-domain slice;
 6. Severity-aware evaluation, if labels exist;
 7. Qualitative false positives/false negatives;
 8. Inference speed for deployment relevance.
@@ -572,8 +576,8 @@ Example main table:
 ```latex
 \begin{table}[t]
 \centering
-\caption{Road damage detection result scaffold. TODO values must be replaced only after verified evaluation outputs are available.}
-\label{tab:road-damage-main}
+\caption{Applied object-detection result scaffold. TODO values must be replaced only after verified evaluation outputs are available.}
+\label{tab:main-results}
 \begin{tabular}{l c c c c}
 \toprule
 Method & Split & mAP & AP50 & Recall \\
@@ -585,7 +589,7 @@ Proposed detector & TODO & TODO & TODO & TODO \\
 \end{table}
 ```
 
-Do not claim maintenance usefulness unless the evaluation connects to domain-relevant outcomes.
+Do not claim practical usefulness unless the evaluation connects to domain-relevant outcomes.
 
 ---
 

@@ -5,7 +5,7 @@
 - Allowed values: draft, frozen, superseded
 
 ## Project Snapshot
-- Problem domain: [e.g., road distress instance segmentation, LLM evaluation, materials discovery.]
+- Problem domain: [e.g., medical image segmentation, LLM evaluation, materials discovery.]
 - Project type: [empirical ML / CV / theory / tooling / dataset / manuscript / other.]
 - High-level goal: [One or two sentences on what this project is trying to show or build.]
 - Primary contribution target: [What should be new, useful, or validated by the end of the project.]

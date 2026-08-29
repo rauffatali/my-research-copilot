@@ -30,7 +30,7 @@ Use a better model to improve performance.
 Stronger:
 
 ```text
-Adding global context will reduce false negatives for long cracks compared with the current detector.
+Adding global context will reduce false negatives for small, partially occluded objects compared with the current detector.
 ```
 
 ### Reproducibility
@@ -145,7 +145,7 @@ A good AI/CV hypothesis includes:
 Example:
 
 ```text
-Hypothesis: multi-scale training will improve recall on small damage instances without reducing large-damage AP by more than 1 point.
+Hypothesis: multi-scale training will improve recall on small objects without reducing large-object AP by more than 1 point.
 ```
 
 This is better than:

@@ -8,8 +8,8 @@ Agents should usually call:
 
     python lookup.py "<query>" --mode <mode>
 
-The examples below are command templates for common AI/ML/CV research lookup
-tasks.
+The examples below are command templates for common research lookup tasks
+across AI/ML/CV and adjacent domains.
 """
 
 from __future__ import annotations
@@ -18,12 +18,12 @@ from __future__ import annotations
 EXAMPLES: list[tuple[str, str]] = [
     (
         "Closest prior work",
-        'python lookup.py "road damage detection computer vision" '
+        'python lookup.py "small object detection aerial imagery benchmark" '
         "--mode prior-work --limit 10",
     ),
     (
         "Broad AI/CV prior work",
-        'python lookup.py "vision transformer object detection benchmark" '
+        'python lookup.py "transformer versus CNN image classification benchmark" '
         "--mode prior-work --limit 10",
     ),
     (
@@ -33,15 +33,15 @@ EXAMPLES: list[tuple[str, str]] = [
     ),
     (
         "Domain-focused baseline scouting with boost phrases",
-        'python lookup.py "object detection YOLO benchmark" '
+        'python lookup.py "image segmentation benchmark" '
         '--mode baseline-scout '
-        '--boost-phrase "road damage" '
-        '--boost-phrase "pavement distress" '
+        '--boost-phrase "medical imaging" '
+        '--boost-phrase "annotation protocol" '
         "--limit 10",
     ),
     (
         "Dataset and benchmark lookup",
-        'python lookup.py "road crack detection dataset annotation protocol" '
+        'python lookup.py "medical image segmentation dataset annotation protocol" '
         "--mode dataset-benchmark --limit 10",
     ),
     (
@@ -71,7 +71,7 @@ EXAMPLES: list[tuple[str, str]] = [
     ),
     (
         "Force OpenAlex only",
-        'python lookup.py "road damage detection computer vision" '
+        'python lookup.py "time series anomaly detection benchmark" '
         "--mode prior-work --backend openalex --limit 10",
     ),
     (

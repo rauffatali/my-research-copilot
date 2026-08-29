@@ -19,7 +19,7 @@ IF "%OPENROUTER_API_KEY%"=="" (
 if not exist figures mkdir figures
 
 echo Example 1: Method pipeline
-python scripts\generate_schematic.py "Create a clean left-to-right method pipeline with exactly five blocks: input road image -> preprocessing -> detector backbone -> detection head -> bounding-box output. Use only these blocks and adjacent arrows." -o figures\method_pipeline_example.png --doc-type conference --iterations 1 --provider openrouter --timeout 300
+python scripts\generate_schematic.py "Create a clean left-to-right method pipeline with exactly five blocks: input image -> preprocessing -> detector backbone -> detection head -> bounding-box output. Use only these blocks and adjacent arrows." -o figures\method_pipeline_example.png --doc-type conference --iterations 1 --provider openrouter --timeout 300
 
 echo.
 echo Example 2: Training/evaluation protocol

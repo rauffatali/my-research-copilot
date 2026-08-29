@@ -19,7 +19,7 @@ The same or highly similar sample appears in both training and evaluation splits
 - Same image resized or compressed differently.
 - Adjacent video frames split across train and test.
 - Burst-mode photos split randomly.
-- Same road scene captured from slightly different angles.
+- Same physical scene captured from slightly different angles.
 - Cropped patches from the same original image distributed across splits.
 
 ### Detection ideas
@@ -27,7 +27,7 @@ The same or highly similar sample appears in both training and evaluation splits
 - Hash exact files.
 - Use perceptual hashes.
 - Compare image embeddings.
-- Group by original image ID, video ID, road segment, capture session, or source folder.
+- Group by original image ID, video ID, capture location, capture session, or source folder.
 - Manually inspect nearest neighbors across splits.
 
 ### Risk
@@ -84,12 +84,12 @@ Samples from the same real-world entity are split across train and test.
 - product;
 - scene.
 
-### CV road-damage examples
+### CV grouped-scene examples
 
-- Same road segment appears in both train and test.
-- Same dashcam route is randomly split by frame.
-- Same city block appears under slightly different lighting.
-- Same camera vehicle captures both train and test data.
+- Same physical site appears in both train and test.
+- Same capture route is randomly split by frame.
+- Same location appears under slightly different lighting.
+- Same acquisition platform captures both train and test data.
 
 ### Mitigation
 
@@ -108,7 +108,7 @@ Future information influences training or validation.
 - Random split across time when deployment is future-facing.
 - Preprocessing statistics computed using all data, including test.
 - Labels corrected using later information unavailable at prediction time.
-- Road repair state indirectly reveals future condition.
+- A later maintenance or intervention outcome indirectly reveals future state.
 - Model selection uses test data collected after training period.
 
 ### Mitigation

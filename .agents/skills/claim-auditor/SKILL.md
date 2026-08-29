@@ -1,6 +1,6 @@
 ---
 name: claim-auditor
-description: Use to audit manuscript, report, or documentation claims against repository evidence, experiment artifacts, verified citations, literature-review outputs, and project scope. Use before approving abstracts, introductions, contributions, related work, results summaries, conclusions, rebuttals, or reviewer-sensitive claims. For reference metadata verification use citation-management. For source discovery use research-lookup.
+description: Use to audit manuscript, report, or documentation claims against repository evidence, experiment artifacts, verified citations, literature-review outputs, project scope, and material prose transformations. Use before approving abstracts, introductions, contributions, related work, results summaries, conclusions, rebuttals, or reviewer-sensitive claims. For reference metadata verification use citation-management. For source discovery use research-lookup.
 ---
 
 # Claim Auditor
@@ -111,6 +111,40 @@ Follow `.agents/workflow/policies/tool_workflow_policy.md`.
 This skill's useful output must be written to the appropriate durable repository artifact rather than left only in chat.
 
 When this skill changes workflow state, active artifacts, blockers, claim status, experiment status, manuscript state, or next step, update `docs/current_status.md`.
+
+When the active role is `independent_reviewer`, its strict read-only boundary overrides this skill's normal durable-output and status-update behavior. Return the audit findings in the response; do not write `paper/agent/`, `docs/agent/`, `docs/current_status.md`, or any other repository artifact. Writable roles retain the normal durable-output requirements.
+
+## Differential Transformation Audit
+
+When prose was materially transformed by `prior-style-adapter`, `academic-humanizer`, or another prose-refinement pass, compare preserved pre-transformation and post-transformation text rather than checking only the endpoint. Explicitly inspect changes in:
+
+- claim strength;
+- hedging;
+- scope;
+- certainty;
+- scientific interpretation;
+- caveats and limitations;
+- citation relationship;
+- numerical content and results;
+- equations and symbols;
+- technical terminology; and
+- LaTeX-sensitive content, including commands, labels, and references.
+
+After the differential comparison, audit the final post-transformation text against current evidence and assign the existing support-status labels. This skill may flag, downgrade, recommend safer wording, or request evidence; it must not fabricate evidence or upgrade support without evidence.
+
+## Evidence-State Awareness
+
+Before assigning or preserving a final `support_status`, inspect the relevant `evidence_state` or `Evidence State(s)` for every dependency using the canonical definitions in `.agents/workflow/policies/evidence_and_claim_policy.md`. Keep the two axes separate: evidence state describes lifecycle/readiness, while support status judges the exact claim wording.
+
+Apply these hard rules:
+
+- `placeholder_only` cannot support a claim;
+- `experiment_planned` cannot support a result claim;
+- `implementation_pending` cannot support wording that presents the method as implemented or current;
+- `result_pending` cannot be promoted to a finalized result merely because raw output exists;
+- `citation_pending` cannot be treated as fully verified literature support.
+
+`evidence_ready` does not force `supported`. Continue to assess the exact claim, scope, strength, evidence correctness, and limitations. If an evidence state has changed since the last audit, mark the earlier wording or audit as requiring revalidation rather than silently preserving its support verdict.
 
 ---
 
@@ -230,7 +264,7 @@ Classify claims before auditing them.
 Example:
 
 ```text
-Road infrastructure monitoring is important for maintenance planning.
+Automated visual inspection can support maintenance planning.
 ```
 
 Evidence needed:
@@ -294,7 +328,7 @@ Evidence needed:
 Example:
 
 ```text
-The dataset contains diverse weather and road-surface conditions.
+The dataset contains diverse acquisition conditions and scene contexts.
 ```
 
 Evidence needed:

@@ -1,4 +1,4 @@
 interface:
   display_name: "Scientific Writing"
-  short_description: "Draft evidence-first scientific prose"
-  default_prompt: "Use $scientific-writing to draft or revise evidence-first scientific prose."
+  short_description: "Draft evidence-first writing slices"
+  default_prompt: "Use $scientific-writing to draft or revise an evidence-first provisional writing slice under the canonical manuscript workflow."

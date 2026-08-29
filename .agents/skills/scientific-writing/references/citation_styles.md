@@ -44,13 +44,13 @@ A sentence usually needs a citation when it states:
 Example needing citation:
 
 ```text
-Most recent road damage detection systems formulate the task as object detection or semantic segmentation.
+Recent applied vision systems may formulate the target task as object detection or semantic segmentation.
 ```
 
 Example needing citation:
 
 ```text
-The RDD datasets have been widely used to benchmark road damage detection models.
+A benchmark dataset may be used to evaluate models for the target task.
 ```
 
 ---
@@ -84,13 +84,13 @@ Place citations close to the claim they support.
 Weak:
 
 ```text
-Road damage detection is challenging. Cracks are thin and low contrast. Many methods use object detection. [1-5]
+The target visual task is challenging. Relevant patterns may be thin and low contrast. Many methods use object detection. [1-5]
 ```
 
 Better:
 
 ```text
-Road damage detection is challenging because cracks may be thin, low contrast, or partially occluded [1,2]. Recent studies often formulate the task as object detection or segmentation [3-5].
+The target visual task is challenging because relevant patterns may be thin, low contrast, or partially occluded [1,2]. Recent studies often formulate the task as object detection or segmentation [3-5].
 ```
 
 Do not place one citation at the end of a paragraph if it only supports one sentence.
@@ -154,13 +154,13 @@ Do not invent citation keys.
 Acceptable:
 
 ```latex
-Prior studies have evaluated road damage detection using object detection models~\cite{arya2020rdd}.
+Prior studies have evaluated the target task using object-detection models~\cite{TODO_NEEDS_VERIFIED_CITATION}.
 ```
 
 If the key is not known:
 
 ```text
-TODO: needs citation for road damage detection object-detection framing.
+TODO: needs citation for the target task's object-detection framing.
 ```
 
 Do not write:

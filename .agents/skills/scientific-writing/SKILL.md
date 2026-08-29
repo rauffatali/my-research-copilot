@@ -1,6 +1,6 @@
 ---
 name: scientific-writing
-description: Use for evidence-first scientific manuscript drafting and revision, including abstracts, introductions, related work, methods, experiments, results, discussion, conclusion, limitations, rebuttals, and LaTeX-ready prose. Coordinates with research-lookup, literature-review, citation-management, claim-auditor, results-scaffold, venue-templates, prior-style-adapter, scientific-schematics, and peer-review. Do not use to invent citations, metrics, results, novelty, or unsupported claims.
+description: Use for evidence-first scientific manuscript drafting and revision, including bounded writing slices and provisional drafts for abstracts, introductions, related work, methods, experiments, results, discussion, conclusion, limitations, rebuttals, and LaTeX-ready prose. Coordinates with research-lookup, literature-review, citation-management, claim-auditor, results-scaffold, venue-templates, prior-style-adapter, academic-humanizer, watermark-hygiene, scientific-schematics, and peer-review. Do not use to invent citations, metrics, results, novelty, or unsupported claims.
 ---
 
 # Scientific Writing
@@ -39,6 +39,18 @@ Follow `.agents/workflow/policies/tool_workflow_policy.md`.
 This skill's useful output must be written to the appropriate durable repository artifact rather than left only in chat.
 
 When this skill changes workflow state, active artifacts, blockers, claim status, experiment status, manuscript state, or next step, update `docs/current_status.md`.
+
+When the active role is `independent_reviewer`, its strict read-only boundary overrides this skill's normal durable-output behavior. Return critique or suggested wording in the response, do not write files, and do not silently become a `candidate_writer`. Writable roles retain the normal durable-output requirements.
+
+## Canonical Manuscript Workflow Boundary
+
+For manuscript work, follow `.agents/guidance/manuscript-writing.md`. Treat sections, paragraphs, and smaller revisions as user-authorized writing slices rather than assuming a whole-section unit. Semantic or scientific-risk prose belongs in provisional `paper/draft/` staging during candidate-writing activity; the protected main manuscript is not an ordinary destination and this skill does not authorize integration.
+
+The active role controls permissions. In particular, `candidate_writer` executes a resolved scientific brief and produces provisional prose, while `research_lead` handles scientific ambiguity and `human_researcher` authorizes protected integration.
+
+## Evidence-State Boundary
+
+The `candidate_writer` must respect the current `evidence_state` or `Evidence State(s)` carried by the resolved brief. It must not turn `implementation_pending`, `experiment_planned`, `result_pending`, `citation_pending`, or `placeholder_only` into completed factual assertions. Use explicit TODO, planned, or otherwise conservative wording when the brief permits drafting before readiness. Final claim-heavy prose still routes through `claim-auditor`; `evidence_ready` is not a substitute for claim-support review.
 
 ---
 
@@ -96,6 +108,8 @@ Scientific writing is an orchestrating writing skill. It should know when anothe
 | Create result tables or result-section scaffolding without inventing metrics | `results-scaffold` |
 | Apply venue-specific LaTeX format or submission constraints | `venue-templates` |
 | Adapt prose to established project style | `prior-style-adapter` |
+| Refine academic naturalness after scientific and style resolution | `academic-humanizer` |
+| Inspect invisible Unicode or text-transfer artifacts | `watermark-hygiene` |
 | Create technical diagrams, architectures, workflows, or scientific figures | `scientific-schematics` |
 | Generate non-technical/general visual assets | `generate-image` |
 
@@ -105,9 +119,13 @@ Recommended manuscript workflow:
 research-lookup
     → literature-review
     → citation-management
-    → scientific-writing
-    → claim-auditor
-    → peer-review
+    → resolved scientific writing slice
+    → scientific-writing / selected candidate_writer
+    → project style or prior-style-adapter when needed
+    → academic-humanizer when useful
+    → differential claim/evidence audit
+    → citation-management when relevant
+    → peer-review when broader formal review is appropriate
 ```
 
 For result-heavy writing:
@@ -392,7 +410,7 @@ Use prior style for:
 - tone;
 - sentence rhythm;
 - paragraph flow;
-- conservative claim style;
+- stylistic expression of evidence-calibrated hedging already authorized by the scientific brief;
 - transition patterns;
 - section-level pacing.
 
@@ -409,6 +427,7 @@ Recommended flow:
 ```text
 scientific-writing
     → prior-style-adapter
+    → academic-humanizer when useful
     → claim-auditor
 ```
 
@@ -416,10 +435,31 @@ or:
 
 ```text
 prior-style-adapter
+    → academic-humanizer when useful
     → claim-auditor
 ```
 
 when only style adaptation is requested.
+
+`prior-style-adapter` may preserve or express claim conservativeness specified by the resolved scientific brief, but it must not independently decide claim strength, hedging, scope, or scientific interpretation. If style adaptation exposes such an issue, flag it to `research_lead` and route the material change through `claim-auditor`.
+
+## Optional Humanization and Hygiene Handoff
+
+After scientifically resolved prose and any needed project or prior-style adaptation, `academic-humanizer` may provide a bounded naturalness refinement. It must preserve scientific meaning, support, claim scope, numbers, results, equations, symbols, citations, citation keys, LaTeX, labels, references, terminology, and required disclosures. It is optional and does not authorize integration.
+
+`watermark-hygiene` is outside the automatic prose chain. Use it only for optional, read-only inspection-first analysis of invisible Unicode or text-transfer artifacts. It must not rewrite prose, strip provenance, or perform detector-evasion work.
+
+For any material transformation, preserve pre-transformation and post-transformation text for a differential `claim-auditor` check. Use `citation-management` when citation or reference integrity may have changed.
+
+## Candidate Writer Boundary
+
+When operating as `candidate_writer`, this skill executes the resolved scientific brief, stages semantic or scientific-risk prose under `paper/draft/`, preserves citations, terminology, equations, labels, references, and LaTeX constraints, flags scientific ambiguity, and produces provisional prose. It does not independently alter scientific direction, silently strengthen claims, or authorize integration.
+
+Candidate count and independence come from `docs/agent/agent_role_profile.md`; this skill operates as one
+`candidate_writer` invocation and does not decide how many candidate writers the project requires. The
+manuscript workflow and `research_lead` orchestrate the project-configured set.
+
+If the active role is `independent_reviewer`, the role remains strictly read-only: critique or suggested wording may be returned in the response, but no files may be written and the invocation must not silently become a candidate writer.
 
 ---
 
@@ -920,6 +960,9 @@ Before completing a scientific-writing task:
 13. [ ] Claim-heavy text is routed to `claim-auditor`.
 14. [ ] Reference hygiene issues are routed to `citation-management`.
 15. [ ] Reviewer-readiness issues are routed to `peer-review`.
+16. [ ] Semantic or scientific-risk prose is staged in `paper/draft/`.
+17. [ ] Any material style or humanization transformation preserves pre/post text and receives differential claim/evidence checking.
+18. [ ] `academic-humanizer` is optional, and `watermark-hygiene` remains inspection-first and outside the automatic prose chain.
 
 ---
 

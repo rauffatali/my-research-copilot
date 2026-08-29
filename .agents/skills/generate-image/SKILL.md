@@ -195,13 +195,13 @@ Include:
 Good prompt:
 
 ```text
-Create a clean, non-technical presentation background showing an abstract road surface texture with subtle blue lighting, no text, no icons, no charts.
+Create a clean, non-technical presentation background showing an abstract geometric texture with subtle blue lighting, no text, no icons, no charts.
 ```
 
 Bad prompt for this skill:
 
 ```text
-Create a road damage detection pipeline with arrows from dataset to detector to evaluation metrics.
+Create a technical method pipeline with arrows from input to model to output.
 ```
 
 That belongs to `scientific-schematics`.

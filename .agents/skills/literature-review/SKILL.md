@@ -37,6 +37,8 @@ This skill's useful output must be written to the appropriate durable repository
 
 When this skill changes workflow state, active artifacts, blockers, claim status, experiment status, manuscript state, or next step, update `docs/current_status.md`.
 
+When the active role is `independent_reviewer`, its strict read-only boundary overrides this skill's normal durable-output and status-update requirements. Return literature findings or synthesis in the response instead; a writable role may later record accepted results under normal workflow policy.
+
 ---
 
 ## Preferred Source Artifacts

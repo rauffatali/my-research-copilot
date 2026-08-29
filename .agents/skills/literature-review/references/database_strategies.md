@@ -367,12 +367,12 @@ Domain sources are extensions, not defaults for general AI/CV review.
 
 Identify 2–4 main concepts.
 
-Example for road damage detection:
+Example for small-object detection in aerial imagery:
 
-- road damage / pavement distress / road crack;
-- object detection / segmentation / YOLO;
-- benchmark / dataset / mAP;
-- domain shift / weather / camera variation.
+- small-object detection / aerial imagery / remote sensing;
+- object detection / feature pyramid / transformer;
+- benchmark / dataset / AP;
+- scale variation / occlusion / geographic shift.
 
 Example for RAG:
 
@@ -397,9 +397,9 @@ Include:
 Use Boolean search when a database supports it.
 
 ```text
-("road damage" OR "pavement distress" OR "road crack")
-AND ("object detection" OR YOLO OR segmentation)
-AND (benchmark OR dataset OR mAP)
+("small-object detection" OR "small object detection" OR "aerial imagery")
+AND ("object detection" OR "feature pyramid" OR transformer)
+AND (benchmark OR dataset OR AP)
 ```
 
 ### Fielded Search
@@ -409,7 +409,7 @@ Use title/abstract fields when broad search drifts.
 Examples:
 
 ```text
-title:"road damage" AND YOLO
+title:"small-object detection" AND "aerial imagery"
 ```
 
 ```text
