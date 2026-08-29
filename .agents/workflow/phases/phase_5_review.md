@@ -1,40 +1,49 @@
-# Phase 5 Contract: Multi-Agent Review / Red-Team
+# Phase 5 Contract: Formal Broader Manuscript Review / Red-Team
 
-Phase 5 turns a mature manuscript draft into a structured review-and-revision cycle.
+Phase 5 performs formal broader manuscript-scale or coherent-manuscript-unit review from a skeptical external-reviewer perspective. It is distinct from the embedded writing-slice review inside Phase 4.
+
+## Canonical manuscript workflow
+
+Follow `.agents/guidance/manuscript-writing.md` for the detailed relationship between slice-local readiness review, protected integration, and broader formal review.
+
+```text
+Phase 4 embedded review
+= writing-slice local
+= pre-integration/readiness review
+= remains phase_4_active
+
+Phase 5 formal review
+= broader integrated manuscript or coherent-unit review
+= normally later/post-integration
+= skeptical external-reviewer perspective
+```
 
 Every material reviewer finding must be traceable to a manuscript section or claim, durable evidence or an explicitly recorded evidence gap, and a closure record. Use `paper/agent/claim_audit.md` for claim-support and status changes and `paper/agent/revision_plan.md` for revision actions; do not leave finding rationale or closure only in chat.
 
 ## Input
 
-- Mature manuscript draft in `paper/`.
+- A broader integrated manuscript or coherent manuscript-unit review target in `paper/` (required for Phase 5).
 - Stable claims and evidence artifacts from Phase 3 and Phase 4.
 - Relevant source artifacts in `sources/`.
 - Early red-team artifacts in `docs/agent/`, including `pre_mortem.md`, `experiment_red_team.md`, `evidence_review.md`, and `red_team_issue_ledger.md` when available.
 - Any manuscript-support notes in `paper/agent/`.
 
+Ordinary writing-slice review is not a Phase 5 entry condition. It remains `phase_4_active` even when it uses an independent reviewer.
+
 ## Actions
 
-1. Read the manuscript draft, current claim/support context, and early red-team artifacts before reviewing, especially unresolved or accepted-risk issues in `docs/agent/red_team_issue_ledger.md`.
-2. Prepare `paper/agent/review_context.md` with a compact paper summary, claim map, baseline context, question engine, and reviewer questions.
-3. Run distinct reviewer-style critique roles rather than duplicate criticism; use `peer-review` in multi-reviewer panel mode for methodology, novelty/related work, evidence/claim support, presentation/clarity, and meta-review. For each material finding, record the affected manuscript section or claim, evidence references or an explicit missing-evidence record, concern, severity, and required action.
-4. Use `scientific-critical-thinking` to pressure-test weak assumptions, missing baselines, leakage risk, and alternative explanations.
-5. Use `claim-auditor` to verify manuscript claims after drafting or style adaptation; assign only the shared support-status labels and keep decisions such as `remove`, `rewrite`, `narrow`, `add_caveat`, or `run_ablation` separate from support status.
-6. Update `paper/agent/claim_audit.md` with manuscript-facing claim audit findings, and update `docs/agent/claim_ledger.md` if final claim support status changes. Record the finding's evidence references, verification, scope and limitations, and closure status in the claim audit or revision plan.
-7. Use `research-lookup` when reviewer questions require missing prior work, baseline context, source-reading, or citation support.
-8. Use `citation-management` when reviewer feedback exposes citation or metadata issues.
-9. Write revision-oriented artifacts in `paper/agent/` rather than silently revising the paper. Link each revision item to its originating finding, affected claim or section, relevant evidence, and verification of closure where applicable.
-10. Update `docs/current_status.md` with the review round, main objections, claim-status changes, accepted fixes, and remaining risks.
+1. Read the broader review target, current claim/support context, and early red-team artifacts before reviewing, especially unresolved or accepted-risk issues in `docs/agent/red_team_issue_ledger.md`.
+2. Prepare `paper/agent/review_context.md` with a compact manuscript summary, claim map, baseline context, question engine, and reviewer questions.
+3. Use distinct optional review lenses for methodology, novelty/related work, evidence/claim support, presentation/clarity, and meta-review. For each material finding, record the affected section or claim, evidence references or an explicit missing-evidence record, concern, severity, required action, and closure state in writable review artifacts.
+4. Use `scientific-critical-thinking`, `claim-auditor`, `research-lookup`, or `citation-management` when the review requires their respective checks.
+5. Keep `independent_reviewer` strictly read-only. Writable roles may record adjudicated review artifacts, but no reviewer role may silently revise manuscript prose.
+6. Do not repeat the ordinary candidate-writing production loop in Phase 5. Route required prose revision back to Phase 4.
+7. Update `paper/agent/claim_audit.md`, `paper/agent/revision_plan.md`, and `docs/agent/claim_ledger.md` only as permitted by the applicable role and workflow policies.
+8. Update `docs/current_status.md` with the review round, main objections, claim-status changes, accepted fixes, remaining risks, and next decision.
 
-## Reviewer roles
+## Optional review lenses
 
-Run separate reviewer passes so the feedback remains distinct and auditable.
-
-- Reviewer Agent 1: Method Reviewer
-- Reviewer Agent 2: Domain / Novelty Reviewer
-- Reviewer Agent 3: Hybrid / Evidence Reviewer
-- Reviewer Agent 4: Meta-Reviewer / Area Chair
-
-Each reviewer role should use the same underlying `peer-review` skill, but with a different critique focus and output artifact. The meta-reviewer synthesizes the panel into one decision-oriented summary.
+Method, Domain, Hybrid, and Meta are optional critique perspectives, not canonical agent roles and not mandatory assignments. They may be exercised by appropriate assigned agents according to the role policy. They must not be confused with the `independent_reviewer` permission role.
 
 ## Relevant Skills
 
@@ -64,18 +73,20 @@ Expected artifacts may include:
 
 Each reviewer file should keep all rounds in one place, with new rounds appended as new sections such as `## Round 1`, `## Round 2`, and so on.
 
+## Boundary and rollback
+
+Phase 5 is broader and formal; it is not the ordinary review loop for every writing slice. If formal review requires prose revision, return to Phase 4. If it exposes an incomplete or weak evidence package, return to Phase 3. If it invalidates the research direction, return to Phase 1. Do not silently revise the manuscript during review.
+
 ## Exit condition
 
 Phase 5 is complete only when:
 
 - reviewer concerns are organized into actionable buckets;
-- material reviewer findings link concerns to claims or sections and durable evidence, or explicitly record missing evidence;
+- material findings link concerns to claims or sections and durable evidence, or explicitly record missing evidence;
 - required fixes are separated from optional improvements;
-- claim support is rechecked after review using the shared support-status vocabulary;
-- manuscript-stage review reconciles open or accepted-risk early red-team issues with the revision plan, limitations, or claim audit;
-- any review-driven claim-status changes are reflected in `paper/agent/claim_audit.md` and, when final support status changes, in `docs/agent/claim_ledger.md`;
-- required fixes have a closure status in `paper/agent/claim_audit.md` or `paper/agent/revision_plan.md`, with closure verification where applicable;
-- the next action is clear: revise, resubmit, hold, or return to an earlier phase;
-- `docs/current_status.md` reflects the review outcome and next decision.
+- claim support is rechecked using the shared support-status vocabulary;
+- early red-team issues are reconciled with the revision plan, limitations, or claim audit;
+- review-driven claim-status changes and closure verification are recorded in the appropriate writable artifacts; and
+- the next action is clear: revise through Phase 4, return to Phase 3 or Phase 1, resubmit, hold, or archive.
 
-Do not treat review as a purely stylistic pass. It is a scientific and evidentiary stress test.
+Do not treat formal review as a purely stylistic pass. It is a scientific and evidentiary stress test, and it does not reproduce candidate-writing production.

@@ -9,10 +9,27 @@ Use this skill to manage the repository's workflow skeleton, not to fabricate pr
 
 ## Core sources
 
-- `docs/workflow_state_machine.md`
-- `docs/current_status.md`
-- `docs/agent/`
-- `paper/agent/`
+- `docs/workflow_state_machine.md` — phase transitions
+- `docs/current_status.md` — live workflow state
+- `docs/project_profile.md` — operational project configuration when relevant
+- `docs/agent/agent_role_profile.md` — role and writer configuration when relevant
+- `docs/copilot_upstream.md` — provenance only for kernel or upstream maintenance
+- `.agents/guidance/manuscript-writing.md` — canonical manuscript workflow
+- `docs/agent/` — research workflow artifacts
+- `paper/agent/` — manuscript-support and review artifacts
+
+Do not load every source for every task. For manuscript workflow decisions, follow
+`.agents/guidance/manuscript-writing.md`; together with `docs/workflow_state_machine.md` and
+`.agents/workflow/policies/agent_role_policy.md`, it outranks stale examples or generic assumptions.
+Load `docs/project_profile.md` when operational configuration affects the task, and load
+`docs/agent/agent_role_profile.md` when role or writer configuration affects it. Load
+`docs/copilot_upstream.md` and `.agents/workflow/policies/upstream_sync_policy.md` only for
+kernel/upstream synchronization or update work.
+
+When role permissions matter, follow `.agents/workflow/policies/agent_role_policy.md`. When tool use or
+durable-output behavior matters, follow `.agents/workflow/policies/tool_workflow_policy.md`. When
+operational project configuration matters, follow
+`.agents/workflow/policies/project_configuration_policy.md`.
 
 ## References
 
@@ -46,10 +63,25 @@ Use this skill to manage the repository's workflow skeleton, not to fabricate pr
 - Do not treat the validator or state checker as proof of scientific progress.
 - Prefer the skeleton example and state machine over ad hoc interpretation when the workflow is ambiguous.
 
+## Role-aware durable output
+
+Writable roles follow the normal durable-artifact requirements in the tool policy. When the active role is `independent_reviewer`, its strict read-only boundary overrides a skill's ordinary write or status-update behavior: return workflow findings in the response and do not write review artifacts or status files. A writable role may later record accepted or adjudicated findings.
+
+## Candidate-writer configuration
+
+For substantive semantic Phase 4 candidate production, read `docs/agent/agent_role_profile.md` and
+enforce `candidate_writers_required`, `candidate_independence_required`, and
+`candidate_cross_visibility_before_comparison`. Do not invent missing assignments or silently reduce the
+configured count. A temporary reduction requires explicit `human_researcher` authorization for the
+current slice. Candidate slots remain project-local identifiers, and the strict `independent_reviewer`
+read-only carve-out remains in force.
+
 ## Tool Workflow Policy
 
 Follow `.agents/workflow/policies/tool_workflow_policy.md`.
 
-This skill's useful output must be written to the appropriate durable repository artifact rather than left only in chat.
+For writable roles, useful workflow-changing output must be recorded in the appropriate durable repository
+artifact rather than left only in chat. `independent_reviewer` remains response-only under the role policy
+and does not write workflow artifacts.
 
 When this skill changes workflow state, active artifacts, blockers, claim status, experiment status, manuscript state, or next step, update `docs/current_status.md`.

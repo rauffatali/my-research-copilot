@@ -1,0 +1,4 @@
+interface:
+  display_name: "Watermark Hygiene"
+  short_description: "Inspect invisible Unicode transfer artifacts"
+  default_prompt: "Use $watermark-hygiene to inspect authorized text for invisible Unicode or transfer artifacts first, report exact code points and context, and only after explicit approval write a separate candidate cleanup while preserving code, citations, LaTeX, terminology, and disclosures."

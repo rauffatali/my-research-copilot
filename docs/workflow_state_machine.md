@@ -23,8 +23,8 @@ Use this document when deciding:
 | `phase_1_active` | Research direction is being debated and formed | Frozen Phase 1 artifact package exists after evidence review, user questioning, and approval |
 | `phase_2_active` | Implementation or experiment work is being executed | Approved plan implemented and validated or explicitly deferred |
 | `phase_3_active` | Results are being consolidated into evidence | Stable evidence package and claim labels exist |
-| `phase_4_active` | Manuscript drafting or revision is in progress | Claims are traceable to evidence and citations |
-| `phase_5_active` | Review or red-team feedback is being organized | Revision decision is clear |
+| `phase_4_active` | Provisional writing-slice drafting or revision with embedded pre-integration review | Writing-slice draft and support decisions are stable and reviewable |
+| `phase_5_active` | Formal broader manuscript or coherent-manuscript-unit review | Revision decision is clear |
 | `blocked` | Work cannot proceed because a required dependency, artifact, or decision is missing | Return to the previous active state after the blocker is resolved |
 | `archived` | Workflow for the current thread is complete and closed | Start a new intake if new work is needed |
 
@@ -70,8 +70,8 @@ Frozen means the phase output is reviewable and should not be silently redefined
 | `phase_2_frozen` | `phase_3_active` | Results exist and need consolidation |
 | `phase_3_active` | `phase_3_frozen` | Evidence package and claim labels are stable |
 | `phase_3_frozen` | `phase_4_active` | Manuscript drafting can begin |
-| `phase_4_active` | `phase_4_frozen` | Draft section or claim package is stable |
-| `phase_4_frozen` | `phase_5_active` | Manuscript is ready for review |
+| `phase_4_active` | `phase_4_frozen` | Writing-slice draft and support decisions are stable and reviewable; no main-manuscript integration is implied |
+| `phase_4_frozen` | `phase_5_active` | A broader manuscript or coherent-unit review target is ready and prerequisites are satisfied; not every frozen slice enters Phase 5 |
 | `phase_5_active` | `phase_4_active` | Review requires revision of the manuscript |
 | `phase_5_active` | `phase_3_active` | Review exposes a missing or weak evidence package |
 | `phase_5_active` | `phase_1_active` | Review invalidates the research direction itself |
@@ -114,14 +114,17 @@ During `bootstrap_existing_project`, inspect the repository for these signals:
 | Signal | Likely phase |
 |---|---|
 | No clear research question, no direction file, no hypothesis, no baseline, no metric | Phase 1 |
-| Frozen or usable research direction exists, but implementation is incomplete | Phase 2 |
-| Code, configs, runs, metrics, logs, or outputs exist | Phase 3 |
-| Stable evidence package, claim ledger, result interpretation, or paper outline exists | Phase 4 |
-| Manuscript draft, review notes, reviewer feedback, rebuttal notes, or revision plan exists | Phase 5 |
+| Frozen or usable research direction exists and implementation, code, configuration, or experiment setup is still incomplete or actively being developed | Phase 2 |
+| Runs, metrics, logs, outputs, or other executed-result artifacts exist and require consolidation, interpretation, verification, or claim mapping | Phase 3 |
+| Stable evidence package, claim ledger, result interpretation, paper outline, or provisional manuscript writing slices exist and manuscript drafting/revision is the active task | Phase 4 |
+| A broader integrated manuscript or coherent manuscript-unit review target exists together with formal review activity such as reviewer feedback, rebuttal work, meta-review, or broader revision planning | Phase 5 |
 
-Artifact signals are not absolute. Prefer the user’s requested task when artifacts support it.
+Artifact signals are not absolute. Choose the latest phase whose actual prerequisites are satisfied.
 
-If multiple signals exist, choose the latest phase whose prerequisites are satisfied.
+Code or configuration existence alone does not imply Phase 3; if implementation or experiment setup is
+still active or incomplete, the project remains in Phase 2. A manuscript draft alone does not imply
+Phase 5; provisional manuscript drafting or revision normally remains in Phase 4. Phase 5 requires a
+broader formal review target consistent with the canonical Phase 5 contract.
 
 If the latest phase has weak or missing prerequisites, enter `backfill_required`.
 
@@ -224,7 +227,7 @@ Use `blocked` only when the conflict cannot be resolved from available artifacts
 
 Use this when the repo starts from a broad idea or empty research scaffold:
 
-`intake` -> `phase_1_active` -> `phase_1_frozen` -> `phase_2_active` -> `phase_2_frozen` -> `phase_3_active` -> `phase_3_frozen` -> `phase_4_active` -> `phase_4_frozen` -> `phase_5_active` -> `archived`
+`intake` -> `phase_1_active` -> `phase_1_frozen` -> `phase_2_active` -> `phase_2_frozen` -> `phase_3_active` -> `phase_3_frozen` -> `phase_4_active` -> `phase_4_frozen` -> (when a broader review target is ready) `phase_5_active` -> `archived`
 
 ### Existing project bootstrap flow
 
@@ -241,6 +244,37 @@ Use this when the user is clearly asking for a downstream task, but the required
 `intake` -> `backfill_required` -> selected active phase
 
 Backfill should reconstruct only the minimum context needed to proceed.
+
+## Manuscript review boundary and integration gate
+
+Slice-local review is an embedded Phase 4 loop. It is writing-slice-local and pre-integration, remains within `phase_4_active`, and does not cause a transition to Phase 5 for every slice. Phase 5 is formal broader review of an integrated manuscript or coherent manuscript unit and is entered only when that target and its prerequisites are ready.
+
+`research_lead` may determine that a writing slice is scientifically ready, but that readiness does not authorize integration. `human_researcher` must explicitly authorize protected main-manuscript integration, and `integration_agent` performs the separate protected action.
+
+Immediately before integration, revalidate changeable implementation, experiment, result, citation, external-evidence, and claim-support dependencies. Keep `evidence_state` (the lifecycle or readiness of a dependency) separate from `support_status` (support for the exact claim wording): a completed run is not necessarily `evidence_ready`, and `evidence_ready` is not necessarily `supported`. Confirm that an adequate rollback or focused-diff mechanism exists. If no adequate mechanism exists, block integration but allow drafting in `paper/draft/` to continue.
+
+Resolve the protected manuscript target through the project-local configuration source:
+
+```text
+docs/project_profile.md
+→ main_manuscript_path
+```
+
+- A configured valid project-relative path is the protected integration target.
+- `UNASSIGNED`, a missing value, or an invalid path means do not guess; drafting in `paper/draft/` may continue, but protected integration cannot.
+- `NOT_APPLICABLE` means protected integration is not part of normal project configuration.
+- An explicit human task-scoped target may resolve the current operation without changing the profile unless the human requests a permanent update.
+
+This target-resolution rule does not grant write authority. The separate `human_researcher` authorization
+gate and `integration_agent` role remain required.
+
+For substantive semantic Phase 4 candidate production, resolve `candidate_writers_required`,
+`candidate_independence_required`, and `candidate_cross_visibility_before_comparison` from
+`docs/agent/agent_role_profile.md`. Missing or invalid required writer configuration fails closed for
+candidate production rather than being guessed. The state machine does not impose a universal candidate
+count or add a workflow state for writer configuration.
+
+Formal Phase 5 review does not reproduce the ordinary candidate-writing loop. If it requires prose revision, return to Phase 4; if it exposes evidence failure, return to Phase 3; if it invalidates the research direction, return to Phase 1.
 
 ## Notes
 

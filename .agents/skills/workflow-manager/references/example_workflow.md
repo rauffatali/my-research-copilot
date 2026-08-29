@@ -1,11 +1,16 @@
 # Canonical Example Workflow
 
-This is a generic end-to-end example of how the skeleton is meant to be used.
-It is intentionally non-project-specific.
+This is a project-neutral Research Copilot v2 example. It demonstrates phase routing, separation of
+roles and permissions, evidence-state discipline, candidate-writer configuration, draft-first
+manuscript writing, human integration authority, and formal broader review.
+
+This is an explanatory example, not a second policy source. Where this example and the canonical
+policies differ, the canonical policies win.
 
 ## Example Request
 
-Compare a baseline approach against one proposed change under a shared evaluation protocol.
+Compare a baseline approach with one proposed change under a shared evaluation protocol, then prepare an
+evidence-bound manuscript writing slice from the consolidated result.
 
 ## Task Intake Examples
 
@@ -53,29 +58,27 @@ Use `blocked` when the request depends on a missing upstream artifact, decision,
 
 ### Phase 4: Writing / Manuscript Drafting
 
-- "Draft the introduction from the approved direction."
-- "Write the method section from the implementation notes."
-- "Turn this result summary into a paper subsection."
-- "Polish the related work using the saved sources."
-- "Rewrite this paragraph so it is more precise."
-- "Add citations to this manuscript section."
-- "Adapt this text to the prior-paper style."
-- "Write a limitations paragraph from the evidence."
-- "Prepare the caption for this table."
-- "Rewrite the abstract using only supported claims."
+Phase 4 examples are bounded writing-slice requests. They do not imply direct mutation of a protected
+main manuscript.
 
-### Phase 5: Multi-Agent Review / Red-Team
+- "Draft the claim-bearing paragraph that explains this result."
+- "Prepare the method sentence that describes this verified implementation detail."
+- "Draft a limitations paragraph from the current evidence package."
+- "Revise this writing slice without strengthening the claims."
+- "Prepare a table narrative from `evidence_ready` results."
+- "Draft this slice in the provisional manuscript workspace."
+- "Polish this evidence-bound writing slice after the scientific brief is resolved."
 
-- "Review this manuscript like a skeptical reviewer."
-- "What are the biggest weaknesses in this draft?"
-- "Check whether the claims are too strong."
-- "Run a multi-reviewer critique of the paper."
-- "What would cause rejection here?"
-- "Create a revision plan from these comments."
-- "Audit the novelty claim."
-- "Pressure-test the evaluation section."
-- "Summarize the likely reviewer decision."
-- "Draft a response-to-reviewers outline."
+### Phase 5: Formal Broader Review / Red-Team
+
+Phase 5 examples target a broader integrated manuscript or coherent manuscript unit, not every
+paragraph or slice.
+
+- "Perform formal review of this integrated manuscript."
+- "Review this coherent results section as a skeptical reviewer."
+- "Create a revision plan from the broader manuscript review."
+- "Audit whether the integrated claims match the evidence package."
+- "Prepare a response-to-reviewers outline from the completed review."
 
 ### Blocked
 
@@ -101,11 +104,11 @@ Use `blocked` when the request depends on a missing upstream artifact, decision,
 
 ### Cross-phase
 
-- "Implement this idea and draft the paper section."
-- "Analyze the results and rewrite the abstract."
-- "Review the manuscript and fix the experiments."
-- "Find related work and write the introduction."
-- "Run the ablation and update the results table."
+- "Implement this idea and draft a writing slice."
+- "Analyze the results and revise the abstract."
+- "Review the manuscript and identify whether the defect is prose, evidence, or direction."
+- "Find related work and prepare an introduction slice."
+- "Run the ablation and update the result support artifacts."
 - "Change the dataset split and update the claims."
 - "Improve the method."
 - "Make the paper stronger."
@@ -176,50 +179,193 @@ Implement the approved plan through an explicit task breakdown and validate it n
 ## Phase 3: Result Consolidation
 
 ### Goal
-Convert raw outputs into evidence and claim labels.
+Convert raw outputs into interpreted evidence and claim-support decisions.
 
 ### Example artifacts
 
+- `docs/agent/result_cards/`
 - `docs/agent/result_interpretation.md`
 - `docs/agent/figure_review.md`
+- `docs/agent/result_to_claim_map.md`
 - `docs/agent/claim_ledger.md`
 - `outputs/`
+
+### Evidence-state example
+
+The relevant result dependency follows the evidence lifecycle only after the required interpretation and
+review work:
+
+```text
+experiment_planned
+        →
+result_pending
+        →
+evidence_ready
+```
+
+An output or completed run can remain `result_pending` while interpretation, verification, scope and
+limitations, result-to-claim mapping, or evidence review is incomplete. A completed run is not
+automatically `evidence_ready`.
+
+```text
+run completed != evidence_ready
+evidence_ready != supported
+```
+
+`support_status` is evaluated separately for each exact claim. `evidence_ready` means that the evidence
+dependency is ready for claim evaluation; it does not mean that the claim is `supported`. The claim may
+instead be `preliminary`, `partially_supported`, `unsupported`, or another canonical support status.
 
 ### Example content
 
 - Evaluation context: split, metric, and protocol.
 - Main findings: what changed relative to the baseline.
 - Figure review: plots are aggregated, checked for caption alignment, and fixed when misleading or unclear.
-- Supported claims: only the claims directly backed by the outputs.
+- Claim support: only claims whose exact wording is backed by the interpreted evidence and verification.
 - Weak claims: anything needing more evidence or a narrower wording.
-- Decision: `frozen` once the evidence package is stable enough for writing.
+- Decision: `frozen` once the evidence package and claim labels are stable enough for writing.
 
 ## Phase 4: Writing / Manuscript Drafting
 
 ### Goal
-Turn evidence into manuscript text.
+Turn resolved scientific and evidence context into provisional, evidence-bound writing slices, review
+them locally, and prepare accepted slices for separately authorized integration.
 
 ### Example artifacts
 
+- `paper/draft/`
 - `paper/agent/claim_support.md`
+- `paper/agent/claim_audit.md`
 - `paper/agent/section_notes.md`
 - `paper/agent/citation_support.md`
 - `paper/agent/figure_support.md`
 - `paper/agent/style_notes.md`
 
+### Writing-slice boundary
+
+A writing slice may be:
+
+- part of a sentence;
+- one sentence;
+- one paragraph;
+- a caption;
+- a table narrative;
+- a subsection; or
+- a larger coherent unit when the scientific risk and surrounding context require it.
+
+The workflow does not assume that a whole section is the atomic unit. The human selects or authorizes
+the boundary, and the support package must keep the slice's evidence, claims, citations, review state,
+and acceptance state understandable.
+
+### Candidate-writer configuration
+
+Before substantive semantic candidate production, resolve the project-local configuration in
+`docs/agent/agent_role_profile.md`:
+
+```text
+candidate_writers_required = N
+candidate_independence_required = true or false
+candidate_cross_visibility_before_comparison = true or false
+```
+
+The example uses symbolic `N`; the reusable kernel does not universally require two candidates. A project
+template may default to 2, but that default is not a canonical fixed count. Do not invent agent, model,
+provider, or harness assignments.
+
+The configured flow is:
+
+```text
+N configured candidate outputs
+        →
+research_lead comparison and adjudication
+        →
+one final prose owner for the writing slice
+```
+
+When `candidate_independence_required = true`, initial candidates use separate invocations and do not
+co-author or coordinate toward one initial answer. When `candidate_cross_visibility_before_comparison =
+false`, they do not inspect one another's provisional drafts before the first lead comparison.
+
+### Provisional staging and local review
+
+Semantic or scientific-risk writing is staged as:
+
+```text
+semantic/scientific-risk writing
+        →
+paper/draft/
+```
+
+The protected main manuscript is not ordinary scratch space. Candidates and resolved prose remain
+provisional until accepted. A slice may be scientifically accepted or frozen while still remaining
+provisional and not integrated.
+
+```text
+scientific readiness
+        !=
+human authorization
+        !=
+integration execution
+```
+
+### Optional style and text-hygiene paths
+
+After scientific resolution, the optional prose-refinement sequence is:
+
+```text
+resolved scientific candidate
+        → project or prior style when needed
+        → academic-humanizer when useful
+        → differential claim/evidence audit
+        → citation validation when relevant
+```
+
+`academic-humanizer` is optional. `watermark-hygiene` remains outside this automatic prose chain as an
+optional inspection-first Unicode or text-transfer hygiene workflow; it is not a detector-evasion,
+provenance-stripping, or general humanization tool.
+
+### Protected integration
+
+The separate integration path is:
+
+```text
+research_lead
+        → scientific readiness
+human_researcher
+        → explicit protected-integration authorization
+integration_agent
+        → bounded integration action
+```
+
+Immediately before integration, revalidate mutable evidence-state dependencies and applicable
+`support_status` and citation relationships, resolve `docs/project_profile.md` → `main_manuscript_path`,
+and confirm a focused diff or rollback mechanism. A configured path is not write authority. If the target
+is `UNASSIGNED`, missing, invalid, or otherwise unresolved, drafting in `paper/draft/` may continue but
+integration stops; do not guess a manuscript filename.
+
 ### Example content
 
-- Section notes: purpose, evidence used, and draft notes for the section being written.
+- Writing-slice notes: purpose, evidence used, context, and draft notes for the bounded slice.
 - Claim support: each important claim with a support status and rewrite decision.
 - Citation support: each citation with the claim it supports and the reason it is included.
 - Figure support: each scientific figure has source context, communicative intent, references, specification, style plan, and critique notes.
 - Style notes: the prose traits being applied from the prior-paper style template.
-- Decision: `frozen` when the section is traceable to evidence and citations.
+- Decision: a slice is `frozen` when its draft and support decisions are stable and reviewable; this does
+  not authorize or execute integration.
 
-## Phase 5: Multi-Agent Review / Red-Team
+## Phase 5: Formal Broader Review / Red-Team
 
 ### Goal
-Stress-test the draft after assembling a compact review context bundle.
+Stress-test an integrated manuscript or coherent manuscript unit after a broader review target is ready.
+Formal Phase 5 review is not the ordinary review loop for every paragraph or writing slice.
+
+`independent_reviewer` is a permission role and remains strictly read-only. It returns findings in its
+response. A writable, authorized role may later record accepted or adjudicated review findings in the
+appropriate artifact.
+
+`Method`, `Domain`, `Hybrid`, and `Meta` are optional review lenses or modes. They are not agent roles
+and cannot grant write authority. A review lens must not be confused with the `independent_reviewer`
+permission role.
 
 ### Example artifacts
 
@@ -229,30 +375,67 @@ Stress-test the draft after assembling a compact review context bundle.
 - `paper/agent/review_hybrid.md`
 - `paper/agent/review_meta.md`
 - `paper/agent/revision_plan.md`
-- `paper/agent/response_to_reviewers_draft.md`
-- `paper/agent/review_score_ledger.md`
-- `paper/agent/responsible_use_disclosure.md`
+- `paper/agent/claim_audit.md`
 - `paper/agent/review_notes.md`
+
+### Review routing
+
+Material findings route to the phase that owns the defect:
+
+```text
+prose problem
+        → Phase 4
+evidence problem
+        → Phase 3
+research-direction problem
+        → Phase 1
+```
+
+Phase 5 does not repeat the candidate-writing production loop and does not silently revise manuscript
+prose during review.
 
 ### Example content
 
 - Review context: compresses the manuscript summary, claim map, closest baseline context, a question engine, and the reviewer questions that should guide critique.
-- Method reviewer: checks protocol, controls, and validation logic.
-- Domain reviewer: checks novelty and positioning.
-- Hybrid reviewer: checks whether the evidence actually supports the claims.
-- Meta-reviewer: summarizes must-fix issues and the likely decision.
-- Review score ledger: keeps soundness, presentation, contribution, overall score, and confidence comparable across roles.
-- Responsible-use disclosure: records approval, disclosure, and withdrawal conditions before the review cycle is finalized.
+- Method, Domain, Hybrid, and Meta lenses challenge protocol, positioning, evidence/claim support, and overall decision risk as applicable.
+- Material findings record the affected section or claim, evidence reference or missing-evidence record, severity, required action, and closure state.
 - Decision: revise, hold, or archive depending on the review outcome.
 
 ## Canonical Flow
 
-`intake -> Phase 1 -> frozen Phase 1 -> Phase 2 -> frozen Phase 2 -> Phase 3 -> frozen Phase 3 -> Phase 4 -> frozen Phase 4 -> Phase 5 -> archived`
+The flow depends on whether the repository is new or already contains research artifacts:
+
+```text
+new project
+        → intake
+        → Phase 1
+        → Phase 2
+        → Phase 3
+        → Phase 4 writing slices
+        → Phase 5 when a broader review target is ready
+
+existing project
+        → intake
+        → bootstrap_existing_project
+        → latest valid active phase
+
+missing handoff
+        → backfill_required
+        → minimum required context
+        → selected active phase
+```
+
+The new-project path is normally sequential, but an existing project may bootstrap to its latest valid
+phase. Backfill reconstructs only the minimum missing context and must not pretend that reconstructed
+context was originally approved. A frozen Phase 4 slice does not automatically enter Phase 5; formal
+review begins only when the broader manuscript or coherent-unit target and its prerequisites are ready.
 
 ## What This Example Shows
 
-- The workflow is linear by default.
-- Each phase produces a distinct artifact set.
-- Frozen artifacts should not be silently rewritten downstream.
-- Review can move the workflow backward when evidence or direction is weak.
-- The intake examples above show how to route mixed or ambiguous prompts.
+- Phase and role are orthogonal: roles define permissions and responsibilities, while phases define
+  workflow location.
+- Evidence lifecycle and exact-claim support are separate axes.
+- Candidate count and independence are project-configured rather than universal kernel law.
+- Semantic writing is draft-first and reviewable before protected integration.
+- Scientific readiness, human authorization, and integration execution are separate decisions.
+- Formal broader review is distinct from embedded Phase 4 slice-local review and can route work backward.

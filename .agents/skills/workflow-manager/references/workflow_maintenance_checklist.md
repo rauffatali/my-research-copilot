@@ -20,6 +20,20 @@ Use this checklist when reviewing the workflow guidance itself, especially after
 - Example prompts still cover phase routing, blocked cases, no-op cases, and cross-phase cases.
 - If a new workflow file was added, it is referenced from the skill and not duplicated elsewhere.
 
+## Research Copilot v2 checkpoints
+
+- `RESEARCH_COPILOT_VERSION` remains separate from Git revision.
+- `project_profile`, `agent_role_profile`, `copilot_upstream`, `research_context`, and `current_status` remain distinct sources.
+- Project configuration is not duplicated into project state.
+- Writer configuration remains in `agent_role_profile`.
+- Manuscript target remains in `project_profile`.
+- `manuscript-writing.md` is the canonical manuscript guidance.
+- `paper/draft/` remains provisional staging.
+- `evidence_state` remains distinct from `support_status`.
+- Phase 4 slice-local review remains distinct from formal Phase 5 review.
+- Read-only reviewer permissions remain intact.
+- Upstream sync guidance does not overwrite downstream project state.
+
 ## Pass condition
 
 The workflow guidance passes audit when each checkpoint is true or when any exception is documented in `docs/current_status.md`.

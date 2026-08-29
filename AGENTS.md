@@ -17,6 +17,14 @@ Keep all claims grounded in appropriate evidence:
 
 This repository is not for unfocused exploration. Prefer well-motivated, scoped, and verifiable progress.
 
+## Agent role routing
+
+- This repository uses role-based orchestration. Canonical role semantics live in `.agents/workflow/policies/agent_role_policy.md`.
+- Project-local role assignments live in `docs/agent/agent_role_profile.md`.
+- Resolve the active role before multi-agent, reviewer, bounded-executor, or protected-promotion work.
+- Role permissions override a skill or tool's normal write behavior; an `independent_reviewer` remains read-only.
+- Human authorization remains distinct from AI readiness.
+
 ---
 
 ## Project map
@@ -62,8 +70,8 @@ Routing:
 - Broad idea, problem framing, novelty check, or research direction request -> Phase 1.
 - Approved plan execution, code changes, or experiment implementation request -> Phase 2.
 - Result analysis, table building, failure analysis, or claim-status update request -> Phase 3.
-- Manuscript drafting, section writing, citation polishing, or claim-supported rewriting request -> Phase 4.
-- Reviewer-style critique, red-team review, or revision request -> Phase 5.
+- Manuscript drafting, writing-slice revision, citation-supported rewriting, or embedded slice-local manuscript critique -> Phase 4.
+- Formal broader review of an integrated manuscript or coherent manuscript unit, external reviewer-feedback analysis, rebuttal planning, or broader revision planning based on such a review target -> Phase 5.
 
 Default intake:
 
@@ -100,7 +108,30 @@ When the task involves high-risk direction, experiment, evidence, claim, or revi
 
 Do not infer the current research direction from memory alone.
 
-If these files conflict, prefer the most project-specific and most recent status document. If the conflict matters, state it explicitly before proceeding.
+Keep these source purposes distinct:
+
+- `docs/research_context.md` = stable scientific framing.
+- `docs/PROJECT_PLAN.md` = active initialized project plan.
+- `docs/current_status.md` = live workflow pointer.
+
+If these sources materially conflict, do not resolve the conflict by recency alone. Respect each
+artifact's canonical ownership and treat `docs/current_status.md` as stale when it conflicts with
+durable or frozen artifacts. Load `.agents/workflow/policies/workflow_intake_policy.md` as appropriate,
+reconcile the conflict, and refresh `docs/current_status.md` before downstream work.
+
+---
+
+## Project Configuration
+
+- `RESEARCH_COPILOT_VERSION` is the canonical upstream/kernel-version marker; keep it separate from Git
+  revision and project state.
+- `docs/project_profile.md` = operational project configuration.
+- `docs/agent/agent_role_profile.md` = role and writer configuration.
+- `docs/copilot_upstream.md` = Research Copilot provenance and sync state.
+
+When operational configuration matters, load `.agents/workflow/policies/project_configuration_policy.md`.
+For upstream or kernel sync/update work only, load `.agents/workflow/policies/upstream_sync_policy.md`.
+Do not load either policy for every ordinary task.
 
 ---
 

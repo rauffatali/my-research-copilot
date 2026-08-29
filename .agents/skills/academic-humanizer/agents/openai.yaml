@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Humanizer"
+  short_description: "Preserve evidence-bound academic prose and voice"
+  default_prompt: "Use $academic-humanizer after scientific resolution and any needed style adaptation to refine a provisional academic or proposal writing slice while preserving claims, evidence, citations, numbers, equations, LaTeX, and disclosures, then route material changes through claim-auditor."
