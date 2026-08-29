@@ -80,6 +80,16 @@ Examples:
 
 Use the shared claim support-status vocabulary in all claim-related artifacts. Keep support status separate from decisions and next actions.
 
+## Evidence State Discipline
+
+Use the canonical `evidence_state` vocabulary and definitions in `.agents/workflow/policies/evidence_and_claim_policy.md`; do not invent local evidence-state labels. Keep the axes separate:
+
+```text
+evidence_state != support_status
+```
+
+`evidence_state` records the lifecycle or readiness of an evidence dependency. `support_status` records the final support judgment for the exact claim wording. Record evidence state in the artifact closest to the dependency and revalidate it when the dependency changes; do not create a duplicate global evidence-state ledger.
+
 ## Early Red-Team Discipline
 
 Do not reserve red-team critique only for Phase 5 manuscript review.

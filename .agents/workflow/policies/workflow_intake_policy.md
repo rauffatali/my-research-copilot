@@ -24,7 +24,39 @@ Use `docs/workflow_state_machine.md` as the single source of truth for:
 - backward moves triggered by review or missing evidence;
 - blocked and archived states.
 
+## Role resolution
+
+Normal simple tasks do not require role-configuration ceremony. When a request explicitly uses multiple agents, a reviewer, an execution agent, or a protected promotion/integration action, inspect `docs/agent/agent_role_profile.md` and the canonical contract at `.agents/workflow/policies/agent_role_policy.md`.
+
+If the profile is still `template_default`, establish assignments only from explicit user instructions; do not invent project-specific model or harness assignments. Role selection determines the permissions for the invocation but does not itself change the workflow phase.
+
 If refreshed live status still disagrees with frozen artifacts, treat the task as `blocked` until the conflict is resolved.
+
+## Project-configuration resolution
+
+When an operation depends on project-local operational configuration, read `docs/project_profile.md`.
+This includes protected manuscript integration, venue-specific output behavior, project-type-sensitive
+routing, and remote or hybrid execution assumptions.
+
+Do not guess unresolved, invalid, or contradictory configuration fields. An explicit current human
+instruction may resolve the current operation without rewriting permanent project configuration unless the
+human explicitly asks for that change. Do not block unrelated work because an unrelated configuration
+field remains unresolved. Keep role and writer configuration in `docs/agent/agent_role_profile.md`; do not
+move it into the project profile.
+
+## Candidate-writer resolution for substantive Phase 4 work
+
+Only when intake routes a substantive semantic Phase 4 writing task that will produce candidates:
+
+1. Read `docs/agent/agent_role_profile.md`.
+2. Confirm that `candidate_writers_required` is present as an integer greater than or equal to 1. Missing, non-integer, zero, negative, or otherwise invalid values make writer configuration unresolved.
+3. When writer configuration is unresolved, do not guess a writer count, silently use 1, silently use template default 2, or begin substantive semantic candidate drafting. Resolve it through an explicit agent-role-profile correction or explicit current human instruction. An instruction such as “Use two candidate writers for this slice” resolves the current task only and does not rewrite the permanent agent-role profile unless the human explicitly requests that change.
+4. Resolve that many project-local `candidate_writer` assignments or slots from the profile and/or explicit current user instructions; never invent model or harness assignments.
+5. Verify `candidate_independence_required` and `candidate_cross_visibility_before_comparison` before candidate generation.
+6. If the profile remains `template_default`, explicit user instructions may establish assignments, but defaults alone do not establish actual agents.
+7. If fewer than the configured count are usable, do not silently reduce the count. Candidate production stops at that boundary unless `human_researcher` explicitly authorizes a temporary lower count for the current slice.
+
+Record the configured count, effective count, candidate slots, and any explicitly authorized temporary override in the writing brief or support artifact. If unresolved configuration genuinely blocks the active Phase 4 candidate-production task, record the blocker according to normal workflow policy; do not block unrelated work. Do not change `docs/agent/agent_role_profile.md` for a temporary override. Do not apply this resolution rule to literature search, evidence analysis, claim auditing, Phase 1-3 work, formal review, non-manuscript tasks, or closed trivial nonsemantic manuscript maintenance; update workflow status only when a missing assignment or unresolved configuration blocks the active candidate-production task.
 
 ## Stale Status Recovery
 

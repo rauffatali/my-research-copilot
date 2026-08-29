@@ -14,6 +14,10 @@ Do not treat chat-only tool output as project truth.
 
 Every tool use that affects research direction, implementation, experiments, evidence, claims, citations, manuscript text, or review decisions must be reflected in a durable repository artifact.
 
+## Strict read-only role carve-out
+
+Durable-output requirements apply to writable roles. When the active role is `independent_reviewer`, normally required repository writes are returned in the reviewer's response instead. The reviewer does not create or modify durable artifacts. After lead or human adjudication, a writable role may record accepted findings. This carve-out does not weaken durable-output requirements for writable roles.
+
 ## Tool Output Classes
 
 Classify tool outputs before using them.
@@ -27,7 +31,7 @@ Classify tool outputs before using them.
 | `execution`        | Runs, logs, metrics, checkpoints, predictions, generated outputs                  | `runs/`, `outputs/`, `docs/agent/run_registry.md`                                                                                                                  |
 | `analysis`         | Result interpretation, error analysis, negative results, figure/table review      | `docs/agent/result_cards/`, `docs/agent/result_interpretation.md`, `docs/agent/error_analysis.md`, `docs/agent/negative_results.md`, `docs/agent/figure_review.md` |
 | `claim_support`    | Claim audits, result-to-claim mappings, support-status decisions                  | `docs/agent/result_to_claim_map.md`, `docs/agent/claim_ledger.md`, `paper/agent/claim_audit.md`                                                                    |
-| `manuscript`       | Drafted prose, citation edits, review responses, revision plans                   | `paper/`, `paper/agent/`                                                                                                                                           |
+| `manuscript`       | Drafted prose, citation edits, review responses, revision plans                   | `paper/draft/`, `paper/agent/`; main manuscript only through a separate human-authorized integration gate                                                        |
 | `review`           | Red-team critique, peer review, pre-mortem, evidence review                       | `docs/agent/pre_mortem.md`, `docs/agent/experiment_red_team.md`, `docs/agent/evidence_review.md`, `docs/agent/red_team_issue_ledger.md`, `paper/agent/`            |
 | `status`           | Workflow routing, phase changes, blockers, next steps                             | `docs/current_status.md`                                                                                                                                           |
 
@@ -85,6 +89,20 @@ Do not treat console output as durable evidence.
 Claim-auditing, writing, citation, and review tools must respect the canonical claim-status vocabulary.
 
 A writing or review tool may suggest manuscript text, but it must not upgrade claim support status unless the evidence chain supports it.
+
+Tool success does not automatically promote `evidence_state`. For example:
+
+```text
+code exists       != implementation_defined unless applicable validation exists
+run completed     != evidence_ready
+search result found != evidence_ready
+BibTeX resolved   != claim supported
+generated table   != result evidence
+```
+
+Any evidence-state transition must be recorded in the durable artifact that owns the dependency and must satisfy the applicable verification and review path.
+
+For material prose transformations, preserve pre-transformation and post-transformation text and revalidate claim/evidence support; recheck citation or reference integrity when affected. `watermark-hygiene` is inspection-first and does not itself promote or mutate manuscript text.
 
 Preferred chain:
 
