@@ -20,6 +20,23 @@ Examples include:
 
 These are workflow and reasoning artifacts, not manuscript files.
 
+### Role profile
+
+- `agent_role_profile.md` — project-local role assignments, candidate-writer count, candidate independence settings, and candidate-writer slots for actual agents, models, providers, or harnesses, with role-specific permission notes. It contains no scientific evidence or manuscript content.
+
+## Configuration and State Source Separation
+
+Keep these project sources distinct:
+
+- `docs/project_profile.md` — operational project configuration
+- `docs/agent/agent_role_profile.md` — role and writer configuration
+- `docs/research_context.md` — scientific framing
+- `docs/current_status.md` — live workflow state
+- `docs/copilot_upstream.md` — upstream provenance
+
+Among these configuration and state sources, only `agent_role_profile.md` belongs inside `docs/agent/`.
+The other files remain in their canonical locations.
+
 Phase 1 brainstorming artifacts should preserve the discussion path, not only the final idea. Keep evidence found, questions asked, user responses, unresolved assumptions, and the final proceed/revise/defer/stop decision traceable.
 
 ## Common templates
@@ -158,6 +175,22 @@ Use this vocabulary in:
 Do not introduce local variants.
 
 Keep support status separate from decisions or next actions.
+
+## Evidence State Vocabulary
+
+Use exactly these dependency lifecycle/readiness states:
+
+- `evidence_ready`
+- `implementation_defined`
+- `implementation_pending`
+- `experiment_planned`
+- `result_pending`
+- `citation_pending`
+- `placeholder_only`
+
+`Evidence State(s)` describe the readiness or lifecycle of evidence dependencies. `Support Status`
+remains the support verdict for the exact claim wording; the two vocabularies are separate. See
+`.agents/workflow/policies/evidence_and_claim_policy.md` for the canonical definitions.
 
 ## Experiment artifact chain
 

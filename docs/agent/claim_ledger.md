@@ -74,6 +74,12 @@ Do not invent local support labels.
 
 Keep support statuses separate from decisions, next actions, and rewrite instructions.
 
+## Evidence State(s)
+
+Record one or more relevant dependency states using the canonical `evidence_state` vocabulary defined in `.agents/workflow/policies/evidence_and_claim_policy.md`. `Evidence State(s)` describe the lifecycle or readiness of the evidence dependencies; `Support Status` remains the single final support judgment for the exact claim wording.
+
+A claim with mutable or pending evidence states must not be treated as permanently valid merely because an earlier audit assigned a support status. Recheck the evidence state before reusing or promoting the claim.
+
 ## Relationship to Result Evidence
 
 Claims should be updated from interpreted evidence, not from raw metrics alone.
@@ -97,12 +103,13 @@ Do not mark a claim as supported only because a run completed.
 
 No project-specific claims have been recorded yet.
 
-| Claim ID | Claim | Claim Type | Location | Evidence References | Verification | Support Status | Scope And Limitations | Missing Evidence | Risk | Decision | Allowed Wording |
-| -------- | ----- | ---------- | -------- | ------------------- | ------------ | -------------- | --------------------- | ---------------- | ---- | -------- | --------------- |
+| Claim ID | Claim | Claim Type | Location | Evidence References | Evidence State(s) | Verification | Support Status | Scope And Limitations | Missing Evidence | Risk | Decision | Allowed Wording |
+| -------- | ----- | ---------- | -------- | ------------------- | ----------------- | ------------ | -------------- | --------------------- | ---------------- | ---- | -------- | --------------- |
 
 For every real claim row:
 
 - `Evidence References` must identify durable project artifacts and relevant sections, metrics, tables, or citation locations.
+- `Evidence State(s)` must use one or more canonical dependency states; it is not a support verdict.
 - `Verification` must state how the evidence was checked.
 - `Scope And Limitations` must state where the claim applies and what it does not establish.
 - `Missing Evidence` must identify any unresolved support gap; use `none` only when the chain is complete.
@@ -132,4 +139,3 @@ Suggested decision values:
 ## Next Step
 
 * Add the first real claim when Phase 3 result interpretation, Phase 4 writing, or Phase 5 review produces a claim that needs tracking.
-

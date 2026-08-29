@@ -17,12 +17,16 @@ Use the same support-status values as `docs/agent/claim_ledger.md` and the claim
 
 Review comments may explain nuance, but the final status must use one of these labels.
 
+## Evidence State(s)
+
+Record one or more relevant dependency states using the canonical `evidence_state` vocabulary from `.agents/workflow/policies/evidence_and_claim_policy.md`. `Evidence State(s)` describe lifecycle or readiness; `Support Status` remains the separate support judgment for the exact claim wording. If a mutable evidence state changes after an audit, the prior wording and support verdict require revalidation.
+
 ## Claim Audit Table
 
 No manuscript claims have been audited yet.
 
-| Claim ID | Manuscript Location | Claim | Evidence References | Citation | Verification | Support Status | Scope And Limitations | Required Fix | Closure Status | Closure Verification |
-|---|---|---|---|---|---|---|---|---|---|---|
+| Claim ID | Manuscript Location | Claim | Evidence References | Evidence State(s) | Citation | Verification | Support Status | Scope And Limitations | Required Fix | Closure Status | Closure Verification |
+|---|---|---|---|---|---|---|---|---|---|---|---|
 
 For every audited claim:
 

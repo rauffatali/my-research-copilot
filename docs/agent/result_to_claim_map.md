@@ -27,6 +27,18 @@ Use the same support-status values as `docs/agent/claim_ledger.md` and the claim
 
 Do not introduce local variants.
 
+## Evidence State(s)
+
+Record one or more relevant dependency states using the canonical `evidence_state` vocabulary in `.agents/workflow/policies/evidence_and_claim_policy.md`. `Evidence State(s)` describe evidence lifecycle/readiness; `Support Status` remains the separate final judgment for the exact claim wording.
+
+For result-based evidence:
+
+- a planned experiment -> `experiment_planned`;
+- a raw or unconsolidated result -> `result_pending`;
+- result evidence that has completed the applicable Phase 3 interpretation, verification, scope/limitations, mapping, and evidence-review path -> `evidence_ready`.
+
+A completed run does not automatically mean `evidence_ready`.
+
 ## Status
 
 - draft
@@ -36,8 +48,8 @@ Do not introduce local variants.
 
 No project-specific claim mappings have been recorded yet.
 
-| Claim ID | Claim | Claim Type | Evidence References | Verification | Support Status | Scope And Limitations | Allowed Wording | Not Allowed Wording | Missing Evidence | Decision |
-|---|---|---|---|---|---|---|---|---|---|---|
+| Claim ID | Claim | Claim Type | Evidence References | Evidence State(s) | Verification | Support Status | Scope And Limitations | Allowed Wording | Not Allowed Wording | Missing Evidence | Decision |
+|---|---|---|---|---|---|---|---|---|---|---|---|
 
 ## Claim Types
 
@@ -104,6 +116,10 @@ Examples:
 - `sources/...`
 - `runs/...`
 - `outputs/...`
+
+#### Evidence State(s)
+
+[One or more canonical evidence states for the claim's dependencies. Do not use this field as the support verdict.]
 
 #### Verification
 

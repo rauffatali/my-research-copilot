@@ -13,6 +13,7 @@ This is a citation-level evidence record, not the source of truth for final clai
 - `section`
 - `citation_key_or_source`
 - `source_artifact_and_location`
+- `evidence_state`
 - `what_the_citation_supports`
 - `support_strength`
 - `verification`
@@ -29,11 +30,15 @@ This is a citation-level evidence record, not the source of truth for final clai
 
 These statuses describe the citation record only. They are not claim support statuses; use the canonical vocabulary in `docs/agent/claim_ledger.md` for the final claim decision.
 
+## Evidence State
+
+Optionally record `Evidence State` for manuscript claimability using the canonical `evidence_state` vocabulary from `.agents/workflow/policies/evidence_and_claim_policy.md`. Use `citation_pending` while required source/reference or source-to-claim verification remains incomplete. Use `evidence_ready` only when the relevant source has been verified sufficiently for downstream claim evaluation. A citation record marked `checked` still does not automatically mean the claim is `supported`; `claim-auditor` evaluates the exact relationship.
+
 ## Suggested table
 
-| Claim ID | Section | Citation | Source artifact / location | Supports | Verification | Scope And Limitations | Strength | Status |
-|---|---|---|---|---|---|---|---|---|
-| c01 |  |  |  |  |  |  |  |  |
+| Claim ID | Section | Citation | Source artifact / location | Evidence State | Supports | Verification | Scope And Limitations | Strength | Status |
+|---|---|---|---|---|---|---|---|---|---|
+| c01 |  |  |  |  |  |  |  |  |  |
 
 ## Usage notes
 

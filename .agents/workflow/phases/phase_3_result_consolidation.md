@@ -8,6 +8,18 @@ Phase 3 should not merely summarize metrics. It should determine what the result
 
 Apply the Chain of Evidence from execution artifacts through interpreted results to claim support. Chain completeness means that each material claim has durable evidence references; chain correctness means that the references support the exact claim, scope, and strength being asserted.
 
+## Evidence-state discipline
+
+Phase 3 must distinguish a completed run from result evidence that is ready for downstream claim evaluation. Record the applicable `evidence_state` from `.agents/workflow/policies/evidence_and_claim_policy.md` in the result card or result-to-claim support artifact:
+
+```text
+run completed or raw output exists
+    !=
+result evidence ready
+```
+
+Keep `result_pending` when interpretation, verification, scope and limitations, result-to-claim mapping, or required evidence review is incomplete. Promote the result dependency to `evidence_ready` only after the applicable result card, interpretation, verification, scope/limitations, mapping, and evidence-review process succeeds. Assign the separate canonical `support_status` only after the evidence is evaluated for the exact claim; `evidence_ready` does not imply `supported`.
+
 ## Inputs
 
 Expected inputs may include:
