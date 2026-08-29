@@ -35,6 +35,6 @@ currently being developed as the Research Copilot kernel/template.
 
 ## Sync Notes
 
-- The current development version is `2.0.0-dev`.
+- The current development version is `2.0.0-beta.1`.
 - `last_synced_version` and `last_synced_revision` must advance only after a bounded upstream sync
   validates successfully.

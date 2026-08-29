@@ -16,7 +16,7 @@ a sync program from this policy alone.
 - Git revision is tracked separately from the version.
 - A version may be known while an exact clean Git revision is unknown.
 - Never fabricate an upstream revision for a dirty or uncommitted kernel snapshot.
-- The current development version is `2.0.0-dev`.
+- The current development version is `2.0.0-beta.1`.
 - A future release may intentionally change the marker to an explicit released version such as `2.0.0`.
 
 Do not treat the current Git HEAD as the exact v2 imported or synced revision when the v2 kernel is still
